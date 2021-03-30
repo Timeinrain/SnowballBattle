@@ -15,6 +15,13 @@ public class PlayerController : UnitySingleton<PlayerController>
 	Vector3 movingDirForward;
 	public Joystick viewAdjust;
 	public Cinemachine.CinemachineFreeLook freeLookCam;
+	//todo: controlled by gameflow mgr
+	public playMode mode;
+	public enum playMode
+	{
+		Adventure=0,
+		PVP=1,
+	}
 	void Start()
 	{
 		rb = GetComponent<Rigidbody>();
@@ -47,6 +54,5 @@ public class PlayerController : UnitySingleton<PlayerController>
 	{
 		playerAnimator.SetFloat("MovingSpeed", (new Vector2(rb.velocity.x, rb.velocity.z)).magnitude);
 		AdjustDirection();
-
 	}
 }

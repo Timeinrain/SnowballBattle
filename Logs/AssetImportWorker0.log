@@ -15,11 +15,11 @@ D:/SnowballBattle/SnowballBattle
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-50570
+54459
 Successfully changed project path to: D:/SnowballBattle/SnowballBattle
 D:/SnowballBattle/SnowballBattle
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 37.74 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 37.48 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.2.6f1c1 (88e64323f9a5)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.2.6f1c1/Editor/Data/Resources/UnitySubsystems
@@ -36,31 +36,31 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.2.6f1c1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.2.6f1c1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.2.6f1c1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56776
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56668
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.2.6f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.000799 seconds.
+Registered in 0.000761 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 58.34 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 38.03 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.753 seconds
+- Completed reload, in  0.676 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.000819 seconds.
+Registered in 0.000802 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 40.09 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 39.84 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Invoked RoslynAnalysisRunner static constructor.
 RoslynAnalysisRunner will not be running.
 RoslynAnalysisRunner has terminated.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.781 seconds
+- Completed reload, in  0.761 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
@@ -69,64 +69,1385 @@ Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 second
 Refreshing native plugins compatible for Editor in 0.40 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 2571 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 120.8 MB.
-System memory in use after: 121.0 MB.
+System memory in use before: 120.9 MB.
+System memory in use after: 121.1 MB.
 
 Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 3023.
-Total: 2.027700 ms (FindLiveObjects: 0.276700 ms CreateObjectMapping: 0.115900 ms MarkObjects: 1.576500 ms  DeleteObjects: 0.057100 ms)
+Total: 2.059100 ms (FindLiveObjects: 0.256600 ms CreateObjectMapping: 0.099600 ms MarkObjects: 1.650200 ms  DeleteObjects: 0.052100 ms)
 
 ========================================================================
 Received Import Request.
+  path: Assets/Materials/Snow.mat
+  artifactKey: Guid(0ce344d4923d50d4f97f82c109e26a19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Snow.mat using Guid(0ce344d4923d50d4f97f82c109e26a19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '80496a6c177654b97963f30449e563b3') in 0.187884 seconds
+  Import took 0.219219 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.797094 seconds.
+  path: Assets/Scripts/Player/PlayerController.cs
+  artifactKey: Guid(7172f99f9cd0968498fb91bb5bf800d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Player/PlayerController.cs using Guid(7172f99f9cd0968498fb91bb5bf800d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ab46cd8e8e3805986eb05b910233e4c') in 0.003766 seconds
+  Import took 0.029041 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.491578 seconds.
   path: Assets/Scenes/SampleScene.unity
   artifactKey: Guid(d1c3109bdb54ad54c8a2b2838528e640) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/SampleScene.unity using Guid(d1c3109bdb54ad54c8a2b2838528e640) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '190eb4726b8316695946732e26a6991a') in 0.010290 seconds
-  Import took 0.029213 seconds .
+Start importing Assets/Scenes/SampleScene.unity using Guid(d1c3109bdb54ad54c8a2b2838528e640) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '848bf439fa830b6d276ce52187dc4a63') in 0.001780 seconds
+  Import took 0.034623 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000260 seconds.
-  path: Assets
-  artifactKey: Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets using Guid(00000000000000001000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23e4bae80aa58a9c9488b37e45769cbb') in 0.001902 seconds
-  Import took 0.010265 seconds .
+  Time since last request: 5369.979482 seconds.
+  path: Assets/Paper Environment Pack vol. 1
+  artifactKey: Guid(00334e1f8d129fd439cb1f37677e2159) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Paper Environment Pack vol. 1 using Guid(00334e1f8d129fd439cb1f37677e2159) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9bb4d6e774bcd71a8fc03f1d3aca128') in 0.020056 seconds
+  Import took 0.095818 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 6.513285 seconds.
-  path: Assets/Characters
-  artifactKey: Guid(5a75a925e8d754e44a265bd7fada7e4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Characters using Guid(5a75a925e8d754e44a265bd7fada7e4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76d7cd97e2e97d56cb4a847177c4e829') in 0.001972 seconds
-  Import took 0.005859 seconds .
+  Time since last request: 6.626633 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/AutumnTerrain 1.asset
+  artifactKey: Guid(ee47ee4821fc4b2489c6ea1ce5d69c75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/AutumnTerrain 1.asset using Guid(ee47ee4821fc4b2489c6ea1ce5d69c75) Importer(815301076,1909f56bfc062723c751e8b465ee728b) The tree fir_tree_poly must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree grass_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_3 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_3 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_4 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_4 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_8 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_8 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_11 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_11 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_10 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_10 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_5 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_5 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_6 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_6 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_7 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_7 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_9 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_9 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree grass must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree plant_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree plant_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree mushroom_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree tree must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree tree must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree tree must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree tree must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree tree_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree tree_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+ -> (artifact id: '85f2abddf9392942c09d3e89115b5d8e') in 0.254623 seconds
+  Import took 0.260416 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 5.311078 seconds.
-  path: Assets/Characters/Player.prefab
-  artifactKey: Guid(c659fc3074de1094d86c2e63d6d79fd7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Characters/Player.prefab using Guid(c659fc3074de1094d86c2e63d6d79fd7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9da79065632db8d5366162fd1a62952d') in 0.223319 seconds
-  Import took 0.227788 seconds .
+  Time since last request: 0.000189 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/WinterTerrain.asset
+  artifactKey: Guid(01a0dc3f644647c4e96e504180bb41c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/WinterTerrain.asset using Guid(01a0dc3f644647c4e96e504180bb41c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) The tree fir_tree_poly must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree grass_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_3 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_3 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_4 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_4 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_8 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_8 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_11 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_11 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_10 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_10 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_5 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_5 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_6 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_6 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_7 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_7 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_9 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_9 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree grass must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree plant_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree plant_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree mushroom_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+ -> (artifact id: 'a15184d8d4068e6c0cc97acc40f3fe36') in 0.115580 seconds
+  Import took 0.119532 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 57.987884 seconds.
-  path: Assets/Control
-  artifactKey: Guid(659b323af490b6b45baef6f7b2774c98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Control using Guid(659b323af490b6b45baef6f7b2774c98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe13a49e15d2ecda71c7b05149c3f27a') in 0.001838 seconds
-  Import took 0.033245 seconds .
+  Time since last request: 0.000211 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/SummerTerrain.asset
+  artifactKey: Guid(563adbd80c947b24391a0595b5916dc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/SummerTerrain.asset using Guid(563adbd80c947b24391a0595b5916dc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) The tree fir_tree_poly must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree grass_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_3 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_3 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_4 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_4 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_8 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_8 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_11 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_11 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_10 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_10 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_5 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_5 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_6 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_6 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_7 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_7 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_9 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_9 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree grass must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree plant_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree plant_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree mushroom_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+ -> (artifact id: '1188bf26efa05e97f174f96852f66938') in 0.120386 seconds
+  Import took 0.132751 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 3.242345 seconds.
-  path: Assets/Control/MobileControl.prefab
-  artifactKey: Guid(6624eff7924295e448c739e387ce20d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Control/MobileControl.prefab using Guid(6624eff7924295e448c739e387ce20d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4eb633734fd2c8dd0e23fc824e237ed0') in 0.016108 seconds
-  Import took 0.020388 seconds .
+  Time since last request: 2.069649 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/TerrainDemo_Autumn.unity
+  artifactKey: Guid(4404a43023f5283419782db41f4edceb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/TerrainDemo_Autumn.unity using Guid(4404a43023f5283419782db41f4edceb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9939510873cf27493e0728c35ba11728') in 0.002675 seconds
+  Import took 0.021115 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.003472 seconds.
-  path: Assets/Control/MobileControl.prefab
-  artifactKey: Guid(6624eff7924295e448c739e387ce20d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Control/MobileControl.prefab using Guid(6624eff7924295e448c739e387ce20d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4eb633734fd2c8dd0e23fc824e237ed0') in 0.005752 seconds
-  Import took 0.009635 seconds .
+  Time since last request: 0.660466 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/TerrainDemo_Winter
+  artifactKey: Guid(3e4f80bc6086533468d912b0f81be9d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/TerrainDemo_Winter using Guid(3e4f80bc6086533468d912b0f81be9d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0f2dc5113904444144bbe371ecfdee3') in 0.001963 seconds
+  Import took 0.015157 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 0.319001 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs
+  artifactKey: Guid(00b709697cb6eb14aa1ac814ee3d2604) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs using Guid(00b709697cb6eb14aa1ac814ee3d2604) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33533399d4599c3e5f18fbfa0ad5df96') in 0.011450 seconds
+  Import took 0.015206 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.947562 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange
+  artifactKey: Guid(d663d99343cc2c94695b6a04eb251836) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange using Guid(d663d99343cc2c94695b6a04eb251836) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07f2ce5053b9b15528352af874cc3964') in 0.001952 seconds
+  Import took 0.005450 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.077723 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly.prefab
+  artifactKey: Guid(43b7195c4a69a8548b4f8ff4107e8c80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly.prefab using Guid(43b7195c4a69a8548b4f8ff4107e8c80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '262f3569e54cd4426b296a42f77303eb') in 0.039307 seconds
+  Import took 0.043042 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000222 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_8.prefab
+  artifactKey: Guid(fc099c7f56aa0d04887c94c8a59b3ad9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_8.prefab using Guid(fc099c7f56aa0d04887c94c8a59b3ad9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1a6c7e27f6742214c4f15ab3a2282d7') in 0.007269 seconds
+  Import took 0.010966 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000255 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/tree_1.prefab
+  artifactKey: Guid(5a678a7a72fb26d41a64198c65bc550f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/tree_1.prefab using Guid(5a678a7a72fb26d41a64198c65bc550f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd80d39bfca173aee0aa0c88d22eee4c0') in 0.008202 seconds
+  Import took 0.011958 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000221 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/plant_1.prefab
+  artifactKey: Guid(2712f62d0efad2244b0d8c66f762a216) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/plant_1.prefab using Guid(2712f62d0efad2244b0d8c66f762a216) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2e3e4565eff4a51db2614be39319f1ae') in 0.006464 seconds
+  Import took 0.010051 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000176 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_5.prefab
+  artifactKey: Guid(afd1cc42554a3e84dbf6e26f70290856) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_5.prefab using Guid(afd1cc42554a3e84dbf6e26f70290856) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9f5a1dd022c7d585a59ef9651ad1741') in 0.007108 seconds
+  Import took 0.010653 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000228 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/plant_2.prefab
+  artifactKey: Guid(7337b663d31b87b4a8b7b749417e95ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/plant_2.prefab using Guid(7337b663d31b87b4a8b7b749417e95ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '865a9529d71cd16a981e21dd0d454098') in 0.007208 seconds
+  Import took 0.010937 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000219 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_7.prefab
+  artifactKey: Guid(8ac4fbd96f734a5438315a61b88e926f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_7.prefab using Guid(8ac4fbd96f734a5438315a61b88e926f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a99baf9b8418718947861580b1df8cd2') in 0.007863 seconds
+  Import took 0.011434 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000197 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/mushroom_2.prefab
+  artifactKey: Guid(24fbbaa7986daec43b81f3f9b286c699) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/mushroom_2.prefab using Guid(24fbbaa7986daec43b81f3f9b286c699) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d62a64d21b561596ad0d2f3a959dd4a') in 0.006396 seconds
+  Import took 0.009900 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000217 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/tree.prefab
+  artifactKey: Guid(f11e8d2793f01aa45a734a252c634225) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/tree.prefab using Guid(f11e8d2793f01aa45a734a252c634225) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2aa17502d979635e590655d5ced9acf') in 0.007298 seconds
+  Import took 0.010814 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000191 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/grass_1.prefab
+  artifactKey: Guid(5d16a3644107cb04394d34c82e4d7c8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/grass_1.prefab using Guid(5d16a3644107cb04394d34c82e4d7c8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '123f6f1601e0c0b1dbb63f3730551f51') in 0.006807 seconds
+  Import took 0.010169 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000315 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_4.prefab
+  artifactKey: Guid(0e0ef0e7059c06740ae1eec5a84b5b3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_4.prefab using Guid(0e0ef0e7059c06740ae1eec5a84b5b3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d2cf485fc30720ee05e3c29500a8902') in 0.007053 seconds
+  Import took 0.010653 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000132 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/mushroom_1.prefab
+  artifactKey: Guid(8a277d09c7a37e646a864d6084e568fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/mushroom_1.prefab using Guid(8a277d09c7a37e646a864d6084e568fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a67bf6944e2447960d80cb0a62e9fea2') in 0.006398 seconds
+  Import took 0.009970 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000230 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_10.prefab
+  artifactKey: Guid(ad559c12f1238754586fe4f5c9ce1398) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_10.prefab using Guid(ad559c12f1238754586fe4f5c9ce1398) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ebdcab4383312bd2b2a31f4c6071d50') in 0.007476 seconds
+  Import took 0.017219 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000219 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/grass.prefab
+  artifactKey: Guid(e0ab6643b0962094e9ca31d7bdf67874) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/grass.prefab using Guid(e0ab6643b0962094e9ca31d7bdf67874) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '71a73982252add6482263f9ec7c7f2e7') in 0.008931 seconds
+  Import took 0.012583 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000196 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_9.prefab
+  artifactKey: Guid(600f0699a1503f5448a55b25b2d3730a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_9.prefab using Guid(600f0699a1503f5448a55b25b2d3730a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92f40ac041429323d89642316f3d9c4b') in 0.007026 seconds
+  Import took 0.010795 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000205 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_1.prefab
+  artifactKey: Guid(e2e51eb55f13bf9499307755f4c7d38d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_1.prefab using Guid(e2e51eb55f13bf9499307755f4c7d38d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2328b71aff3ac13e93f761a839ef27f') in 0.007170 seconds
+  Import took 0.010604 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000193 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_11.prefab
+  artifactKey: Guid(05d91f99d01e42442b841abc84e73ba1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_11.prefab using Guid(05d91f99d01e42442b841abc84e73ba1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '91bccba3df5ae0bc09b33160ef37b277') in 0.007091 seconds
+  Import took 0.010686 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000224 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/mushroom.prefab
+  artifactKey: Guid(5b954ad63ebe6ab4fa3e9cd89b66884e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/mushroom.prefab using Guid(5b954ad63ebe6ab4fa3e9cd89b66884e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3a9dee61dea4e18d41cc50aefcdd170') in 0.007136 seconds
+  Import took 0.010708 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000149 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_3.prefab
+  artifactKey: Guid(c41480bf00cd3d94c912a1d180d59a70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_3.prefab using Guid(c41480bf00cd3d94c912a1d180d59a70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a789f8cb2914f9b54dbe91867414c30') in 0.006862 seconds
+  Import took 0.010248 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000227 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_2.prefab
+  artifactKey: Guid(8f91480ce2f1bcf49a30c4ebda1f5d26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_2.prefab using Guid(8f91480ce2f1bcf49a30c4ebda1f5d26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '226f1e3111cbdf07b2d26e02284f9f5e') in 0.007610 seconds
+  Import took 0.011563 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000209 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_6.prefab
+  artifactKey: Guid(5aa5c129c86d2f44a93091c6cb95b641) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Autumn Orange/fir_tree_poly_6.prefab using Guid(5aa5c129c86d2f44a93091c6cb95b641) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d8971b5b19926a8fcde5997ff9c8ccf') in 0.007551 seconds
+  Import took 0.010970 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.932552 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Meshes
+  artifactKey: Guid(6f9b6e868f3d0b54198c31054be9362c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Meshes using Guid(6f9b6e868f3d0b54198c31054be9362c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8059169d78a2ee8ecc76e3ff2b9ed81f') in 0.001854 seconds
+  Import took 0.005414 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 19.331150 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter
+  artifactKey: Guid(39caf1746b4e08844b571d944122a32c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter using Guid(39caf1746b4e08844b571d944122a32c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fbfc7611263c35ea2558ca1fc2a5a7a7') in 0.001923 seconds
+  Import took 0.005407 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.051919 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly.prefab
+  artifactKey: Guid(d46a671fada72a04aaf2d973ae34fbbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly.prefab using Guid(d46a671fada72a04aaf2d973ae34fbbf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77a75a93a32a6ed6cb856723b8df9647') in 0.006255 seconds
+  Import took 0.009785 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000253 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/plant_2.prefab
+  artifactKey: Guid(ab3bfd93303244546b7c8cb2ff82f1e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/plant_2.prefab using Guid(ab3bfd93303244546b7c8cb2ff82f1e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f7848a064284d93c5e83de70fbc6ee8') in 0.006622 seconds
+  Import took 0.009901 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000236 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/grass_1.prefab
+  artifactKey: Guid(2838abc43246e764f8bf4b1f4a5aa37c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/grass_1.prefab using Guid(2838abc43246e764f8bf4b1f4a5aa37c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37d3f56a808b737578920c1e38d211cd') in 0.006537 seconds
+  Import took 0.010045 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/grass.prefab
+  artifactKey: Guid(e343ecc660ff48a449bee5861b59885c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/grass.prefab using Guid(e343ecc660ff48a449bee5861b59885c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28b6aabc88a93f1a251626fd1cc0f985') in 0.006544 seconds
+  Import took 0.009827 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000173 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_7.prefab
+  artifactKey: Guid(288c143df32cbae419e387a49b8c104b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_7.prefab using Guid(288c143df32cbae419e387a49b8c104b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63167c9bdbbac03d765eff46c83b56a0') in 0.006546 seconds
+  Import took 0.010071 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000155 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/plant_1.prefab
+  artifactKey: Guid(0e6a3e088d5a70d4b80134c4d2231b8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/plant_1.prefab using Guid(0e6a3e088d5a70d4b80134c4d2231b8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '996bccfadf10536b9787c21539bce658') in 0.006322 seconds
+  Import took 0.009777 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000227 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_1.prefab
+  artifactKey: Guid(7e656eb35c55f2d478c5748f0bd7f815) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_1.prefab using Guid(7e656eb35c55f2d478c5748f0bd7f815) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f28801c47bec1b45bfc44c8f7022bef9') in 0.006594 seconds
+  Import took 0.027957 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000191 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_2.prefab
+  artifactKey: Guid(6ea01045ffb18f94988fb5d00d5d4326) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_2.prefab using Guid(6ea01045ffb18f94988fb5d00d5d4326) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c7797c6355dc472f275189a0ae7f698') in 0.006896 seconds
+  Import took 0.010166 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000298 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_11.prefab
+  artifactKey: Guid(6bddb526d44d4c54d826bfb5a999e6ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_11.prefab using Guid(6bddb526d44d4c54d826bfb5a999e6ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'adffeb51c0477f7232061e9a9a3519fd') in 0.006641 seconds
+  Import took 0.010348 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000223 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_8.prefab
+  artifactKey: Guid(de615b7c6741b734f8b15c0acd1514cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_8.prefab using Guid(de615b7c6741b734f8b15c0acd1514cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '45cedf28de81cd4440575bfa2c01c991') in 0.007023 seconds
+  Import took 0.010736 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000231 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_5.prefab
+  artifactKey: Guid(3dd9c120bcce9e243aa8dfc8f26615b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_5.prefab using Guid(3dd9c120bcce9e243aa8dfc8f26615b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '450aebfc8fd18426bfab98e84fef6984') in 0.008358 seconds
+  Import took 0.012016 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000208 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/tree.prefab
+  artifactKey: Guid(7fa02c9935bd5bb43bec31901e4b3970) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/tree.prefab using Guid(7fa02c9935bd5bb43bec31901e4b3970) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8597756dcd5dd750e5de9f4f3f0d718f') in 0.007392 seconds
+  Import took 0.010827 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000199 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_4.prefab
+  artifactKey: Guid(35cffb837571c0d4b8858524f51fb464) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_4.prefab using Guid(35cffb837571c0d4b8858524f51fb464) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cca3968159561f5ae2f12d6f5cf5509b') in 0.006280 seconds
+  Import took 0.009735 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000205 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_10.prefab
+  artifactKey: Guid(d6c105a14ea5c0641b15ba70ee576c78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_10.prefab using Guid(d6c105a14ea5c0641b15ba70ee576c78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '13ff0fe0af65686a7cc2ad03e467970b') in 0.007072 seconds
+  Import took 0.015375 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000213 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_9.prefab
+  artifactKey: Guid(1ae0027d160d0784aaa1f5712c4ba3a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_9.prefab using Guid(1ae0027d160d0784aaa1f5712c4ba3a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '20c9e49f4d8f19a33d9fea2bf62018ba') in 0.006819 seconds
+  Import took 0.010167 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000194 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/tree_1.prefab
+  artifactKey: Guid(b01dc5d68ec9bd0418f77701039e3732) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/tree_1.prefab using Guid(b01dc5d68ec9bd0418f77701039e3732) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eaa71494a15bc6a14480127197e8d9e9') in 0.006363 seconds
+  Import took 0.009871 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000184 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_6.prefab
+  artifactKey: Guid(67125b26143d8764d887185d15684b32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_6.prefab using Guid(67125b26143d8764d887185d15684b32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e8343b787c5133dff0f0b87970e2c3d') in 0.006382 seconds
+  Import took 0.009861 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000153 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_3.prefab
+  artifactKey: Guid(26ef139b8a599f647b86a8cc68374b75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Winter/fir_tree_poly_3.prefab using Guid(26ef139b8a599f647b86a8cc68374b75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0ecf5c7fe2bc9cd769e86803f603867') in 0.006433 seconds
+  Import took 0.009785 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 13.888842 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/AutumnTerrain 1.asset
+  artifactKey: Guid(ee47ee4821fc4b2489c6ea1ce5d69c75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/AutumnTerrain 1.asset using Guid(ee47ee4821fc4b2489c6ea1ce5d69c75) Importer(815301076,1909f56bfc062723c751e8b465ee728b) The tree fir_tree_poly must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree grass_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_3 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_3 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_4 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_4 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_8 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_8 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_11 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_11 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_10 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_10 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_5 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_5 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_6 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_6 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_7 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_7 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_9 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_9 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree grass must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree plant_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree plant_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree mushroom_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree tree must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree tree must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree tree must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree tree must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree tree_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree tree_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+ -> (artifact id: 'f74c049ec3c1d62150c66d4642af9af2') in 0.027323 seconds
+  Import took 0.036204 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000220 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/WinterTerrain.asset
+  artifactKey: Guid(01a0dc3f644647c4e96e504180bb41c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/WinterTerrain.asset using Guid(01a0dc3f644647c4e96e504180bb41c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) The tree fir_tree_poly must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree grass_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_3 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_3 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_4 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_4 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_8 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_8 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_11 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_11 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_10 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_10 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_5 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_5 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_6 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_6 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_7 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_7 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_9 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_9 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree grass must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree plant_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree plant_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree mushroom_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+ -> (artifact id: '8f0c2236390a56fc9ca4707684a85ba6') in 0.031393 seconds
+  Import took 0.035477 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000208 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/SummerTerrain.asset
+  artifactKey: Guid(563adbd80c947b24391a0595b5916dc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/SummerTerrain.asset using Guid(563adbd80c947b24391a0595b5916dc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) The tree fir_tree_poly must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree grass_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_3 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_3 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_4 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_4 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_8 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_8 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_11 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_11 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_10 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_10 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_5 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_5 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_6 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_6 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_7 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_7 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_9 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree fir_tree_poly_9 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree grass must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree plant_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree plant_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree mushroom_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree_1 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+The tree birch_tree_2 must use the Nature/Soft Occlusion shader. Otherwise billboarding/lighting will not work correctly.
+
+ -> (artifact id: '3077dd2bc1c1fa893513d8fa3d02b3df') in 0.021827 seconds
+  Import took 0.026153 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.529157 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Textures
+  artifactKey: Guid(292dc6a983050ab4eac960288834db49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Textures using Guid(292dc6a983050ab4eac960288834db49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '429d75c041121784b18020df268d8f60') in 0.001888 seconds
+  Import took 0.005650 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 18.094480 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/TerrainDemo_Winter/LightingData.asset
+  artifactKey: Guid(50e5a2ce811855640961773b9b3e18a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/TerrainDemo_Winter/LightingData.asset using Guid(50e5a2ce811855640961773b9b3e18a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Lighting data asset ‘LightingData’ is incompatible with the current Unity version. Please use Generate Lighting to rebuild the lighting data.  Realtime Global Illumination cannot be used until the lighting data is rebuilt.
+
+ -> (artifact id: '01a3503fb8d99e6b38053fee9e21a820') in 0.004907 seconds
+  Import took 0.036236 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000255 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/TerrainDemo_Winter/ReflectionProbe-0.exr
+  artifactKey: Guid(b5a35621ae7ff2841907cf25cc4d38cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/TerrainDemo_Winter/ReflectionProbe-0.exr using Guid(b5a35621ae7ff2841907cf25cc4d38cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '744e98d47978bc0c59f9c1514f193433') in 0.025608 seconds
+  Import took 0.028721 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 64.743131 seconds.
+  path: Packages/com.unity.render-pipelines.universal/Runtime/Materials/Lit.mat
+  artifactKey: Guid(31321ba15b8f8eb4c954353edc038b1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.render-pipelines.universal/Runtime/Materials/Lit.mat using Guid(31321ba15b8f8eb4c954353edc038b1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ae56438cb54f82d97e209e0ee528ce2') in 0.016882 seconds
+  Import took 0.034284 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000249 seconds.
+  path: Packages/com.unity.render-pipelines.universal/Runtime/Materials/ParticlesUnlit.mat
+  artifactKey: Guid(e823cd5b5d27c0f4b8256e7c12ee3e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.render-pipelines.universal/Runtime/Materials/ParticlesUnlit.mat using Guid(e823cd5b5d27c0f4b8256e7c12ee3e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e8c797d663e94246906201bd5e888b5') in 0.010421 seconds
+  Import took 0.013797 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000248 seconds.
+  path: Packages/com.unity.render-pipelines.universal/Runtime/Materials/TerrainLit.mat
+  artifactKey: Guid(594ea882c5a793440b60ff72d896021e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.render-pipelines.universal/Runtime/Materials/TerrainLit.mat using Guid(594ea882c5a793440b60ff72d896021e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '86a45a02140a47baaf3824f4fba597f7') in 0.318750 seconds
+  Import took 0.322156 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000126 seconds.
+  path: Packages/com.unity.render-pipelines.universal/Runtime/Materials/Sprite-Unlit-Default.mat
+  artifactKey: Guid(9dfc825aed78fcd4ba02077103263b40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.render-pipelines.universal/Runtime/Materials/Sprite-Unlit-Default.mat using Guid(9dfc825aed78fcd4ba02077103263b40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0347449a4442e556d8f7833ae76260f') in 0.027319 seconds
+  Import took 0.047823 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000250 seconds.
+  path: Packages/com.unity.render-pipelines.universal/Runtime/Materials/SimpleLit.mat
+  artifactKey: Guid(6a1143ee683302f4aa628c052723efc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.render-pipelines.universal/Runtime/Materials/SimpleLit.mat using Guid(6a1143ee683302f4aa628c052723efc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b71a86ea14995ee9786f0d60f997e12f') in 0.018687 seconds
+  Import took 0.022044 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000190 seconds.
+  path: Packages/com.unity.render-pipelines.universal/Runtime/Materials/Sprite-Lit-Default.mat
+  artifactKey: Guid(a97c105638bdf8b4a8650670310a4cd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.render-pipelines.universal/Runtime/Materials/Sprite-Lit-Default.mat using Guid(a97c105638bdf8b4a8650670310a4cd3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfb49aef93382d15333dddd5fb2e10a8') in 0.006240 seconds
+  Import took 0.009815 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.172826 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/White.mat
+  artifactKey: Guid(6ba710617d629d2439605c5f7a44fc7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/White.mat using Guid(6ba710617d629d2439605c5f7a44fc7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33adca698ca7725f87eb035f3810bea0') in 0.011273 seconds
+  Import took 0.016311 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.010039 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/White.mat
+  artifactKey: Guid(6ba710617d629d2439605c5f7a44fc7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/White.mat using Guid(6ba710617d629d2439605c5f7a44fc7c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33adca698ca7725f87eb035f3810bea0') in 0.006303 seconds
+  Import took 0.010280 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.388945 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/Snow.mat
+  artifactKey: Guid(d453baf2458132e4eac0bce0914bfac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/Snow.mat using Guid(d453baf2458132e4eac0bce0914bfac5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd1d0b6ae81f20ccadf80b1c346c88f2c') in 0.006874 seconds
+  Import took 0.030421 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 397.802586 seconds.
+  path: Assets/Materials/Snow.mat
+  artifactKey: Guid(0ce344d4923d50d4f97f82c109e26a19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Snow.mat using Guid(0ce344d4923d50d4f97f82c109e26a19) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2402419a09d2871335a0d0f500261ffb') in 0.010647 seconds
+  Import took 0.029885 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.613320 seconds.
+  path: Assets/New Terrain 1.asset
+  artifactKey: Guid(591405206ad3cf1499040ef20028e88c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/New Terrain 1.asset using Guid(591405206ad3cf1499040ef20028e88c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9880d136c88748783bc6ec56b8312318') in 0.006467 seconds
+  Import took 0.010220 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.388516 seconds.
+  path: Assets/_TerrainAutoUpgrade/layer_grass3d3aba195e4d26ee.terrainlayer
+  artifactKey: Guid(c5fee7dd85e2a46478a1ce8760465e77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_TerrainAutoUpgrade/layer_grass3d3aba195e4d26ee.terrainlayer using Guid(c5fee7dd85e2a46478a1ce8760465e77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3db1814dc9288d9a10e56bec016fd049') in 0.017051 seconds
+  Import took 0.020604 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000238 seconds.
+  path: Assets/_TerrainAutoUpgrade/layer_rock3d3aba195e4d26ee.terrainlayer
+  artifactKey: Guid(918452eec42ac3749b96469ada7e0ff0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_TerrainAutoUpgrade/layer_rock3d3aba195e4d26ee.terrainlayer using Guid(918452eec42ac3749b96469ada7e0ff0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec84f143e6a96d7ce12466d766cf0499') in 0.003852 seconds
+  Import took 0.026022 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000252 seconds.
+  path: Assets/_TerrainAutoUpgrade/layer_sand3d3aba195e4d26ee.terrainlayer
+  artifactKey: Guid(151ee04ccfea5b44dae6b717799da58a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_TerrainAutoUpgrade/layer_sand3d3aba195e4d26ee.terrainlayer using Guid(151ee04ccfea5b44dae6b717799da58a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47d89a0b65f8e290f8ad83cc005ad04c') in 0.004466 seconds
+  Import took 0.007655 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/_TerrainAutoUpgrade/layer_snow3d3aba195e4d26ee.terrainlayer
+  artifactKey: Guid(c452aa50fe2421749818151a500a3253) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_TerrainAutoUpgrade/layer_snow3d3aba195e4d26ee.terrainlayer using Guid(c452aa50fe2421749818151a500a3253) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b4c0d6e4f730ca7b2e3f61c7dd3f9a00') in 0.005568 seconds
+  Import took 0.009480 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 38.036214 seconds.
+  path: Assets/Terrains/OpenWorld.asset
+  artifactKey: Guid(51742090a7684b74182e1811a921ef90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Terrains/OpenWorld.asset using Guid(51742090a7684b74182e1811a921ef90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2c669aaae8df568e6d933e7798da3dd') in 0.007068 seconds
+  Import took 0.019060 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.386779 seconds.
+  path: Assets/Terrains/BattleField.asset
+  artifactKey: Guid(591405206ad3cf1499040ef20028e88c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Terrains/BattleField.asset using Guid(591405206ad3cf1499040ef20028e88c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff7ca5b45dab320ec3b3ad4744f6822f') in 0.006288 seconds
+  Import took 0.010037 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 73.266627 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/mushroom.mat
+  artifactKey: Guid(3ce7f3fb32665784786c11b5eb35cf2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/mushroom.mat using Guid(3ce7f3fb32665784786c11b5eb35cf2d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '758a781a8956741dc3f2559217fe65cc') in 0.006797 seconds
+  Import took 0.010726 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.570406 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/Leaves Red.mat
+  artifactKey: Guid(d1d2ef6bff1e3244481ff23c64a42ba2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/Leaves Red.mat using Guid(d1d2ef6bff1e3244481ff23c64a42ba2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a3ee4f6779860dc2b8f82130e2669eb') in 0.006956 seconds
+  Import took 0.010578 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.040751 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/Leaves.mat
+  artifactKey: Guid(f99d3209f3ebe134785f8776ae883f57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/Leaves.mat using Guid(f99d3209f3ebe134785f8776ae883f57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23062e3f5c593cfa21d1c978ab58a67b') in 0.006869 seconds
+  Import took 0.018879 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/Leaves Orange.mat
+  artifactKey: Guid(8df9758d944c06942a6b7b320ac4007b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/Leaves Orange.mat using Guid(8df9758d944c06942a6b7b320ac4007b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92c4d96de147e22078c7a542882946df') in 0.006703 seconds
+  Import took 0.010167 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.084102 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/Black.mat
+  artifactKey: Guid(191a216c4914afb46a224ff484cf63c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/Black.mat using Guid(191a216c4914afb46a224ff484cf63c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '01be08e635caec0a793959b841e5bd84') in 0.006139 seconds
+  Import took 0.009770 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001641 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/Black.mat
+  artifactKey: Guid(191a216c4914afb46a224ff484cf63c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/Black.mat using Guid(191a216c4914afb46a224ff484cf63c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '01be08e635caec0a793959b841e5bd84') in 0.007030 seconds
+  Import took 0.010607 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.040231 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/Bark.mat
+  artifactKey: Guid(246c924f2374b09468f3b21676a15eb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Meshes/Materials/Bark.mat using Guid(246c924f2374b09468f3b21676a15eb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5df17ffc070e3adf27d25357dba0dec4') in 0.006374 seconds
+  Import took 0.032360 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 154.909138 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/birch_tree.prefab
+  artifactKey: Guid(d574981f6570eec458b496c60ca566b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/birch_tree.prefab using Guid(d574981f6570eec458b496c60ca566b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b7a0cff8a69ca191100aa1f81076e07') in 0.008348 seconds
+  Import took 0.012234 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000192 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_7.prefab
+  artifactKey: Guid(e26fd1b01ffd9544f8aa132daae17438) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_7.prefab using Guid(e26fd1b01ffd9544f8aa132daae17438) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8114dd5d49e63000109b4b2b87f39599') in 0.007684 seconds
+  Import took 0.011178 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000191 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/plant_2.prefab
+  artifactKey: Guid(d5564d4a5c5518e4bafccceff798b8c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/plant_2.prefab using Guid(d5564d4a5c5518e4bafccceff798b8c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4216a38b4d72a7618a90e10c08cc018') in 0.006422 seconds
+  Import took 0.010044 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000157 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/mushroom.prefab
+  artifactKey: Guid(eac9a1a101bbb004db8f4e9dea166c15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/mushroom.prefab using Guid(eac9a1a101bbb004db8f4e9dea166c15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5a2d0ab34cded21ed2aebfa66f8b180') in 0.007506 seconds
+  Import took 0.034446 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000226 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/mushroom_2.prefab
+  artifactKey: Guid(70b112c4518ca6f4ab4f8dad85328502) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/mushroom_2.prefab using Guid(70b112c4518ca6f4ab4f8dad85328502) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2fa80a93d3057ed19c1bb2605167d654') in 0.007278 seconds
+  Import took 0.010771 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000138 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_2.prefab
+  artifactKey: Guid(97e9ce32de1f1b54291173c2e58452f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_2.prefab using Guid(97e9ce32de1f1b54291173c2e58452f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88d735059c1257b9a986bbb0f90e12dc') in 0.006952 seconds
+  Import took 0.010560 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000264 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_5.prefab
+  artifactKey: Guid(67b0efd2b842eea43827261cb74957e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_5.prefab using Guid(67b0efd2b842eea43827261cb74957e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe2d6d9d0893e273f5c83c676713b9c5') in 0.006911 seconds
+  Import took 0.010560 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000177 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/grass_1.prefab
+  artifactKey: Guid(23cf5263cb3782f4d8a64d19ea3ff15d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/grass_1.prefab using Guid(23cf5263cb3782f4d8a64d19ea3ff15d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22d5765bdcbfed6cbf7a94fe2e59be1d') in 0.006522 seconds
+  Import took 0.009842 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000231 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/tree.prefab
+  artifactKey: Guid(a678c59eccfdce04c87453c3abe2014e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/tree.prefab using Guid(a678c59eccfdce04c87453c3abe2014e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18d4e8faff108fd96a7176b13859ef0f') in 0.006967 seconds
+  Import took 0.010517 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_3.prefab
+  artifactKey: Guid(e33a723d7566c124e9523021f1fbf330) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_3.prefab using Guid(e33a723d7566c124e9523021f1fbf330) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60b537b223a82877e2b7a40aa174d1a8') in 0.007813 seconds
+  Import took 0.011581 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000244 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_11.prefab
+  artifactKey: Guid(ef1f2267036b847448d0e23155df6867) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_11.prefab using Guid(ef1f2267036b847448d0e23155df6867) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b79943d23a30bb5f022fba86ef62710') in 0.006882 seconds
+  Import took 0.010315 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000151 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_9.prefab
+  artifactKey: Guid(f73cf122385b750449fe1e0f5ac31f3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_9.prefab using Guid(f73cf122385b750449fe1e0f5ac31f3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9e94f63d4be0a29b1b014ed21ba668f') in 0.007474 seconds
+  Import took 0.010964 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000188 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/birch_tree_1.prefab
+  artifactKey: Guid(3d0efa1df22617b408e39bab75b36c9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/birch_tree_1.prefab using Guid(3d0efa1df22617b408e39bab75b36c9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1fd3d87e9c854ad4f55606fd6521d367') in 0.007275 seconds
+  Import took 0.010865 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000142 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_10.prefab
+  artifactKey: Guid(a14d2ee116953a04c99f802c3d0504cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_10.prefab using Guid(a14d2ee116953a04c99f802c3d0504cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '322952b1245c875d2235d31bec1427ee') in 0.007136 seconds
+  Import took 0.010506 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000235 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_6.prefab
+  artifactKey: Guid(66e15264f2705634d8364ca22fbf87ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_6.prefab using Guid(66e15264f2705634d8364ca22fbf87ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24e8d3060de53c7344abd7dd3a21a2ee') in 0.007965 seconds
+  Import took 0.019881 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000277 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly.prefab
+  artifactKey: Guid(53cfdbcd1c79db547b031e76083de5a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly.prefab using Guid(53cfdbcd1c79db547b031e76083de5a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fe532dd0bb09cd1fab923bb0d61933c3') in 0.007164 seconds
+  Import took 0.010699 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000191 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/birch_tree_2.prefab
+  artifactKey: Guid(424c5acf540fe064ea1781eb207e3a0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/birch_tree_2.prefab using Guid(424c5acf540fe064ea1781eb207e3a0f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '55d0b12cec7f7e065d7c55cc5b9455b9') in 0.007869 seconds
+  Import took 0.011497 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000207 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_1.prefab
+  artifactKey: Guid(50725f6911e057f4b97fadc49d0d8ef8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_1.prefab using Guid(50725f6911e057f4b97fadc49d0d8ef8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e107e4d9030422997d97a8a41175bf0c') in 0.007349 seconds
+  Import took 0.010922 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000163 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_8.prefab
+  artifactKey: Guid(3b9381b0e3fefc444b043452a0b6d0c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_8.prefab using Guid(3b9381b0e3fefc444b043452a0b6d0c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee60bdda64be6a1792d15bde8e4807aa') in 0.007099 seconds
+  Import took 0.010384 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000167 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/grass.prefab
+  artifactKey: Guid(ebd78e268814c654d83bd7a210d0546f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/grass.prefab using Guid(ebd78e268814c654d83bd7a210d0546f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6abb17f4a5d9b3e4a0e6533a0c1c40d') in 0.008715 seconds
+  Import took 0.012001 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000151 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/tree_1.prefab
+  artifactKey: Guid(045fe70201ebe3e4d98987f125ae6702) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/tree_1.prefab using Guid(045fe70201ebe3e4d98987f125ae6702) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd646de4b7b36774a1beff6bd4cf7a25') in 0.007162 seconds
+  Import took 0.010621 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000255 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/mushroom_1.prefab
+  artifactKey: Guid(027011c7fb1dc5a4b939689115da9233) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/mushroom_1.prefab using Guid(027011c7fb1dc5a4b939689115da9233) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '298edd483a2e148919d8a0d326412b3a') in 0.006618 seconds
+  Import took 0.010340 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000186 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_4.prefab
+  artifactKey: Guid(7a48cf5f593a2cd4096399a7b6ff1a37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/fir_tree_poly_4.prefab using Guid(7a48cf5f593a2cd4096399a7b6ff1a37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42562b9660972d7f0cf6a3f547ff9c9a') in 0.006927 seconds
+  Import took 0.010316 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000127 seconds.
+  path: Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/plant_1.prefab
+  artifactKey: Guid(a4b24a729cac96649a7159f9eb017577) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/3rd/Paper Environment Pack vol. 1/Prefabs/Summer/plant_1.prefab using Guid(a4b24a729cac96649a7159f9eb017577) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f65b71824621737a9e1019462441993') in 0.006452 seconds
+  Import took 0.009614 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.001060 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.41 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.799 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.39 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2464 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 119.9 MB.
+System memory in use after: 120.2 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 3114.
+Total: 2.912300 ms (FindLiveObjects: 0.368500 ms CreateObjectMapping: 0.128100 ms MarkObjects: 2.378400 ms  DeleteObjects: 0.035900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 361.304603 seconds.
+  path: Assets/Settings/UniversalRP-HighQuality.asset
+  artifactKey: Guid(19ba41d7c0026c3459d37c2fe90c55a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/UniversalRP-HighQuality.asset using Guid(19ba41d7c0026c3459d37c2fe90c55a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f6c74c1429398220abaef7c14a47748') in 0.014601 seconds
+  Import took 0.018771 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000227 seconds.
+  path: Assets/Settings/UniversalRP-MediumQuality.asset
+  artifactKey: Guid(d847b876476d3d6468f5dfcd34266f96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Settings/UniversalRP-MediumQuality.asset using Guid(d847b876476d3d6468f5dfcd34266f96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c453cb6a64c63a991b1af6300920852') in 0.014275 seconds
+  Import took 0.017501 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.000891 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.41 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Invoked RoslynAnalysisRunner static constructor.
+RoslynAnalysisRunner will not be running.
+RoslynAnalysisRunner has terminated.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.724 seconds
+Platform modules already initialized, skipping
+Switching build target platform(5) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(537395200) extendedPlatform(0)
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.42 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2462 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 119.7 MB.
+System memory in use after: 119.9 MB.
+
+Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 3117.
+Total: 2.057300 ms (FindLiveObjects: 0.248800 ms CreateObjectMapping: 0.096800 ms MarkObjects: 1.696900 ms  DeleteObjects: 0.014000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+========================================================================
+Received Import Request.
+  Time since last request: 3356.657523 seconds.
+  path: Assets/Scenes/BattleField.unity
+  artifactKey: Guid(0d6e0869e5974e143b0b5b3bc8b84271) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/BattleField.unity using Guid(0d6e0869e5974e143b0b5b3bc8b84271) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37dcc1fdd1d99a7a1e0431c9eaef81af') in 0.015131 seconds
+  Import took 0.019418 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.484702 seconds.
+  path: Assets/Scenes/BattleField
+  artifactKey: Guid(f36fa239547586b40bf3e518a3ba76d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/BattleField using Guid(f36fa239547586b40bf3e518a3ba76d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f8bde233e8d3cb02a0fec6282fe6e2a') in 0.001639 seconds
+  Import took 0.005369 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.082597 seconds.
+  path: Assets/Scenes/BattleField/LightingData.asset
+  artifactKey: Guid(4015a6f2a13eb6c499aeee2b88e31579) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/BattleField/LightingData.asset using Guid(4015a6f2a13eb6c499aeee2b88e31579) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '52516320ee45ea635a2c9ef375f1d0f0') in 0.002429 seconds
+  Import took 0.005958 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/Scenes/BattleField/ReflectionProbe-0.exr
+  artifactKey: Guid(f6b0548c6c94bae48920784185f44251) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/BattleField/ReflectionProbe-0.exr using Guid(f6b0548c6c94bae48920784185f44251) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1957957c1656ea8611e3722755c3b6bf') in 0.040618 seconds
+  Import took 0.063640 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000215 seconds.
+  path: Assets/Scenes/BattleField/Lightmap-0_comp_light.exr
+  artifactKey: Guid(74ac62e063996404ca9964de35a281c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/BattleField/Lightmap-0_comp_light.exr using Guid(74ac62e063996404ca9964de35a281c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74306fd22341142278ea2236e086e876') in 0.010801 seconds
+  Import took 0.021958 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000192 seconds.
+  path: Assets/Scenes/BattleField/Lightmap-0_comp_dir.png
+  artifactKey: Guid(e2b7c66a1cc6a5b419e4e2dac8819a38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/BattleField/Lightmap-0_comp_dir.png using Guid(e2b7c66a1cc6a5b419e4e2dac8819a38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b881248432f2b7d9000cd73c74b9ebfd') in 0.010648 seconds
+  Import took 0.014101 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
