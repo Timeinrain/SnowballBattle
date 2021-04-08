@@ -8,8 +8,8 @@ public class CameraFollow : MonoBehaviour
 	Camera cam;
 	public Transform lookAt;
 	public Transform follow;
-	public Joystick adjustView;
-	public float viewAdjustCoef;
+	[Range(0.5f, 5)]
+	public float followSpeed = 2;
 	Vector3 initDir;
 	float dirMod;
 	private void Awake()
@@ -18,26 +18,14 @@ public class CameraFollow : MonoBehaviour
 		initDir = -follow.position + cam.transform.position;
 		dirMod = initDir.magnitude;
 	}
-	private void OnEnable()
-	{
-
-	}
-	void Start()
-	{
-
-	}
 	private void FixedUpdate()
 	{
-		cam.transform.position = Vector3.Slerp(cam.transform.position, follow.position + initDir / initDir.magnitude * dirMod, Time.deltaTime);
+		cam.transform.position = Vector3.Slerp(cam.transform.position, follow.position + initDir / initDir.magnitude * dirMod, followSpeed * Time.deltaTime);
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		cam.transform.RotateAround(follow.position, Vector3.up, adjustView.Horizontal * viewAdjustCoef);
-		cam.transform.RotateAround(follow.position, Vector3.right, adjustView.Vertical * viewAdjustCoef);
-		cam.transform.LookAt(lookAt);
-		initDir = -follow.position + cam.transform.position;
 
 	}
 }
