@@ -3,59 +3,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ObiActor))]
-public class Bomb : MonoBehaviour
+namespace core.zqc.bombs
 {
-    public float explosionTime;
-
-    ObiActor actor;
-
-    private void Awake()
+    [RequireComponent(typeof(ObiActor))]
+    public class Bomb : MonoBehaviour
     {
-        actor = GetComponent<ObiActor>();
-    }
+        public float explosionTime;
 
-    private void Start()
-    {
-        StartCoroutine(ExplosionCountdown());
-    }
+        ObiActor actor;
 
-    private IEnumerator ExplosionCountdown()
-    {
-        yield return new WaitForSeconds(explosionTime);
+        private void Awake()
+        {
+            actor = GetComponent<ObiActor>();
+        }
 
-        Debug.Log(string.Format("Bomb exploded at {0}", transform.position.ToString()));
+        private void Start()
+        {
+            StartCoroutine(ExplosionCountdown());
+        }
 
-        Destroy(gameObject);
-    }
+        private IEnumerator ExplosionCountdown()
+        {
+            yield return new WaitForSeconds(explosionTime);
 
-    /// <summary>
-    /// 这个移动不会改变y坐标，始终在地面上移动
-    /// </summary>
-    /// <param name="movement"></param>
-    public void GroundMove(Vector3 movement)
-    {
-        transform.Translate(movement);
-        actor.Teleport(transform.position + movement, transform.rotation);
-    }
+            Debug.Log(string.Format("Bomb exploded at {0}", transform.position.ToString()));
 
-    public void Shoot(Vector3 speed)
-    {
-        speed.y = 0f;
-        actor.AddForce(speed, ForceMode.VelocityChange);
-    }
+            Destroy(gameObject);
+        }
 
-    /// <summary>
-    /// 角色获得炸弹
-    /// </summary>
-    public void OnAttached()
-    {
-    }
+        /// <summary>
+        /// 这个移动不会改变y坐标，始终在地面上移动
+        /// </summary>
+        /// <param name="movement"></param>
+        public void GroundMove(Vector3 movement)
+        {
+            actor.AddForce(movement, ForceMode.Acceleration);
+        }
 
-    /// <summary>
-    /// 角色发射/丢弃炸弹等触发事件
-    /// </summary>
-    public void OnDetached()
-    {
+        public void Shoot(Vector3 speed)
+        {
+            speed.y = 0f;
+            actor.AddForce(speed, ForceMode.VelocityChange);
+        }
+
+        /// <summary>
+        /// 角色获得炸弹
+        /// </summary>
+        public void OnAttached()
+        {
+        }
+
+        /// <summary>
+        /// 角色发射/丢弃炸弹等触发事件
+        /// </summary>
+        public void OnDetached()
+        {
+        }
     }
 }
