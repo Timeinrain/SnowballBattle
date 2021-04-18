@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviourPun
 //#endif
 	Vector3 movingDirRight;
 	Vector3 movingDirForward;
+
+	bool inAnimation = false;
+
 	//todo: controlled by gameflow mgr
 	public playMode mode;
 	public enum playMode
@@ -42,6 +45,8 @@ public class PlayerController : MonoBehaviourPun
 
 	private void FixedUpdate()
 	{
+		if (inAnimation) return;
+
 		if (PhotonNetwork.IsConnected && !photonView.IsMine) return;
 		if (Application.platform == RuntimePlatform.WindowsEditor)
 		{
@@ -50,10 +55,10 @@ public class PlayerController : MonoBehaviourPun
 			var yV = Input.GetAxisRaw("Vertical");
 			rb.velocity = new Vector3(xV, 0, yV).normalized * speed + new Vector3(0, rb.velocity.y, 0);
 		}
-		//if (Application.platform == RuntimePlatform.Android)
-		//{
-		//	rb.velocity = (joystick.Horizontal * movingDirRight + movingDirForward * joystick.Vertical).normalized * speed + new Vector3(0, rb.velocity.y, 0);
-		//}
+        //if (Application.platform == RuntimePlatform.Android)
+        //{
+        //	rb.velocity = (joystick.Horizontal * movingDirRight + movingDirForward * joystick.Vertical).normalized * speed + new Vector3(0, rb.velocity.y, 0);
+        //}
 		Vector3 dir = new Vector3(rb.velocity.x, 0, rb.velocity.z).normalized;
 		if (dir.magnitude != 0)
 		{
@@ -79,4 +84,9 @@ public class PlayerController : MonoBehaviourPun
 		playerAnimator.SetFloat("MovingSpeed", (new Vector2(rb.velocity.x, rb.velocity.z)).magnitude);
 		//AdjustDirection();
 	}
+
+	public void SetAnimationFlag(bool flag)
+    {
+		inAnimation = flag;
+    }
 }

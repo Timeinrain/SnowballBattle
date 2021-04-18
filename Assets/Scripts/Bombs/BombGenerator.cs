@@ -7,7 +7,7 @@ namespace core.zqc.bombs
     {
         public float bombsFallingInterval = 10f;       // 冰壶炸弹降落间隔时间
         public int bombsFallingNumber = 10;            // 每次掉落的冰壶炸弹数
-        public GameObject obiSolver;                   // 软体的solver，场景中只需要存在一个
+        //public GameObject obiSolver;                   // 软体的solver，场景中只需要存在一个
         public GameObject bombPrefab;                  // 冰壶炸弹预制件
 
         [System.Serializable]
@@ -40,7 +40,7 @@ namespace core.zqc.bombs
                         transform.position.y,
                         Random.Range(generatingArea.minZ, generatingArea.maxZ));
                     GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
-                    bomb.transform.parent = obiSolver.transform;
+                    //bomb.transform.parent = obiSolver.transform;
                 }
 
                 yield return new WaitForSeconds(bombsFallingInterval);
