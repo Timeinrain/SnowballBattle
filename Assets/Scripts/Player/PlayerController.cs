@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-
+/// <summary>
+/// 玩家控制脚本，联机仍在测试中
+/// </summary>
 public class PlayerController : MonoBehaviourPun
 {
 	// Start is called before the first frame update

@@ -5,7 +5,9 @@ using Photon.Pun;
 using UnityEngine.UI;
 using Photon.Realtime;
 using PhotonTest;
-
+/// <summary>
+/// ÍøÂç³õÊ¼»¯½Å±¾
+/// </summary>
 public class NetworkInit : MonoBehaviourPunCallbacks
 {
 	public GameObject loginUI;

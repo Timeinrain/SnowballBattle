@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+/// <summary>
+/// Testing
+/// </summary>
 public class OnInstantiated : MonoBehaviourPun
 {
 	// Start is called before the first frame update

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 相机跟随脚本，联机仍在测试中
+/// </summary>
 public class CameraFollow : MonoBehaviour
 {
 	// Start is called before the first frame update

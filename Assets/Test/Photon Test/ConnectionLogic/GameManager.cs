@@ -5,7 +5,9 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using PhotonTest;
-
+/// <summary>
+/// Photon for Unity Network 的初始化及控制脚本
+/// </summary>
 public class GameManager : MonoBehaviourPunCallbacks
 {
 	public Transform roomContainer;
