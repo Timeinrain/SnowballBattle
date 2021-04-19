@@ -5,15 +5,16 @@ using UnityEngine;
 
 namespace core.zqc.bombs
 {
-    public class Bomb : MonoBehaviour
+    [RequireComponent(typeof(ObiActor))]
+    public class BombSoftbody : MonoBehaviour
     {
         public float explosionTime;
 
-        Rigidbody bombRigidbody;
+        ObiActor actor;
 
         private void Awake()
         {
-            bombRigidbody = GetComponent<Rigidbody>();
+            actor = GetComponent<ObiActor>();
         }
 
         private void Start()
@@ -30,17 +31,19 @@ namespace core.zqc.bombs
             Destroy(gameObject);
         }
 
-
-        public void UpdateTransform(Vector3 position, Quaternion rotation)
+        /// <summary>
+        /// 这个移动不会改变y坐标，始终在地面上移动
+        /// </summary>
+        /// <param name="movement"></param>
+        public void GroundMove(Vector3 movement)
         {
-            position.y = transform.position.y;
-            bombRigidbody.MovePosition(position);
-            bombRigidbody.MoveRotation(rotation);
+            actor.AddForce(movement, ForceMode.Acceleration);
         }
 
         public void Shoot(Vector3 speed)
         {
-            bombRigidbody.AddForce(speed, ForceMode.VelocityChange);
+            speed.y = 0f;
+            actor.AddForce(speed, ForceMode.VelocityChange);
         }
 
         /// <summary>
