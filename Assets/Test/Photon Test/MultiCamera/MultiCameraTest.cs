@@ -7,15 +7,20 @@ using Photon.Realtime;
 public class MultiCameraTest : MonoBehaviourPunCallbacks
 {
 	// Start is called before the first frame update
+	public GameObject sync_Light;
 	void Start()
 	{
-		PhotonNetwork.ConnectUsingSettings();
+		ConnectToChina();
 		PhotonNetwork.SendRate = 90;
 	}
 
-	public override void OnConnected()
+	void ConnectToChina()
 	{
-		base.OnConnected();
+		PhotonNetwork.PhotonServerSettings.AppSettings.FixedRegion = "cn";
+		PhotonNetwork.PhotonServerSettings.AppSettings.UseNameServer = true;
+		PhotonNetwork.PhotonServerSettings.AppSettings.AppIdRealtime = "173ad590-47f0-4573-b1cb-3be35654688b";
+		PhotonNetwork.PhotonServerSettings.AppSettings.Server = "ns.photonengine.cn";
+		PhotonNetwork.ConnectUsingSettings();
 	}
 
 	public override void OnConnectedToMaster()
@@ -37,6 +42,19 @@ public class MultiCameraTest : MonoBehaviourPunCallbacks
 		base.OnJoinedRoom();
 		Debug.Log("Joined Room!");
 		PhotonNetwork.Instantiate("Player", new Vector3(Random.Range(-1, 1), 3, Random.Range(-1, 1)), Quaternion.identity, 0);
+		if (PhotonNetwork.IsMasterClient)
+		{
+
+		}
+		else
+		{
+			SyncAllDatas();
+		}
+	}
+
+	public void SyncAllDatas()
+	{
+
 	}
 
 }
