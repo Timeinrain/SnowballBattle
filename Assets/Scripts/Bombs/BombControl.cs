@@ -1,10 +1,13 @@
 using System.Collections;
 using UnityEngine;
 
+using core.zqc.players;
+
 namespace core.zqc.bombs
 {
     public class BombControl : MonoBehaviour
     {
+        public PlayerAnimator playerAnimator;
         public PlayerController playerController;  // 角色
 
         public float bombShootSpeed = 50f;         // 炸弹发射的力
@@ -66,7 +69,7 @@ namespace core.zqc.bombs
             // 人物旋转到可以拿起炸弹的方位
             if (bomb == null)
             {
-                resetPlayerState();
+                ResetPlayerState();
                 yield break;
             }
             Vector3 bombDir = bomb.transform.position - transform.position;
@@ -84,7 +87,7 @@ namespace core.zqc.bombs
 
             if (bomb == null)
             {
-                resetPlayerState();
+                ResetPlayerState();
                 yield break;
             }
             // 炸弹吸附到carryPoint的位置
@@ -98,20 +101,28 @@ namespace core.zqc.bombs
                 yield return new WaitForFixedUpdate();
                 if (bomb == null)
                 {
-                    resetPlayerState();
+                    ResetPlayerState();
                     yield break;
                 }
             }
             bomb.transform.position = endPosition;
 
-            bomb.OnAttached();
-            resetPlayerState();
+            bomb.OnAttached(this);
+            ResetPlayerState();
         }
 
-        void resetPlayerState()
+        void ResetPlayerState()
         {
             waitForCarrying = false;
             playerController.SetAnimationFlag(false);
+        }
+
+        /// <summary>
+        /// 主动解除炸弹
+        /// </summary>
+        public void DetachCurrentBomb()
+        {
+            carriedBomb = null;
         }
     }
 }

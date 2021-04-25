@@ -10,6 +10,7 @@ namespace core.zqc.bombs
         public float explosionTime;
 
         Rigidbody bombRigidbody;
+        BombControl carrier = null;
 
         private void Awake()
         {
@@ -21,12 +22,23 @@ namespace core.zqc.bombs
             StartCoroutine(ExplosionCountdown());
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            AmmunitionDepot depot = other.GetComponent<AmmunitionDepot>();
+            if (depot != null)
+            {
+                if (carrier != null) carrier.DetachCurrentBomb();
+                depot.FillBomb(this);
+            }
+        }
+
         private IEnumerator ExplosionCountdown()
         {
             yield return new WaitForSeconds(explosionTime);
 
             Debug.Log(string.Format("Bomb exploded at {0}", transform.position.ToString()));
 
+            carrier.DetachCurrentBomb();
             Destroy(gameObject);
         }
 
@@ -46,8 +58,9 @@ namespace core.zqc.bombs
         /// <summary>
         /// ½ÇÉ«»ñµÃÕ¨µ¯
         /// </summary>
-        public void OnAttached()
+        public void OnAttached(BombControl bombControl)
         {
+            carrier = bombControl;
         }
 
         /// <summary>
@@ -55,6 +68,7 @@ namespace core.zqc.bombs
         /// </summary>
         public void OnDetached()
         {
+            carrier = null;
         }
     }
 }
