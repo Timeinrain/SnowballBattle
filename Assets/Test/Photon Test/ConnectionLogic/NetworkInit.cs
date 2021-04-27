@@ -173,9 +173,10 @@ public class NetworkInit : MonoBehaviourPunCallbacks
 	/// <param name="message"></param>
 	public override void OnJoinRandomFailed(short returnCode, string message)
 	{
+		loadingPanel.SetActive(false);
 		base.OnJoinRandomFailed(returnCode, message);
 		Debug.Log(message);
-		loadingPanel.SetActive(false);
+		createRoomUI.SetActive(true);
 	}
 
 	/// <summary>
@@ -225,7 +226,6 @@ public class NetworkInit : MonoBehaviourPunCallbacks
 	public override void OnCreatedRoom()
 	{
 		base.OnCreatedRoom();
-
 	}
 
 	public override void OnRoomListUpdate(List<RoomInfo> roomList)

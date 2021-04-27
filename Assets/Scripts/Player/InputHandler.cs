@@ -1,18 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class InputHandler : MonoBehaviour
+public class InputHandler : MonoBehaviourPun
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+	PlayerController playerController;
+
+	[Header("Keycodes for Actions")]
+	[SerializeField] public KeyCode startPush;
+	[SerializeField] public KeyCode kick;
+	[SerializeField] public KeyCode fire;
+
+	private void Awake()
+	{
+		if (PhotonNetwork.IsConnected && !photonView.IsMine) return;
+		playerController = gameObject.GetComponent<PlayerController>();
+	}
+
+	void Update()
     {
-        
-    }
+		if (PhotonNetwork.IsConnected && !photonView.IsMine) return;
+
+	}
+
+	private void FixedUpdate()
+	{
+		if (PhotonNetwork.IsConnected && !photonView.IsMine) return;
+		var xV = Input.GetAxisRaw("Horizontal");
+		var yV = Input.GetAxisRaw("Vertical");
+		playerController.Move(xV, yV);
+	}
 }

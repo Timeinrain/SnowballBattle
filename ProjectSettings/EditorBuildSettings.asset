@@ -17,4 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BtlFieldTest.unity
     guid: 4d541c359c4f9de41800d1df634dba54
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 3883553fcbb0cf34c8b065afc5812ff1, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 9c37aeb06beaa9b4d9c11f4940599699, type: 2}

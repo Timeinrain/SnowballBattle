@@ -7,107 +7,153 @@ using Photon.Pun;
 /// </summary>
 public class PlayerController : MonoBehaviourPun
 {
-	// Start is called before the first frame update
-	Rigidbody rb;
+
+	Rigidbody playerRigidbody;
 	Animator playerAnimator;
-	GameObject mainCam;
-	public CameraSettings cameraSettings;
-	//public Camera mainCam;
+	Player playerInfoInstance;
+
+	[Header("Player Movement Params")]
 	[Range(1, 100)]
-	public float speed;
+	public float playerMovingSpeed;
 	[Range(10, 1000)]
-	public float rotationSpeed = 10;
-	//#if UNITY_EDITOR
-	//	[Header("Mobile Control Panel")]
-	//	public Joystick joystick;
-	//	public Joystick viewAdjust;
-	//	public Cinemachine.CinemachineFreeLook freeLookCam;
-	//#endif
-	//Vector3 movingDirRight;
-	//Vector3 movingDirForward;
+	public float playerRotationSpeed = 10;
+	[Range(1, 50)]
+	public float playerOnPushingMovingSpeed;
+	[Range(1, 50)]
+	public float kickForce;
+	[Range(1, 50)]
+	public float viewFieldRadiance;
 
-	bool inAnimation = false;
+	/// <summary>
+	/// Indicator in minimap
+	/// </summary>
+	public GameObject selfMinimap;
+	/// <summary>
+	/// Indicator in minimap
+	/// </summary>
+	public GameObject otherMinimap;
 
-	//todo: controlled by gameflow mgr
-	public playMode mode;
-	public enum playMode
+	void Awake()
 	{
-		Adventure = 0,
-		PVP = 1,
+		//如果不是本人，就隐藏对应的另一个小地图标识
+		if (PhotonNetwork.IsConnected && !photonView.IsMine)
+		{
+			selfMinimap.SetActive(false);
+			return;
+		}
+		otherMinimap.SetActive(false);
+		playerRigidbody = GetComponent<Rigidbody>();
+		playerAnimator = GetComponentInChildren<Animator>();
+		playerInfoInstance = GetComponent<Player>();
 	}
-	void Start()
+
+	/// <summary>
+	/// For independent freshment.
+	/// </summary>
+	private void Update()
 	{
 		if (PhotonNetwork.IsConnected && !photonView.IsMine) return;
-		rb = GetComponent<Rigidbody>();
-		playerAnimator = GetComponentInChildren<Animator>();
-		//if (Application.platform == RuntimePlatform.Android)
-		//{
-		//	movingDirForward = mainCam.transform.forward;
-		//	movingDirRight = mainCam.transform.right;
-		//}
+		UpdateAnimatorParams();
+		RefreshAnimation();
+		UpdateVisibleEnemyPos();
 	}
 
-	private void Awake()
+	/// <summary>
+	/// Control Simple Move
+	/// </summary>
+	/// <param name="xV"> Horizontal </param>
+	/// <param name="yV"> Vertical </param>
+	public void Move(float xV, float yV)
 	{
-		if (photonView.IsMine)
+		playerRigidbody.velocity = new Vector3(xV, 0, yV).normalized * playerMovingSpeed + new Vector3(0, playerRigidbody.velocity.y, 0);
+
+	}
+
+	/// <summary>
+	/// Kick the bomb into specific direction
+	/// </summary>
+	/// <param name="bombInstance"> The bomb instance </param>
+	/// <param name="dir"> Specified Direction </param>
+	public void Kick(GameObject bombInstance, Vector3 dir)
+	{
+
+	}
+
+	/// <summary>
+	/// Action Responce
+	/// </summary>
+	/// <param name="action"> Action Type </param>
+	public void PlayerAction(Action action)
+	{
+		switch (action)
 		{
-			mainCam = GameObject.FindGameObjectWithTag("MainCamera");
-			mainCam.transform.position = cameraSettings.offset + transform.position;
-			mainCam.GetComponent<CameraFollow>().lookAt = transform;
-			mainCam.GetComponent<CameraFollow>().follow = transform;
-			mainCam.GetComponent<CameraFollow>().offset = cameraSettings.offset;
-			//mainCam.GetComponent<CameraFollow>().enabled = true;
+			case Action.Idle:
+				{
+					break;
+				}
 		}
 	}
 
-	private void FixedUpdate()
+	/// <summary>
+	/// Refresh the animation states
+	/// </summary>
+	public void UpdateAnimatorParams()
 	{
-		//if (inAnimation) return;
+		playerAnimator.SetFloat("MovingSpeed", (new Vector2(playerRigidbody.velocity.x, playerRigidbody.velocity.z)).magnitude);
 
-		if (PhotonNetwork.IsConnected && !photonView.IsMine) return;
-		//if (Application.platform == RuntimePlatform.WindowsEditor)
-		//{
-		//non cameraRotation
-		var xV = Input.GetAxisRaw("Horizontal");
-		var yV = Input.GetAxisRaw("Vertical");
-		rb.velocity = new Vector3(xV, 0, yV).normalized * speed + new Vector3(0, rb.velocity.y, 0);
-		//}
-		//if (Application.platform == RuntimePlatform.Android)
-		//{
-		//	rb.velocity = (joystick.Horizontal * movingDirRight + movingDirForward * joystick.Vertical).normalized * speed + new Vector3(0, rb.velocity.y, 0);
-		//}
-		Vector3 dir = new Vector3(rb.velocity.x, 0, rb.velocity.z).normalized;
+	}
+
+	/// <summary>
+	/// Refresh the character's facing dir and so on.
+	/// </summary>
+	private void RefreshAnimation()
+	{
+		Vector3 dir = new Vector3(playerRigidbody.velocity.x, 0, playerRigidbody.velocity.z).normalized;
 		if (dir.magnitude != 0)
 		{
 			Quaternion targetRotation = Quaternion.LookRotation(dir, Vector3.up);
-			Quaternion lerp = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-			rb.MoveRotation(lerp);
+			Quaternion lerp = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * playerRotationSpeed);
+			playerRigidbody.MoveRotation(lerp);
 		}
 	}
 
-	void AdjustDirection()
-	{
-		//if (RuntimePlatform.Android == Application.platform)
-		//	if (joystick.Horizontal == 0 && joystick.Vertical == 0)
-		//	{
-		//		movingDirRight = mainCam.transform.right;
-		//		movingDirForward = new Vector3(mainCam.transform.forward.x, 0, mainCam.transform.forward.z);
-		//	}
-	}
-
-	private void Update()
-	{
-		if (photonView.IsMine)
-		{
-			mainCam.GetComponent<CameraFollow>().UpdatePosition(transform.position);
-		}
-		if (PhotonNetwork.IsConnected && !photonView.IsMine) return;
-		playerAnimator.SetFloat("MovingSpeed", (new Vector2(rb.velocity.x, rb.velocity.z)).magnitude);
-		//AdjustDirection();
-	}
-
+	/// <summary>
+	/// Set to specific animation.
+	/// </summary>
+	/// <param name="flag"></param>
 	public void SetAnimationFlag(bool flag)
 	{
-		inAnimation = flag;
+		//todo: fill
 	}
+
+	/// <summary>
+	/// To display the visible enemy's position in the minimap.
+	/// </summary>
+	private void UpdateVisibleEnemyPos()
+	{
+
+	}
+
+	/// <summary>
+	/// Set the player's belonged team.
+	/// </summary>
+	/// <param name="team"></param>
+	public void SetTeam(Team team)
+	{
+		playerInfoInstance.team = team;
+	}
+}
+
+/// <summary>
+/// The Action Types In Total
+/// </summary>
+public enum Action
+{
+	Idle = 0,
+	FreeRun = 1,
+	Pushing = 2,
+	Frozen = 3,
+	Kick = 4,
+	Fire = 5,
+	Reborn = 6,
 }
