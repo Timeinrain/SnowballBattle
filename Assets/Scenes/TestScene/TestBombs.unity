@@ -332,7 +332,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: f75f7f485a83af64b8bf906fd4a57a1c, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f75f7f485a83af64b8bf906fd4a57a1c, type: 3}
       propertyPath: m_LocalScale.x
@@ -524,12 +524,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa6e838b078bed4a8160da21c44b51a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 884343811}
+  playerAnimator: {fileID: 0}
   bombShootSpeed: 50
   carryPoint: {fileID: 2062058560}
   preWaitTime: 0.1
   attachTime: 0.2
   rotateTime: 0.2
+  kickDelay: 0
 --- !u!1001 &74533497
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2385,7 +2386,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1642217570}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &439271410
 PrefabInstance:
@@ -3655,9 +3656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7172f99f9cd0968498fb91bb5bf800d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  rotationSpeed: 10
-  mode: 0
+  playerAnimator: {fileID: 0}
 --- !u!54 &884343812
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7133,7 +7132,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 0.9
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1622418376
 MonoBehaviour:
@@ -7147,12 +7146,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa6e838b078bed4a8160da21c44b51a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 1642217572}
-  bombShootSpeed: 50
+  playerAnimator: {fileID: 1642217573}
+  bombShootSpeed: 30
   carryPoint: {fileID: 1701761564}
   preWaitTime: 0.1
   attachTime: 0.2
   rotateTime: 0.2
+  kickDelay: 0.58
 --- !u!1001 &1637782573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7256,6 +7256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1642217570}
   - component: {fileID: 1642217572}
+  - component: {fileID: 1642217573}
   - component: {fileID: 1642217571}
   m_Layer: 0
   m_Name: Player
@@ -7275,8 +7276,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1663852848}
   - {fileID: 437791867}
+  - {fileID: 1663852848}
   - {fileID: 1723494257}
   - {fileID: 1622418374}
   m_Father: {fileID: 0}
@@ -7310,9 +7311,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7172f99f9cd0968498fb91bb5bf800d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  playerAnimator: {fileID: 1642217573}
+--- !u!114 &1642217573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642217569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2663dcc27b73c44a8d55e9bdbf5b009, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 8
   rotationSpeed: 10
-  mode: 0
 --- !u!1001 &1660493411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7578,7 +7591,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701761563}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.5}
+  m_LocalPosition: {x: 0, y: 0, z: 1.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1622418374}

@@ -50,8 +50,16 @@ namespace core.zqc.bombs
             bombRigidbody.MoveRotation(rotation);
         }
 
-        public void Shoot(Vector3 speed)
+        public void DelayShoot(Vector3 speed, float delay)
         {
+            StartCoroutine(Shoot(speed, delay));
+        }
+
+        IEnumerator Shoot(Vector3 speed, float delay)
+        {
+            bombRigidbody.constraints = RigidbodyConstraints.FreezeAll;  // 防止动画期间炸弹发生位移
+            yield return new WaitForSeconds(delay);
+            bombRigidbody.constraints = RigidbodyConstraints.None;
             bombRigidbody.AddForce(speed, ForceMode.VelocityChange);
         }
 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f75f7f485a83af64b8bf906fd4a57a1c
+guid: 13f7ced0f2de7154d882276cf2707a97
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
@@ -270,18 +270,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: export_jingzhi2(Clone)
+    - name: export_idle2_push(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0.0000015164821, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mochi-L-face
-      parentName: export_jingzhi2(Clone)
+      parentName: export_idle2_push(Clone)
       position: {x: 0.13555644, y: -0.00000009384765, z: -0.00000020589339}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
       scale: {x: 1, y: 1, z: 1}
     - name: Bip001
-      parentName: export_jingzhi2(Clone)
+      parentName: export_idle2_push(Clone)
       position: {x: -0.077869944, y: 1.4463036, z: -0.2813456}
       rotation: {x: -0.50000036, y: 0.49999967, z: 0.49999967, w: 0.50000036}
       scale: {x: 0.9999999, y: 0.9999999, z: 0.99999994}
@@ -317,19 +317,19 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Bone001
       parentName: Bip001 Head
-      position: {x: -3.1156938, y: -0.6392843, z: -0.077868894}
+      position: {x: -3.1156938, y: -0.6392843, z: -0.07786889}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1.0000002, y: 1.0000004, z: 20.521887}
     - name: Bone002
       parentName: Bone001
-      position: {x: -1.3567257, y: 0.00000038757324, z: 0.00000013324465}
+      position: {x: -1.3567253, y: -0.00000038757324, z: 0.00000013324465}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000005, y: 1.0000008, z: 0.13737606}
+      scale: {x: 1.0000002, y: 1.0000006, z: 0.1373765}
     - name: Bone003
       parentName: Bone002
-      position: {x: -2.2056239, y: -0.00000038757324, z: 0.0000002298991}
+      position: {x: -2.2056243, y: -0.00000038757324, z: 0.00000022989961}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1.0000001, z: 0.99999994}
+      scale: {x: 1.0000001, y: 1, z: 0.9999998}
     - name: Bip001 R Clavicle
       parentName: Bip001 Neck
       position: {x: 0.00016820678, y: -0.21040122, z: -0.28786185}
@@ -339,17 +339,17 @@ ModelImporter:
       parentName: Bip001 R Clavicle
       position: {x: -1.2294445, y: -0.000000024223327, z: -0.00000038757324}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000002, y: 1, z: 1.0000001}
+      scale: {x: 1.0000006, y: 1.0000004, z: 1.0000004}
     - name: Bip001 R Forearm
       parentName: Bip001 R UpperArm
-      position: {x: -1.1612928, y: 0, z: 0}
+      position: {x: -1.1612924, y: -0.000000048446655, z: -0.00000038757324}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000007, y: 1.0000006, z: 1.0000004}
+      scale: {x: 1.0000001, y: 1.0000005, z: 1.0000001}
     - name: Bip001 R Hand
       parentName: Bip001 R Forearm
       position: {x: -0.81089264, y: 0, z: 0.00000038757324}
       rotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-      scale: {x: 1.0000005, y: 1.0000002, z: 1.0000002}
+      scale: {x: 1.0000002, y: 1.0000006, z: 1.0000002}
     - name: Bip001 L Clavicle
       parentName: Bip001 Neck
       position: {x: 0.00016820678, y: -0.2104028, z: 0.28786144}
@@ -359,17 +359,17 @@ ModelImporter:
       parentName: Bip001 L Clavicle
       position: {x: -1.2294444, y: -0.000000024223327, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+      scale: {x: 1.0000005, y: 1.0000005, z: 1.0000002}
     - name: Bip001 L Forearm
       parentName: Bip001 L UpperArm
-      position: {x: -1.1612927, y: 0.000000024223327, z: 0}
+      position: {x: -1.1612928, y: 0.00000009689331, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 0.99999994, y: 1.0000002, z: 1.0000004}
+      scale: {x: 1.0000004, y: 1.0000001, z: 1.0000001}
     - name: Bip001 L Hand
       parentName: Bip001 L Forearm
-      position: {x: -0.8108928, y: -0.000000024223327, z: 0}
+      position: {x: -0.8108925, y: -0.00000019378662, z: 0}
       rotation: {x: 0.7071068, y: 0, z: 0, w: -0.7071068}
-      scale: {x: 1.0000002, y: 1.0000005, z: 1.0000006}
+      scale: {x: 1.0000007, y: 1.0000006, z: 1.0000006}
     - name: Bip001 R Thigh
       parentName: Bip001 Spine
       position: {x: 0.5420993, y: -0.045846645, z: -1.1838744}
@@ -428,7 +428,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: mochi-L-face
+    rootMotionBoneName: 
     hasTranslationDoF: 1
     hasExtraRoot: 1
     skeletonHasParents: 1
