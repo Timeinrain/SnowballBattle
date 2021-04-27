@@ -5,18 +5,21 @@ namespace core.zqc.bombs
 {
     public class BombGenerator : MonoBehaviour
     {
+        [Tooltip("设置为false无限弹药,true会消耗弹药库存")]
+        public bool useAmmunition = false;
+
         public float bombsFallingInterval = 10f;       // 冰壶炸弹降落间隔时间
-        public int bombsFallingNumber = 10;            // 每次掉落的冰壶炸弹数
-        //public GameObject obiSolver;                   // 软体的solver，场景中只需要存在一个
+        public int bombsFallingNumber = 10;            // 每次掉落的冰壶炸弹数（无限弹药情况下）
+        //public GameObject obiSolver;                 // 软体的solver，场景中只需要存在一个
         public GameObject bombPrefab;                  // 冰壶炸弹预制件
+
+        int ammunitionStock = 0;
 
         [System.Serializable]
         public class GeneratingArea
         {
-            public float minX;
-            public float maxX;
-            public float minZ;
-            public float maxZ;
+            public float xWidth;
+            public float zWidth;
         }
 
         public GeneratingArea generatingArea = new GeneratingArea();
@@ -33,18 +36,39 @@ namespace core.zqc.bombs
             while (inGame)
             {
                 // 生成炸弹
-                for (int i = 0; i < bombsFallingNumber; i++)
+                int generateNum;
+                if (useAmmunition)
                 {
-                    Vector3 position = new Vector3(
-                        Random.Range(generatingArea.minX, generatingArea.maxX),
-                        transform.position.y,
-                        Random.Range(generatingArea.minZ, generatingArea.maxZ));
-                    GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
-                    //bomb.transform.parent = obiSolver.transform;
+                    generateNum = ammunitionStock;
+                    ammunitionStock = 0;
+                }
+                else
+                {
+                    generateNum = bombsFallingNumber;
+                }
+
+                for (int i = 0; i < generateNum; i++)
+                {
+                    GenerateBomb();
                 }
 
                 yield return new WaitForSeconds(bombsFallingInterval);
             }
+        }
+
+        void GenerateBomb()
+        {
+            Vector3 position = new Vector3(
+                Random.Range(transform.position.x - generatingArea.xWidth / 2, transform.position.x + generatingArea.xWidth / 2),
+                transform.position.y,
+                Random.Range(transform.position.z - generatingArea.zWidth / 2, transform.position.z + generatingArea.zWidth / 2));
+            GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
+            //bomb.transform.parent = obiSolver.transform;
+        }
+
+        public void AddBomb()
+        {
+            ammunitionStock++;
         }
     }
 }

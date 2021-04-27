@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
 
+using core.zqc.players;
+
 namespace core.zqc.bombs
 {
     public class BombControl : MonoBehaviour
     {
-        public PlayerController playerController;  // 角色
+        public PlayerAnimator playerAnimator;
 
         public float bombShootSpeed = 50f;         // 炸弹发射的力
 
@@ -14,6 +16,9 @@ namespace core.zqc.bombs
         public float preWaitTime = 0.1f;     // 等待步行动画结束的时间
         public float attachTime = 0.1f;      // 炸弹吸附到carryPoint上的时间
         public float rotateTime = 0.2f;      // 为拿到炸弹旋转人物的动画时间
+
+        [Header("角色发射炸弹的动画设定")]
+        public float kickDelay;              // 玩家发出发射指令到实际球被发射的延迟时间
 
         Bomb carriedBomb = null;
         bool waitForCarrying = false; 
@@ -24,9 +29,7 @@ namespace core.zqc.bombs
             {
                 if (!waitForCarrying && carriedBomb == null)
                 {
-                    carriedBomb = other.transform.GetComponent<Bomb>();
-                    waitForCarrying = true;
-                    StartCoroutine(PlayGetBombAnimation(carriedBomb));
+                    OnGetBomb(other.transform.GetComponent<Bomb>());
                 }
             }
         }
@@ -36,11 +39,7 @@ namespace core.zqc.bombs
             // 按下左键将冰壶炸弹发射出去
             if (Input.GetMouseButton(0) && carriedBomb != null && !waitForCarrying)
             {
-                Vector3 dir = transform.forward;
-
-                carriedBomb.Shoot(dir * bombShootSpeed);
-                carriedBomb.OnDetached();
-                carriedBomb = null;
+                KickBomb();
             }
         }
 
@@ -52,6 +51,24 @@ namespace core.zqc.bombs
             }
         }
 
+        void OnGetBomb(Bomb bomb)
+        {
+            carriedBomb = bomb;
+            waitForCarrying = true;
+            playerAnimator.SetPushing();
+            StartCoroutine(PlayGetBombAnimation(carriedBomb));
+        }
+
+        void KickBomb()
+        {
+            playerAnimator.SetKick();
+
+            Vector3 dir = transform.forward;
+            carriedBomb.DelayShoot(dir * bombShootSpeed, kickDelay);
+            carriedBomb.OnDetached();
+            carriedBomb = null;
+        }
+
         /// <summary>
         /// 角色拿到炸弹的动画
         /// </summary>
@@ -59,14 +76,14 @@ namespace core.zqc.bombs
         /// <returns></returns>
         IEnumerator PlayGetBombAnimation(Bomb bomb)
         {
-            playerController.SetAnimationFlag(true);
+            playerAnimator.SetAnimationFlag(true);
 
             yield return new WaitForSeconds(preWaitTime);
 
             // 人物旋转到可以拿起炸弹的方位
             if (bomb == null)
             {
-                resetPlayerState();
+                ResetPlayerState();
                 yield break;
             }
             Vector3 bombDir = bomb.transform.position - transform.position;
@@ -77,14 +94,14 @@ namespace core.zqc.bombs
 
             for (float timer = 0f; timer <= rotateTime; timer += Time.fixedDeltaTime)
             {
-                playerController.transform.rotation = Quaternion.Slerp(startRotation, endRotation, timer / rotateTime);
+                playerAnimator.SetRotation(Quaternion.Slerp(startRotation, endRotation, timer / rotateTime));
                 yield return new WaitForFixedUpdate();
             }
-            playerController.transform.rotation = endRotation;
+            playerAnimator.SetRotation(endRotation);
 
             if (bomb == null)
             {
-                resetPlayerState();
+                ResetPlayerState();
                 yield break;
             }
             // 炸弹吸附到carryPoint的位置
@@ -98,20 +115,28 @@ namespace core.zqc.bombs
                 yield return new WaitForFixedUpdate();
                 if (bomb == null)
                 {
-                    resetPlayerState();
+                    ResetPlayerState();
                     yield break;
                 }
             }
             bomb.transform.position = endPosition;
 
-            bomb.OnAttached();
-            resetPlayerState();
+            bomb.OnAttached(this);
+            ResetPlayerState();
         }
 
-        void resetPlayerState()
+        void ResetPlayerState()
         {
             waitForCarrying = false;
-            playerController.SetAnimationFlag(false);
+            playerAnimator.SetAnimationFlag(false);
+        }
+
+        /// <summary>
+        /// 主动解除炸弹
+        /// </summary>
+        public void DetachCurrentBomb()
+        {
+            carriedBomb = null;
         }
     }
 }
