@@ -23,6 +23,14 @@ public class InputHandler : MonoBehaviourPun
     {
 		if (PhotonNetwork.IsConnected && !photonView.IsMine) return;
 
+		if (Input.GetKeyDown(kick))
+		{
+			playerController.Kick();
+		}
+		if (Input.GetKeyDown(startPush))
+		{
+			playerController.StartPush();
+		}
 	}
 
 	private void FixedUpdate()

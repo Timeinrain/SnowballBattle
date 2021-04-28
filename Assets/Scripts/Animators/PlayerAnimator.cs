@@ -62,7 +62,7 @@ namespace core.zqc.players
 		    animator.SetFloat("MovingSpeed", (new Vector2(rb.velocity.x, rb.velocity.z)).magnitude);
 		    animator.SetBool("IsKick", isKick);
 		    animator.SetBool("IsPushing", isPushing);
-			animator.SetBool("IsFilling", isFilling);
+			animator.SetBool("IsFiring", isFilling);
 	    }
 
 		void OnKickExit()

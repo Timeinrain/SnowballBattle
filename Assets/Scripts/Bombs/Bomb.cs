@@ -10,7 +10,7 @@ namespace core.zqc.bombs
         public float explosionTime;
 
         Rigidbody bombRigidbody;
-        BombControl carrier = null;
+        BombController carrier = null;
 
         private void Awake()
         {
@@ -38,7 +38,8 @@ namespace core.zqc.bombs
 
             Debug.Log(string.Format("Bomb exploded at {0}", transform.position.ToString()));
 
-            carrier.DetachCurrentBomb();
+            if (carrier != null)
+                carrier.DetachCurrentBomb();
             Destroy(gameObject);
         }
 
@@ -66,7 +67,7 @@ namespace core.zqc.bombs
         /// <summary>
         /// ½ÇÉ«»ñµÃÕ¨µ¯
         /// </summary>
-        public void OnAttached(BombControl bombControl)
+        public void OnAttached(BombController bombControl)
         {
             carrier = bombControl;
         }

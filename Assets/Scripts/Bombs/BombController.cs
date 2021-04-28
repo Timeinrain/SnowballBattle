@@ -2,73 +2,73 @@ using System.Collections;
 using UnityEngine;
 
 using core.zqc.players;
+using System;
+using System.Collections.Generic;
 
 namespace core.zqc.bombs
 {
-    public class BombControl : MonoBehaviour
+    /// <summary>
+    /// 处理炸弹相关逻辑
+    /// </summary>
+    public class BombController : MonoBehaviour
     {
-        public PlayerAnimator playerAnimator;
-
-        public float bombShootSpeed = 50f;         // 炸弹发射的力
-
-        [Header("角色拿到炸弹的动画设定")]
         public Transform carryPoint;         // 炸弹放置的位置
-        public float preWaitTime = 0.1f;     // 等待步行动画结束的时间
-        public float attachTime = 0.1f;      // 炸弹吸附到carryPoint上的时间
-        public float rotateTime = 0.2f;      // 为拿到炸弹旋转人物的动画时间
 
-        [Header("角色发射炸弹的动画设定")]
-        public float kickDelay;              // 玩家发出发射指令到实际球被发射的延迟时间
-
+        List<Bomb> bombsInRange = new List<Bomb>();
         Bomb carriedBomb = null;
-        bool waitForCarrying = false; 
+        bool waitForCarrying = false;
 
-        void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Bomb"))
             {
+                Bomb bomb = other.gameObject.GetComponent<Bomb>();
+                bombsInRange.Add(bomb);
+
+                /*
                 if (!waitForCarrying && carriedBomb == null)
                 {
-                    OnGetBomb(other.transform.GetComponent<Bomb>());
+                    Bomb bomb = other.transform.GetComponent<Bomb>();
+                    carriedBomb = bomb;
+                    waitForCarrying = true;
+                    bomb.OnAttached(this);
+
+                    OnDetectBomb(bomb);
                 }
+                */
             }
         }
 
-        void Update()
+        private void OnTriggerExit(Collider other)
         {
-            // 按下左键将冰壶炸弹发射出去
-            if (Input.GetMouseButton(0) && carriedBomb != null && !waitForCarrying)
+            if (other.CompareTag("Bomb"))
             {
-                KickBomb();
+                Bomb bomb = other.gameObject.GetComponent<Bomb>();
+                bombsInRange.Remove(bomb);
             }
         }
 
         void FixedUpdate()
         {
+            // 同步炸弹位置
             if (carriedBomb != null && !waitForCarrying)
             {
                 carriedBomb.UpdateTransform(carryPoint.position, carryPoint.rotation);
             }
         }
 
-        void OnGetBomb(Bomb bomb)
+        public void Kick(float bombShootSpeed, float kickDelay)
         {
-            carriedBomb = bomb;
-            waitForCarrying = true;
-            playerAnimator.SetPushing();
-            StartCoroutine(PlayGetBombAnimation(carriedBomb));
+            if (carriedBomb != null && !waitForCarrying)
+            {
+                Vector3 dir = transform.forward;
+                carriedBomb.DelayShoot(dir * bombShootSpeed, kickDelay);
+                carriedBomb.OnDetached();
+                carriedBomb = null;
+            }
         }
 
-        void KickBomb()
-        {
-            playerAnimator.SetKick();
-
-            Vector3 dir = transform.forward;
-            carriedBomb.DelayShoot(dir * bombShootSpeed, kickDelay);
-            carriedBomb.OnDetached();
-            carriedBomb = null;
-        }
-
+        /*
         /// <summary>
         /// 角色拿到炸弹的动画
         /// </summary>
@@ -124,11 +124,36 @@ namespace core.zqc.bombs
             bomb.OnAttached(this);
             ResetPlayerState();
         }
+        */
 
-        void ResetPlayerState()
+        /// <summary>
+        /// 返回一个范围内最近的炸弹
+        /// </summary>
+        /// <returns></returns>
+        public Bomb GetBombInRange()
         {
-            waitForCarrying = false;
-            playerAnimator.SetAnimationFlag(false);
+            if (bombsInRange.Count == 0)
+                return null;
+            else
+            {
+                // 找到距离最近的炸弹
+                int minDistNum = 0;
+                float minDist = 0;
+                for (int i = 0; i < bombsInRange.Count; i++)
+                {
+                    float dist = (bombsInRange[i].transform.position - transform.position).sqrMagnitude;
+                    if (i == 0)
+                    {
+                        minDist = (bombsInRange[i].transform.position - transform.position).sqrMagnitude;
+                    }
+                    else if (dist < minDist)
+                    {
+                        minDistNum = i;
+                        minDist = dist;
+                    }
+                }
+                return bombsInRange[minDistNum];
+            }
         }
 
         /// <summary>
@@ -137,6 +162,14 @@ namespace core.zqc.bombs
         public void DetachCurrentBomb()
         {
             carriedBomb = null;
+        }
+
+        /// <summary>
+        /// 让BombController获得炸弹
+        /// </summary>
+        public void AttachBomb(Bomb bomb)
+        {
+            carriedBomb = bomb;
         }
     }
 }
