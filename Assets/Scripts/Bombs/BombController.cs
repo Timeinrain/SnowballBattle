@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-using core.zqc.players;
 using System;
 using System.Collections.Generic;
 
@@ -12,6 +11,7 @@ namespace core.zqc.bombs
     /// </summary>
     public class BombController : MonoBehaviour
     {
+        public PlayerController playerController;
         public Transform carryPoint;         // 炸弹放置的位置
 
         List<Bomb> bombsInRange = new List<Bomb>();
@@ -24,18 +24,6 @@ namespace core.zqc.bombs
             {
                 Bomb bomb = other.gameObject.GetComponent<Bomb>();
                 bombsInRange.Add(bomb);
-
-                /*
-                if (!waitForCarrying && carriedBomb == null)
-                {
-                    Bomb bomb = other.transform.GetComponent<Bomb>();
-                    carriedBomb = bomb;
-                    waitForCarrying = true;
-                    bomb.OnAttached(this);
-
-                    OnDetectBomb(bomb);
-                }
-                */
             }
         }
 
@@ -67,6 +55,12 @@ namespace core.zqc.bombs
                 carriedBomb = null;
             }
         }
+
+        public Bomb GetCarriedBomb()
+        {
+            return carriedBomb;
+        }
+
 
         /*
         /// <summary>
@@ -137,13 +131,20 @@ namespace core.zqc.bombs
             else
             {
                 // 找到距离最近的炸弹
-                int minDistNum = 0;
+                int minDistNum = -1;
                 float minDist = 0;
-                for (int i = 0; i < bombsInRange.Count; i++)
+                for (int i = bombsInRange.Count - 1; i >= 0; i--)
                 {
-                    float dist = (bombsInRange[i].transform.position - transform.position).sqrMagnitude;
-                    if (i == 0)
+                    if (bombsInRange[i] == null)
                     {
+                        bombsInRange.RemoveAt(i);
+                        if (minDistNum != -1) minDistNum--;
+                        continue;
+                    }
+                    float dist = (bombsInRange[i].transform.position - transform.position).sqrMagnitude;
+                    if (minDistNum == -1)
+                    {
+                        minDistNum = i;
                         minDist = (bombsInRange[i].transform.position - transform.position).sqrMagnitude;
                     }
                     else if (dist < minDist)
@@ -152,6 +153,7 @@ namespace core.zqc.bombs
                         minDist = dist;
                     }
                 }
+                if (minDistNum == -1) return null;
                 return bombsInRange[minDistNum];
             }
         }
@@ -161,6 +163,10 @@ namespace core.zqc.bombs
         /// </summary>
         public void DetachCurrentBomb()
         {
+            if (bombsInRange.Contains(carriedBomb))
+            {
+                bombsInRange.Remove(carriedBomb);
+            }
             carriedBomb = null;
         }
 

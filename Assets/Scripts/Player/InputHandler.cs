@@ -31,6 +31,10 @@ public class InputHandler : MonoBehaviourPun
 		{
 			playerController.StartPush();
 		}
+        if (Input.GetKeyDown(fire))
+        {
+			playerController.Fire();
+        }
 	}
 
 	private void FixedUpdate()

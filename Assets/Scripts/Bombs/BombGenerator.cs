@@ -14,6 +14,8 @@ namespace core.zqc.bombs
         public GameObject bombPrefab;                  // ±ùºøÕ¨µ¯Ô¤ÖÆ¼þ
 
         int ammunitionStock = 0;
+        bool hasOwner = false;
+        Team owner;
 
         [System.Serializable]
         public class GeneratingArea
@@ -63,12 +65,22 @@ namespace core.zqc.bombs
                 transform.position.y,
                 Random.Range(transform.position.z - generatingArea.zWidth / 2, transform.position.z + generatingArea.zWidth / 2));
             GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
+            if (hasOwner)
+            {
+                bomb.GetComponent<Bomb>().AddAlly(owner);
+            }
             //bomb.transform.parent = obiSolver.transform;
         }
 
         public void AddBomb()
         {
             ammunitionStock++;
+        }
+
+        public void SetOwner(Team team)
+        {
+            hasOwner = true;
+            owner = team;
         }
     }
 }

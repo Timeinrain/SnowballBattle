@@ -1,6 +1,6 @@
 using core.zqc.bombs;
 using Photon.Pun;
-using System.Collections;
+using UnityEditor;
 using UnityEngine;
 /// <summary>
 /// 玩家控制脚本，联机仍在测试中
@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviourPun
 	public float playerRotationSpeed = 10;
 	[Range(1, 50)]
 	public float playerOnPushingMovingSpeed;
+	[Range(1, 50)]
+	public float playerForcedMovingSpeed;
 
 	[Range(1, 50)]
 	public float viewFieldRadiance;
@@ -28,11 +30,11 @@ public class PlayerController : MonoBehaviourPun
 	[Range(1, 100)]
 	public float kickSpeed;              // 踢炸弹初速度
 	[Range(0.0f, 2.0f)]
-	public float preWaitTime = 0.1f;     // 等待步行动画结束的时间
-	[Range(0.0f, 2.0f)]
-	public float rotateTime = 0.2f;      // 为拿到炸弹旋转人物的动画时间
-	[Range(0.0f, 2.0f)]
 	public float kickDelay;              // 踢动画开始到实际踢出炸弹的延迟
+
+	[Header("Other Animation Settings")]
+	[Range(0.0f, 10.0f)]
+	public float fireDelay;              // 点火动画开始到实际将炸弹送出的延迟
 
 	[Header("Map Settings")]
 	/// <summary>
@@ -45,8 +47,18 @@ public class PlayerController : MonoBehaviourPun
 	public GameObject otherMinimap;
 
 	private Action curState;
+	private Cannon nearbyCannon = null;
 
-	void Awake()
+    #region 强制移动相关
+	private Vector3 forcedMoveDir;
+	private Quaternion forcedStartRotation;
+	private Quaternion forcedEndRotation;
+	private float totolTime;
+	private float forcedMoveTimer = 0f;
+	private Bomb carriedBomb;
+    #endregion
+
+    void Awake()
 	{
 		//如果不是本人，就隐藏对应的另一个小地图标识
 		if (PhotonNetwork.IsConnected && !photonView.IsMine)
@@ -60,7 +72,7 @@ public class PlayerController : MonoBehaviourPun
 		playerAnimator = GetComponentInChildren<Animator>();
 		playerInfoInstance = GetComponent<Player>();
 
-		curState = Action.FreeRun;
+		ChangeState(Action.FreeRun);
 	}
 
 	/// <summary>
@@ -75,12 +87,49 @@ public class PlayerController : MonoBehaviourPun
 		UpdateVisibleEnemyPos();
 	}
 
-	/// <summary>
-	/// Control Simple Move
-	/// </summary>
-	/// <param name="xV"> Horizontal </param>
-	/// <param name="yV"> Vertical </param>
-	public void Move(float xV, float yV)
+    private void FixedUpdate()
+    {
+        // 处理强制移动
+		if (curState == Action.ForcedMove)
+        {
+			if (carriedBomb == null)
+            {
+				ResetStateIfNotConstrained();
+				forcedMoveTimer = 0f;
+            }
+            else
+            {
+				if (forcedMoveTimer < totolTime)
+				{
+					playerRigidbody.velocity = forcedMoveDir * playerForcedMovingSpeed;
+					playerRigidbody.MoveRotation(Quaternion.Slerp(forcedStartRotation, forcedEndRotation, forcedMoveTimer * playerRotationSpeed));
+					forcedMoveTimer += Time.fixedDeltaTime;
+				}
+				else
+				{
+					forcedMoveTimer = 0f;
+					playerRigidbody.velocity = Vector3.zero;
+					if (carriedBomb != null)
+					{
+						carriedBomb.SetPositionLock(false);
+						bombController.AttachBomb(carriedBomb);
+						ChangeState(Action.Pushing);
+					}
+					else
+					{
+						ResetStateIfNotConstrained();
+					}
+				}
+			}
+        }
+    }
+
+    /// <summary>
+    /// Control Simple Move
+    /// </summary>
+    /// <param name="xV"> Horizontal </param>
+    /// <param name="yV"> Vertical </param>
+    public void Move(float xV, float yV)
 	{
 		if (curState == Action.Idle || curState == Action.Pushing || curState == Action.FreeRun)
 			playerRigidbody.velocity = new Vector3(xV, 0, yV).normalized * playerMovingSpeed + new Vector3(0, playerRigidbody.velocity.y, 0);
@@ -91,7 +140,8 @@ public class PlayerController : MonoBehaviourPun
 	/// </summary>
 	public void Kick()
 	{
-		curState = Action.Kick;
+		if (!CheckAnimatorState("Push Idle", "Push Run")) return;
+		ChangeState(Action.Kick);
 		bombController.Kick(kickSpeed, kickDelay);
 	}
 
@@ -100,12 +150,32 @@ public class PlayerController : MonoBehaviourPun
 	/// </summary>
 	public void StartPush()
     {
-		if (curState == Action.Pushing) return;
+		if (!CheckAnimatorState("Idle", "Run")) return;
 		Bomb bomb = bombController.GetBombInRange();
         if (bomb != null)
         {
-			StartCoroutine(HandleGetBombProcess(bomb));
+			HandleGetBombProcess(bomb);
         }
+    }
+
+	/// <summary>
+	/// Try to fill a cannon if there is a cannon nearby
+	/// </summary>
+	public void Fire()
+    {
+		if (!CheckAnimatorState("Push Idle", "Push Run")) return;
+		if (nearbyCannon != null)
+        {
+			ChangeState(Action.Fire);
+			Bomb bomb = bombController.GetCarriedBomb();
+			bomb.StopExplosionCountdown();    // 炸弹不会在填入炮台动画中爆炸
+			nearbyCannon.FillBomb(bomb, fireDelay);
+        }
+    }
+
+	public void Freeze()
+    {
+		ChangeState(Action.Frozen);
     }
 
 	/// <summary>
@@ -123,16 +193,21 @@ public class PlayerController : MonoBehaviourPun
 		}
 	}
 
-	/// <summary>
-	/// Refresh the animation states
-	/// </summary>
-	public void UpdateAnimatorParams()
+    /// <summary>
+    /// Refresh the animation states
+    /// </summary>
+    public void UpdateAnimatorParams()
 	{
 		playerAnimator.SetFloat("MovingSpeed", (new Vector2(playerRigidbody.velocity.x, playerRigidbody.velocity.z)).magnitude);
 		playerAnimator.SetBool("IsKick", curState == Action.Kick);
 		playerAnimator.SetBool("IsPushing", curState == Action.Pushing);
 		playerAnimator.SetBool("IsFiring", curState == Action.Fire);
-		playerAnimator.SetBool("InAnimation", curState == Action.InAnimation);
+		playerAnimator.SetBool("IsFrozen", curState == Action.Frozen);
+		//playerAnimator.SetBool("IsForcedMove", curState == Action.ForcedMove);
+		if(carriedBomb == null && !CheckStateAnimation())
+        {
+			ResetStateIfNotConstrained();
+        }
 	}
 
 	/// <summary>
@@ -143,38 +218,39 @@ public class PlayerController : MonoBehaviourPun
 		AnimatorStateInfo info = playerAnimator.GetCurrentAnimatorStateInfo(0);
         if (info.IsName("Idle") && curState == Action.Kick)
         {
-			curState = Action.FreeRun;
+			ResetStateIfNotConstrained();
         }
+		if (info.IsName("Idle") && curState == Action.Fire)
+        {
+			ResetStateIfNotConstrained();
+		}
     }
 
-
-	private IEnumerator HandleGetBombProcess(Bomb bomb)
+	private void HandleGetBombProcess(Bomb bomb)
     {
-		curState = Action.InAnimation;
+		ChangeState(Action.ForcedMove);
+		carriedBomb = bomb;
+		carriedBomb.SetPositionLock(true);
 		Vector3 bombPosition = bomb.transform.position;
-
-		yield return new WaitForSeconds(preWaitTime);
 
 		// 人物旋转到可以拿起炸弹的方向
 		Vector3 bombDir = bombPosition - transform.position;
 		bombDir.y = 0f;
 		bombDir.Normalize();
-		Quaternion startRotation = transform.rotation;
-		Quaternion endRotation = Quaternion.LookRotation(bombDir, Vector3.up);
-		for (float timer = 0f; timer <= rotateTime; timer += Time.fixedDeltaTime)
-		{
-			transform.rotation = Quaternion.Slerp(startRotation, endRotation, timer / rotateTime);
-			yield return new WaitForFixedUpdate();
-		}
-		transform.rotation = endRotation;
+		forcedStartRotation = transform.rotation;
+		forcedEndRotation = Quaternion.LookRotation(bombDir, Vector3.up);
 
-		curState = Action.FreeRun;
+		// 计算旋转之后的搬运点位置
+		float carryPointDist = (bombController.carryPoint.position - transform.position).magnitude;
+		Vector3 rotatedCarryPoint = bombDir * carryPointDist + transform.position;
+		Vector3 dist = bombPosition - rotatedCarryPoint;
+		dist.y = 0f;
+		forcedMoveDir = dist.normalized;
 
-		if (bomb != null)
-        {
-			bombController.AttachBomb(bomb);
-			curState = Action.Pushing;
-		}
+		float rotateTime = 1.0f / playerRotationSpeed;
+		float moveTime = dist.magnitude / playerForcedMovingSpeed;
+		totolTime = rotateTime > moveTime ? rotateTime : moveTime;
+		forcedMoveTimer = 0f;
 	}
 
 	/// <summary>
@@ -200,6 +276,64 @@ public class PlayerController : MonoBehaviourPun
 	}
 
 	/// <summary>
+	/// 如果当前角色非受限，则重置为FreeRun
+	/// </summary>
+	private void ResetStateIfNotConstrained()
+    {
+		if(!CheckStateConstrainted())
+        {
+			ChangeState(Action.FreeRun);
+        }
+    }
+
+	/// <summary>
+	/// 确认当前状态是否为受限的状态
+	/// </summary>
+	/// <returns></returns>
+	private bool CheckStateConstrainted()
+    {
+        switch (curState)
+        {
+			case Action.Frozen:
+			case Action.Reborn:
+				return true;
+        }
+		return false;
+    }
+
+	/// <summary>
+	/// 确认当前状态是否为动画状态，这些状态在动画结束之后会自动切换
+	/// <see cref="HandleStateMachine"></see>
+	/// </summary>
+	/// <returns></returns>
+	private bool CheckStateAnimation()
+    {
+        switch (curState)
+        {
+			case Action.Kick:
+			case Action.Fire:
+				return true;
+        }
+		return false;
+    }
+
+	/// <summary>
+	/// 判断当前动画是否包含给定状态任意一个
+	/// </summary>
+	/// <param name="states"></param>
+	/// <returns></returns>
+	private bool CheckAnimatorState(params string[] states)
+    {
+		AnimatorStateInfo info = playerAnimator.GetCurrentAnimatorStateInfo(0);
+		foreach(var s in states)
+        {
+			if (info.IsName(s))
+				return true;
+        }
+		return false;
+	}
+
+	/// <summary>
 	/// Set the player's belonged team.
 	/// </summary>
 	/// <param name="team"></param>
@@ -208,9 +342,52 @@ public class PlayerController : MonoBehaviourPun
 		playerInfoInstance.team = team;
 	}
 
-	public void SetState(Action action)
+	public void ChangeState(Action action)
     {
-		curState = action;
+        switch (action)
+        {
+            case Action.Idle:
+				curState = Action.Idle;
+                break;
+            case Action.FreeRun:
+				curState = Action.FreeRun;
+                break;
+            case Action.Pushing:
+				Debug.Log("Changed to Pushing");
+				curState = Action.Pushing;
+                break;
+            case Action.Frozen:
+				bombController.DetachCurrentBomb();
+				carriedBomb = null;
+				curState = Action.Frozen;
+				break;
+            case Action.Kick:
+				Debug.Log("Changed to Kick");
+				curState = Action.Kick;
+                break;
+            case Action.Fire:
+				curState = Action.Fire;
+                break;
+            case Action.Reborn:
+				bombController.DetachCurrentBomb();
+				carriedBomb = null;
+				curState = Action.Reborn;
+                break;
+            case Action.ForcedMove:
+				Debug.Log("Changed to ForcedMove");
+				curState = Action.ForcedMove;
+                break;
+        }
+    }
+
+    public void AddNearbyCannon(Cannon cannon)
+    {
+		nearbyCannon = cannon;
+    }
+
+	public void RemoveNearbyCannon()
+    {
+		nearbyCannon = null;
     }
 }
 
@@ -226,5 +403,5 @@ public enum Action
 	Kick = 4,
 	Fire = 5,
 	Reborn = 6,
-	InAnimation = 7,   // 前摇或后摇时间内
+	ForcedMove = 7,     // 强制移动
 }

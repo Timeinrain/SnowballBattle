@@ -1,4 +1,3 @@
-using Obi;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +7,13 @@ namespace core.zqc.bombs
     public class Bomb : MonoBehaviour
     {
         public float explosionTime;
+        public float explosionRange;
 
         Rigidbody bombRigidbody;
         BombController carrier = null;
+        bool freezeCountdown = false;
+
+        List<Team> friendlyList = new List<Team>();
 
         private void Awake()
         {
@@ -22,25 +25,34 @@ namespace core.zqc.bombs
             StartCoroutine(ExplosionCountdown());
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            AmmunitionDepot depot = other.GetComponent<AmmunitionDepot>();
-            if (depot != null)
-            {
-                if (carrier != null) carrier.DetachCurrentBomb();
-                depot.FillBomb(this);
-            }
-        }
-
         private IEnumerator ExplosionCountdown()
         {
             yield return new WaitForSeconds(explosionTime);
+            if (freezeCountdown) yield break;
+            Explode();
+        }
 
-            Debug.Log(string.Format("Bomb exploded at {0}", transform.position.ToString()));
+        private void Explode()
+        {
+            Collider[] cols = Physics.OverlapSphere(transform.position, explosionRange, LayerMask.GetMask("Player"));
+            foreach(var col in cols)
+            {
+                Character character = col.GetComponent<Character>();
+                if (character != null)
+                {
+                    if (friendlyList.Contains(character.GetTeam())) return;
+                    character.DealDamage();
+                    Debug.Log(string.Format("{0}'s health was reduced to {1}", character.ToString(), character.Health));
+                }
+            }
 
+            Destroy(gameObject);
+        }
+
+        private void OnDestroy()
+        {
             if (carrier != null)
                 carrier.DetachCurrentBomb();
-            Destroy(gameObject);
         }
 
 
@@ -58,9 +70,9 @@ namespace core.zqc.bombs
 
         IEnumerator Shoot(Vector3 speed, float delay)
         {
-            bombRigidbody.constraints = RigidbodyConstraints.FreezeAll;  // 防止动画期间炸弹发生位移
+            SetPositionLock(true);             // 防止动画期间炸弹发生位移
             yield return new WaitForSeconds(delay);
-            bombRigidbody.constraints = RigidbodyConstraints.None;
+            SetPositionLock(false);
             bombRigidbody.AddForce(speed, ForceMode.VelocityChange);
         }
 
@@ -78,6 +90,33 @@ namespace core.zqc.bombs
         public void OnDetached()
         {
             carrier = null;
+        }
+
+        public void StopExplosionCountdown()
+        {
+            freezeCountdown = true;
+        }
+
+        /// <summary>
+        /// 锁定/解锁炸弹位置，控制其是否能发生位移
+        /// </summary>
+        /// <param name="flag"></param>
+        public void SetPositionLock(bool flag)
+        {
+            if (flag)
+            {
+                bombRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            }
+            else
+            {
+                bombRigidbody.constraints = RigidbodyConstraints.None;
+            }
+        }
+
+        public void AddAlly(Team team)
+        {
+            if (!friendlyList.Contains(team))
+                friendlyList.Add(team);
         }
     }
 }
