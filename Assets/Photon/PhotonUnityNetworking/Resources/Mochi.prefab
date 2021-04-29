@@ -81,7 +81,6 @@ MonoBehaviour:
   fireDelay: 4.2
   selfMinimap: {fileID: 3968764088179324099}
   otherMinimap: {fileID: 4978478867495605748}
-  curState: 0
 --- !u!136 &168697849700296300
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -340,7 +339,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cb48ebd3fc23e5e4e8988af233082385, type: 2}
+  - {fileID: 2100000, guid: 19faede41aeee8244be490f3c77390b6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
