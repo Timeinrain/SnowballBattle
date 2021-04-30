@@ -45,7 +45,9 @@ public class GameManager : MonoBehaviourPun
 			Debug.Log("Is Master.");
 			Debug.Log("Todo: GameManager.cs sync global time.");
 		}
+		StartCoroutine(WaitForAllPlayersToJoin());
 	}
+
 
 	/// <summary>
 	/// When Ending Game :
@@ -83,12 +85,12 @@ public class GameManager : MonoBehaviourPun
 		{
 			//如果全都进来了，就开始倒计时，开始游戏
 			if (PhotonNetwork.CountOfPlayersInRooms == maxPlayers) break;
+			else if (Input.GetKey(KeyCode.B)) break;//用于测试开始游戏，后期删除
 			else
 			{
 				foreach (var player in PhotonNetwork.PlayerList)
 				{
-					Debug.Log(player.IsMasterClient);
-
+					Debug.Log(player.ToString() + player.IsMasterClient);
 				}
 			}
 			yield return new WaitForEndOfFrame();
@@ -117,8 +119,7 @@ public class GameManager : MonoBehaviourPun
 	/// </summary>
 	public void StartGame()
 	{
-
-
+		FindObjectOfType<BombGeneratorOnline>().StartGenerateBomb();
 	}
 
 }

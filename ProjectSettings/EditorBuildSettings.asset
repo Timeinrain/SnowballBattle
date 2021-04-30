@@ -5,12 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Test/Photon Test/PlayerLogic/MenuScene.unity
     guid: 4bd62edd66d19f343a179ad6b553b251
-  - enabled: 0
-    path: Assets/Scenes/BattleField_Offline.unity
-    guid: 0d6e0869e5974e143b0b5b3bc8b84271
   - enabled: 0
     path: Assets/Test/Photon Test/MultiCamera/MultiCameraTest.unity
     guid: 14ca831ce204f0541b7ccb497aba4006

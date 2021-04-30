@@ -8,10 +8,13 @@ namespace core.zqc.bombs
     {
         public float explosionTime;
         public float explosionRange;
+        public GameObject snowPathFX;
 
         Rigidbody bombRigidbody;
         BombController carrier = null;
         bool freezeCountdown = false;
+
+        public GameObject ExplosionFx;
 
         List<Team> friendlyList = new List<Team>();
 
@@ -45,7 +48,17 @@ namespace core.zqc.bombs
                     Debug.Log(string.Format("{0}'s health was reduced to {1}", character.ToString(), character.Health));
                 }
             }
+            StartCoroutine(ExplosionFxPlay());
+        }
 
+        /// <summary>
+        /// Explosion FX
+        /// </summary>
+        /// 
+        IEnumerator ExplosionFxPlay()
+		{
+            ExplosionFx.SetActive(true);
+            yield return new WaitForSeconds(0.95f);
             Destroy(gameObject);
         }
 
@@ -118,5 +131,13 @@ namespace core.zqc.bombs
             if (!friendlyList.Contains(team))
                 friendlyList.Add(team);
         }
-    }
+
+		private void OnCollisionEnter(Collision collision)
+		{
+			if (collision.gameObject.CompareTag("Ground"))
+			{
+                snowPathFX.SetActive(true);
+			}
+		}
+	}
 }
