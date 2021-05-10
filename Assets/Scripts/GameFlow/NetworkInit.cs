@@ -38,6 +38,8 @@ public class NetworkInit : MonoBehaviourPunCallbacks
 	private void Start()
 	{
 		DontDestroyOnLoad(gameObject);
+		PhotonNetwork.AutomaticallySyncScene = true;
+		PhotonNetwork.SendRate = 90;
 	}
 
 	/// <summary>
@@ -96,35 +98,6 @@ public class NetworkInit : MonoBehaviourPunCallbacks
 		base.OnConnectedToMaster();
 		Debug.Log("Connected!");
 	}
-
-	/// <summary>
-	/// Call as click func.
-	/// </summary>
-	/// <param name="lobbyName"></param>
-	/// 
-	/*
-	public void JoinLobby(string lobbyName)
-	{
-		loadingPanel.SetActive(true);
-		TypedLobby temp = new TypedLobby(lobbyName, LobbyType.AsyncRandomLobby);
-		Debug.Log(PhotonNetwork.InLobby);
-		PhotonNetwork.JoinLobby(temp);
-	}
-	*/
-
-	/// <summary>
-	/// Auto call when joined lobby
-	/// </summary>
-	/*
-	public override void OnJoinedLobby()
-	{
-		loadingPanel.SetActive(false);
-		lobbyListUI.SetActive(false);
-		roomListUI.SetActive(true);
-		base.OnJoinedLobby();
-		Debug.Log("Joined Lobby!");
-	}
-	*/
 
 	/// <summary>
 	/// Call when "创建房间" clicked
@@ -223,10 +196,12 @@ public class NetworkInit : MonoBehaviourPunCallbacks
 		}
 	}
 
+
 	public override void OnCreatedRoom()
 	{
 		base.OnCreatedRoom();
 	}
+
 
 	public override void OnRoomListUpdate(List<RoomInfo> roomList)
 	{

@@ -82,6 +82,10 @@ public class BombGeneratorOnline : MonoBehaviourPun
 		ammunitionStock++;
 	}
 
+	/// <summary>
+	/// Set owner Team
+	/// </summary>
+	/// <param name="team"></param>
 	public void SetOwner(Team team)
 	{
 		hasOwner = true;

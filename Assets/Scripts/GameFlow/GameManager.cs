@@ -9,18 +9,8 @@ public class GameManager : MonoBehaviourPun
 	/// <summary>
 	/// Singleton
 	/// </summary>
-	public static GameManager Instance
-	{
-		get
-		{
-			if (Instance == null) Instance = new GameManager();
-			return Instance;
-		}
-		private set
-		{
+	public static GameManager Instance;
 
-		}
-	}
 	//All team information
 	[SerializeField]
 	public List<TeamInfoMgr> teams;
@@ -39,6 +29,7 @@ public class GameManager : MonoBehaviourPun
 
 	private void Start()
 	{
+		Instance = this;
 		if (PhotonNetwork.IsMasterClient)
 		{
 			//todo : sync global time.
@@ -47,7 +38,6 @@ public class GameManager : MonoBehaviourPun
 		}
 		StartCoroutine(WaitForAllPlayersToJoin());
 	}
-
 
 	/// <summary>
 	/// When Ending Game :
