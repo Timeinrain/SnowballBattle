@@ -4933,7 +4933,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 7235875197833527241}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1659030672328746941
 MeshFilter:
@@ -9880,7 +9880,6 @@ Transform:
   m_Children:
   - {fileID: 268546204821738343}
   - {fileID: 7361063351200288658}
-  - {fileID: 852628259729977856}
   - {fileID: 5500928216654269032}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -9926,9 +9925,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a25a99c8514958b45ba01aa3f493dc4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionTime: 8
+  explosionTime: 100
   explosionRange: 5
-  snowPathFX: {fileID: 852628259729977859}
+  snowPathFX: {fileID: 0}
   ExplosionFx: {fileID: 4100757726055993279}
 --- !u!114 &5552583311559288500
 MonoBehaviour:
@@ -10043,75 +10042,4 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: caba4ccf747aaea46836051afc842eab, type: 3}
   m_PrefabInstance: {fileID: 301926050937484428}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &2256176192105233844
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 7235875197833527241}
-    m_Modifications:
-    - target: {fileID: 1484684473181802420, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1484684473181802420, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1484684473181802420, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1484684473181802420, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1484684473181802420, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1484684473181802420, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1484684473181802420, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1484684473181802420, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1484684473181802420, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1484684473181802420, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1484684473181802420, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1484684473181802423, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
-      propertyPath: m_Name
-      value: SnowPathParticle
-      objectReference: {fileID: 0}
-    - target: {fileID: 1484684473181802423, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
---- !u!1 &852628259729977859 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1484684473181802423, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
-  m_PrefabInstance: {fileID: 2256176192105233844}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &852628259729977856 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1484684473181802420, guid: c25ae9cc2145deb4aa94c5f65fd0f028, type: 3}
-  m_PrefabInstance: {fileID: 2256176192105233844}
   m_PrefabAsset: {fileID: 0}

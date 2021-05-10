@@ -82,5 +82,13 @@ namespace core.zqc.bombs
             hasOwner = true;
             owner = team;
         }
+
+        private void OnDrawGizmosSelected()
+        {
+            const float height = 30f;
+            Vector3 center = transform.position;
+            center.y -= height / 2;
+            Gizmos.DrawWireCube(center, new Vector3(generatingArea.xWidth, height, generatingArea.zWidth));
+        }
     }
 }
