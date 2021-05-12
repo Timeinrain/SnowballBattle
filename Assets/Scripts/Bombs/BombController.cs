@@ -1,68 +1,73 @@
 using System.Collections;
 using UnityEngine;
-
+using Photon.Pun;
 using System;
 using System.Collections.Generic;
 
 namespace core.zqc.bombs
 {
-    /// <summary>
-    /// 处理炸弹相关逻辑
-    /// </summary>
-    public class BombController : MonoBehaviour
-    {
-        public PlayerController playerController;
-        public Transform carryPoint;         // 炸弹放置的位置
+	/// <summary>
+	/// 处理炸弹相关逻辑
+	/// </summary>
+	public class BombController : MonoBehaviourPun
+	{
+		public PlayerController playerController;
+		public Transform carryPoint;         // 炸弹放置的位置
 
-        List<Bomb> bombsInRange = new List<Bomb>();
-        Bomb carriedBomb = null;
-        bool waitForCarrying = false;
+		List<Bomb> bombsInRange = new List<Bomb>();
+		Bomb carriedBomb = null;
+		bool waitForCarrying = false;
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Bomb"))
-            {
-                Bomb bomb = other.gameObject.GetComponent<Bomb>();
-                bombsInRange.Add(bomb);
-            }
-        }
+		private void OnTriggerEnter(Collider other)
+		{
+			if (other.CompareTag("Bomb"))
+			{
+				Bomb bomb = other.gameObject.GetComponent<Bomb>();
+				bombsInRange.Add(bomb);
+			}
+		}
 
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.CompareTag("Bomb"))
-            {
-                Bomb bomb = other.gameObject.GetComponent<Bomb>();
-                bombsInRange.Remove(bomb);
-            }
-        }
+		private void OnTriggerExit(Collider other)
+		{
+			if (other.CompareTag("Bomb"))
+			{
+				Bomb bomb = other.gameObject.GetComponent<Bomb>();
+				bombsInRange.Remove(bomb);
+			}
+		}
 
-        void FixedUpdate()
-        {
-            // 同步炸弹位置
-            if (carriedBomb != null && !waitForCarrying)
-            {
-                carriedBomb.UpdateTransform(carryPoint.position, carryPoint.rotation);
-            }
-        }
+		void FixedUpdate()
+		{
+			// 同步炸弹位置
+			if (carriedBomb != null && !waitForCarrying)
+			{
+				PhotonView bombView = PhotonView.Get(carriedBomb);
+				carriedBomb.UpdateTransform(carryPoint.position, carryPoint.rotation);
+				bombView.RPC("UpdateTransform", RpcTarget.Others, carryPoint.position, carryPoint.rotation);
+			}
+		}
 
-        public void Kick(float bombShootSpeed, float kickDelay)
-        {
-            if (carriedBomb != null && !waitForCarrying)
-            {
-                Vector3 dir = transform.forward;
-                carriedBomb.DelayShoot(dir * bombShootSpeed, kickDelay);
-                carriedBomb.OnDetached();
-                carriedBomb = null;
-            }
-        }
+		[PunRPC]
+		public void Kick(float bombShootSpeed, float kickDelay,Vector3 forwardDir)
+		{
+			if (carriedBomb != null && !waitForCarrying)
+			{
+				PhotonView bombView = PhotonView.Get(carriedBomb);
+				carriedBomb.DelayShoot(forwardDir * bombShootSpeed, kickDelay);
+				carriedBomb.OnDetached();
+				bombView.RPC("DelayShoot", RpcTarget.Others, forwardDir * bombShootSpeed, kickDelay);
+				bombView.RPC("OnDetached", RpcTarget.Others);
+				carriedBomb = null;
+			}
+		}
 
-        public Bomb GetCarriedBomb()
-        {
-            return carriedBomb;
-        }
+		public Bomb GetCarriedBomb()
+		{
+			return carriedBomb;
+		}
 
 
-        /*
+		/*
         /// <summary>
         /// 角色拿到炸弹的动画
         /// </summary>
@@ -120,62 +125,62 @@ namespace core.zqc.bombs
         }
         */
 
-        /// <summary>
-        /// 返回一个范围内最近的炸弹
-        /// </summary>
-        /// <returns></returns>
-        public Bomb GetBombInRange()
-        {
-            if (bombsInRange.Count == 0)
-                return null;
-            else
-            {
-                // 找到距离最近的炸弹
-                int minDistNum = -1;
-                float minDist = 0;
-                for (int i = bombsInRange.Count - 1; i >= 0; i--)
-                {
-                    if (bombsInRange[i] == null)
-                    {
-                        bombsInRange.RemoveAt(i);
-                        if (minDistNum != -1) minDistNum--;
-                        continue;
-                    }
-                    float dist = (bombsInRange[i].transform.position - transform.position).sqrMagnitude;
-                    if (minDistNum == -1)
-                    {
-                        minDistNum = i;
-                        minDist = (bombsInRange[i].transform.position - transform.position).sqrMagnitude;
-                    }
-                    else if (dist < minDist)
-                    {
-                        minDistNum = i;
-                        minDist = dist;
-                    }
-                }
-                if (minDistNum == -1) return null;
-                return bombsInRange[minDistNum];
-            }
-        }
+		/// <summary>
+		/// 返回一个范围内最近的炸弹
+		/// </summary>
+		/// <returns></returns>
+		public Bomb GetBombInRange()
+		{
+			if (bombsInRange.Count == 0)
+				return null;
+			else
+			{
+				// 找到距离最近的炸弹
+				int minDistNum = -1;
+				float minDist = 0;
+				for (int i = bombsInRange.Count - 1; i >= 0; i--)
+				{
+					if (bombsInRange[i] == null)
+					{
+						bombsInRange.RemoveAt(i);
+						if (minDistNum != -1) minDistNum--;
+						continue;
+					}
+					float dist = (bombsInRange[i].transform.position - transform.position).sqrMagnitude;
+					if (minDistNum == -1)
+					{
+						minDistNum = i;
+						minDist = (bombsInRange[i].transform.position - transform.position).sqrMagnitude;
+					}
+					else if (dist < minDist)
+					{
+						minDistNum = i;
+						minDist = dist;
+					}
+				}
+				if (minDistNum == -1) return null;
+				return bombsInRange[minDistNum];
+			}
+		}
 
-        /// <summary>
-        /// 主动解除炸弹
-        /// </summary>
-        public void DetachCurrentBomb()
-        {
-            if (bombsInRange.Contains(carriedBomb))
-            {
-                bombsInRange.Remove(carriedBomb);
-            }
-            carriedBomb = null;
-        }
+		/// <summary>
+		/// 主动解除炸弹
+		/// </summary>
+		public void DetachCurrentBomb()
+		{
+			if (bombsInRange.Contains(carriedBomb))
+			{
+				bombsInRange.Remove(carriedBomb);
+			}
+			carriedBomb = null;
+		}
 
-        /// <summary>
-        /// 让BombController获得炸弹
-        /// </summary>
-        public void AttachBomb(Bomb bomb)
-        {
-            carriedBomb = bomb;
-        }
-    }
+		/// <summary>
+		/// 让BombController获得炸弹
+		/// </summary>
+		public void AttachBomb(Bomb bomb)
+		{
+			carriedBomb = bomb;
+		}
+	}
 }

@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviourPun
 	{
 		if (!CheckAnimatorState("Push Idle", "Push Run")) return;
 		ChangeState(Action.Kick);
-		bombController.Kick(kickSpeed, kickDelay);
+		bombController.Kick(kickSpeed, kickDelay,transform.forward);
 	}
 
 	/// <summary>
@@ -272,7 +272,7 @@ public class PlayerController : MonoBehaviourPun
 	/// </summary>
 	private void UpdateVisibleEnemyPos()
 	{
-
+		//todo
 	}
 
 	/// <summary>

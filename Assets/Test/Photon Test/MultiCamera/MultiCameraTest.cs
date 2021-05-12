@@ -7,8 +7,6 @@ namespace PhotonTest.MultiCameraTest
 {
 	public class MultiCameraTest : MonoBehaviourPunCallbacks
 	{
-		// Start is called before the first frame update
-		public GameObject sync_Light;
 		void Start()
 		{
 			ConnectToChina();
@@ -55,21 +53,6 @@ namespace PhotonTest.MultiCameraTest
 			//Join team.
 			GameObject teamObj = GameObject.FindWithTag(teamName.ToString() + "Team");
 			go.transform.SetParent(teamObj.transform);
-			//todo : Sync light data and so on.
-			if (PhotonNetwork.IsMasterClient)
-			{
-
-			}
-			else
-			{
-				SyncAllDatas();
-			}
 		}
-
-		public void SyncAllDatas()
-		{
-			Debug.Log("Sync!");
-		}
-
 	}
 }

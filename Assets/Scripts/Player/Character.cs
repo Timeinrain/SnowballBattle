@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 /// <summary>
 /// 处理角色游戏逻辑
 /// </summary>
 [RequireComponent(typeof(PlayerController))]
-public class Character : MonoBehaviour
+public class Character : MonoBehaviourPun
 {
     /// <summary>
     /// 可以被雪球击到/炸弹炸到的次数，生命值归零将导致角色被冰冻
