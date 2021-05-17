@@ -12,7 +12,7 @@ public class RoomConfig : MonoBehaviourPun
 {
 	GameObject roomMap;
 	int roomPlayerCount;
-	string mapName;
+	string MapType;
 	string roomName;
 	int maxPlayers;
 	private void OnEnable()
@@ -21,7 +21,7 @@ public class RoomConfig : MonoBehaviourPun
 		int.TryParse(transform.Find("RoomPlayerCountDetail").gameObject.GetComponent<Text>().text, out playerCnt);
 		roomPlayerCount = playerCnt;
 		roomMap = transform.Find("RoomMap").gameObject;
-		mapName = transform.Find("MapName").gameObject.GetComponent<Text>().text;
+		MapType = transform.Find("MapType").gameObject.GetComponent<Text>().text;
 		roomName = transform.Find("RoomNameDetail").gameObject.GetComponent<Text>().text;
 	}
 
@@ -34,7 +34,7 @@ public class RoomConfig : MonoBehaviourPun
 		int.TryParse(transform.Find("RoomPlayerCountDetail").gameObject.GetComponent<Text>().text, out playerCnt);
 		roomPlayerCount = playerCnt;
 		roomMap = transform.Find("RoomMap").gameObject;
-		mapName = transform.Find("MapName").gameObject.GetComponent<Text>().text;
+		MapType = transform.Find("MapType").gameObject.GetComponent<Text>().text;
 		roomName = transform.Find("RoomNameDetail").gameObject.GetComponent<Text>().text;
 	}
 
@@ -42,14 +42,14 @@ public class RoomConfig : MonoBehaviourPun
 	{
 		roomPlayerCount = room.PlayerCount;
 		//roomMap = room.MapInfo;
-		//mapName = transform.Find("MapName").gameObject.GetComponent<Text>().text;
+		//MapType = transform.Find("MapType").gameObject.GetComponent<Text>().text;
 		roomName = room.Name;
 		maxPlayers = room.MaxPlayers;
 	}
 
 	public void JoinRoom()
 	{
-		FindObjectOfType<NetworkInit>().JoinRoom(roomName);
+		FindObjectOfType<NetWorkMgr>().JoinRoom(roomName);
 	}
 
 }
