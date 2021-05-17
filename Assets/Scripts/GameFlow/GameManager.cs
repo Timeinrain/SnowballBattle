@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-
 public class GameManager : MonoBehaviourPun
 {
 	/// <summary>
@@ -112,4 +111,12 @@ public class GameManager : MonoBehaviourPun
 		FindObjectOfType<BombGeneratorOnline>().StartGenerateBomb();
 	}
 
+
+
+}
+
+public enum GameMode
+{
+	PVP,
+	PVE,
 }
