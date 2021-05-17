@@ -34,7 +34,10 @@ public class PlayerController : MonoBehaviourPun
 
 	[Header("Other Animation Settings")]
 	[Range(0.0f, 10.0f)]
-	public float fireDelay;              // 点火动画开始到实际将炸弹送出的延迟
+	public float fireDelay;              // 角色点火动画持续时间
+
+	[Header("Gameplay Settings")]
+	public float unfreezeTime = 5f;      // 解冻所需时间
 
 	[Header("Map Settings")]
 	/// <summary>
@@ -48,6 +51,10 @@ public class PlayerController : MonoBehaviourPun
 
 	private Action curState;
 	private Cannon nearbyCannon = null;
+
+	private bool isUnfreezing = false;
+	private float unfreezeTimer = 0f;
+
 
     #region 强制移动相关
 	private Vector3 forcedMoveDir;
@@ -81,6 +88,8 @@ public class PlayerController : MonoBehaviourPun
 	private void Update()
 	{
 		if (PhotonNetwork.IsConnected && !photonView.IsMine) return;
+
+		HandleUnfreezeProcess();
 		UpdateAnimatorParams();
 		HandleStateMachine();
 		RefreshAnimation();
@@ -388,6 +397,30 @@ public class PlayerController : MonoBehaviourPun
 	public void RemoveNearbyCannon()
     {
 		nearbyCannon = null;
+    }
+
+	public void StartUnfreezeCountdown()
+    {
+		isUnfreezing = true;
+		unfreezeTimer = 0f;
+    }
+
+	public void StopUnfreezeCountdown()
+    {
+		isUnfreezing = false;
+		unfreezeTimer = 0f;
+    }
+
+	private void HandleUnfreezeProcess()
+    {
+		if (curState != Action.Frozen || !isUnfreezing)
+			return;
+
+		unfreezeTimer += Time.deltaTime;
+		if(unfreezeTimer > unfreezeTime)
+        {
+			ChangeState(Action.Idle);
+        }
     }
 }
 

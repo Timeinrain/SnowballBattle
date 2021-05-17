@@ -80,12 +80,13 @@ MonoBehaviour:
   playerMovingSpeed: 0
   playerRotationSpeed: 10
   playerOnPushingMovingSpeed: 0
-  kickForce: 0
+  playerForcedMovingSpeed: 0
   viewFieldRadiance: 0
   bombController: {fileID: 551870736299189791}
-  preWaitTime: 0.1
-  attachTime: 0.1
-  rotateTime: 0.2
+  kickSpeed: 0
+  kickDelay: 0
+  fireDelay: 0
+  unfreezeTime: 5
   selfMinimap: {fileID: 0}
   otherMinimap: {fileID: 0}
 --- !u!54 &551870736287761844
@@ -149,12 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa6e838b078bed4a8160da21c44b51a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombShootSpeed: 30
+  playerController: {fileID: 0}
   carryPoint: {fileID: 551870736228227019}
-  preWaitTime: 0.1
-  attachTime: 0.2
-  rotateTime: 0.2
-  kickDelay: 0.58
 --- !u!135 &551870736299189776
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -20,6 +20,12 @@
         },
         {
             "m_Id": "b69d2e4a97730f81b63970e080258d84"
+        },
+        {
+            "m_Id": "4e290cf4e91f469d8520b5c751497174"
+        },
+        {
+            "m_Id": "f48706cafb204d63bb86be320f137bf8"
         }
     ],
     "m_Keywords": [],
@@ -809,6 +815,29 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "4e290cf4e91f469d8520b5c751497174",
+    "m_Guid": {
+        "m_GuidSerialized": "4ad2baa4-63f8-42f1-a7f3-1efd9b243ae2"
+    },
+    "m_Name": "Outline Size",
+    "m_DefaultReferenceName": "Vector1_4e290cf4e91f469d8520b5c751497174",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 0.10000000149011612,
+    "m_FloatType": 1,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "528b6c4adcbb49fca612c96837b6b7a2",
@@ -1277,10 +1306,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 39.99998092651367,
-            "y": -1157.0001220703125,
-            "width": 208.0,
-            "height": 302.0
+            "x": 36.79997253417969,
+            "y": -1161.5999755859375,
+            "width": 218.39999389648438,
+            "height": 302.39996337890627
         }
     },
     "m_Slots": [
@@ -2132,6 +2161,30 @@
     "m_Property": {
         "m_Id": "3f1532c633d79588b7a907904524dc09"
     }
+}
+
+{
+    "m_SGVersion": 3,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
+    "m_ObjectId": "f48706cafb204d63bb86be320f137bf8",
+    "m_Guid": {
+        "m_GuidSerialized": "ead6e62a-fc5e-4e67-acea-7475aa9a9ddb"
+    },
+    "m_Name": "Outline Color",
+    "m_DefaultReferenceName": "Color_f48706cafb204d63bb86be320f137bf8",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 0.0
+    },
+    "m_ColorMode": 1
 }
 
 {

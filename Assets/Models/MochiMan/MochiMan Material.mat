@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MochiMan Material
-  m_Shader: {fileID: -6465566751694194690, guid: 6d5a4fc22ca1d984b9c33ee7ddfaad83, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: d56cffc8c4aac67428e343152fa22558, type: 3}
   m_ShaderKeywords: _METALLICSPECGLOSSMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -33,6 +33,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_D7D2919C:
+        m_Texture: {fileID: 2800000, guid: 85d328f0ecf95a840880701f8b2cfe61, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_E0E90B4F:
         m_Texture: {fileID: 2800000, guid: 85d328f0ecf95a840880701f8b2cfe61, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -93,25 +97,43 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_2A455339: 0.23
-    - Vector1_5A9E5888: 0.235
+    - Vector1_074886dc49ab49e7b1b231280ea765a0: 0.1
+    - Vector1_2A455339: 0.708
+    - Vector1_4e290cf4e91f469d8520b5c751497174: 0
+    - Vector1_533C9C05: 0.631
+    - Vector1_5A9E5888: 0
+    - Vector1_911421B8: 0.505
+    - Vector1_A7207CA3: 1
     - Vector1_CD9CB9E8: 0
-    - Vector1_F5DCAAE8: 0.5
+    - Vector1_F5DCAAE8: 1
     - _AlphaClip: 0
     - _Blend: 0
+    - _BlendOp: 0
     - _BumpScale: 1
+    - _CameraFadingEnabled: 0
+    - _CameraFarFadeDistance: 2
+    - _CameraNearFadeDistance: 1
+    - _CellShading: 159
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _ColorMode: 0
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
+    - _DistortionBlend: 0.5
+    - _DistortionEnabled: 0
+    - _DistortionStrength: 1
+    - _DistortionStrengthScaled: 0.1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
+    - _FlipbookBlending: 0
+    - _FlipbookMode: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
@@ -123,6 +145,9 @@ Material:
     - _Shininess: 0.001
     - _Smoothness: 0.202
     - _SmoothnessTextureChannel: 0
+    - _SoftParticlesEnabled: 0
+    - _SoftParticlesFarFadeDistance: 1
+    - _SoftParticlesNearFadeDistance: 0
     - _SpecSmooth: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -131,12 +156,18 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_FA669E8D: {r: 0.01886791, g: 0.01886791, b: 0.01886791, a: 0}
+    - Color_5DF75355: {r: 0, g: 0, b: 0, a: 0}
+    - Color_9a107ed1ddd44eeb94fb63a7f2edf69e: {r: 0, g: 0, b: 0, a: 0}
+    - Color_FA669E8D: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 0}
+    - Color_f48706cafb204d63bb86be320f137bf8: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColorAddSubDiff: {r: 0, g: 0, b: 0, a: 0}
+    - _CameraFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
     - _RimColor: {r: 0.32941172, g: 0.094117574, b: 0.094117574, a: 1}
     - _SColor: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 1}
+    - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
