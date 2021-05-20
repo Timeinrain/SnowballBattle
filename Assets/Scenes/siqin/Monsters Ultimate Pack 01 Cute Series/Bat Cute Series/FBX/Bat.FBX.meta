@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: 7d54c7374fa611346bbfbe7f39f1508e
+guid: f081a471c4a6b204aa322313f1fc3e25
 ModelImporter:
-  serializedVersion: 19301
+  serializedVersion: 20200
   internalIDToNameTable:
   - first:
       1: 100000
@@ -238,6 +238,7 @@ ModelImporter:
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
@@ -247,6 +248,9 @@ ModelImporter:
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
@@ -258,16 +262,16 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips:
-  - 72dc849f01da5b64bb5efb895b3c852f
-  - 9007b62bd0f992f4885306a4e1bcf64b
-  - 5279ffa0241322d4f9e5ce114ef07687
-  - cbda10e606ef94d4896d33b5a04a5c87
-  - 90fc1566d0ffd844e9a8b24844ab1410
-  - 5ac00d3df3341eb4cb96d7fc548cfdd2
-  - 7c4e223953093ea4ab64b107a6acbee4
-  - 0a542e57b829d104fbee8df82020f23b
-  - 8dea55cfb23544041b6989c456bb6c54
-  - 2de65f73e9bf98048ad08db3493ccee9
+  - c926f48cabdfc684694e20a657666c24
+  - 7ee6f087c165455419bfb60ff7318bba
+  - d706cc83b56678e4ca137322052b4dcd
+  - 21cbc828444547348839f87b1fc65650
+  - 45692027c5a59ba42938ead5a4ce5037
+  - 47b3b140109cd3c438a756403f1a0792
+  - 41996846941cb1341b6bc8c3d2d929a1
+  - 77fa6e993f3a15e4f96cb1e9ee4f8672
+  - 7462cd198360bdc4f9574e329fed9bb9
+  - f30bf5304c2527a43a5a9fb0f194433d
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
@@ -290,6 +294,7 @@ ModelImporter:
   animationType: 2
   humanoidOversampling: 1
   avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

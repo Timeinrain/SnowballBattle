@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 玩家控制脚本，联机仍在测试中
 /// </summary>
-public class PlayerController : MonoBehaviourPun
+public class PlayerController : PushableObject
 {
 
 	Rigidbody playerRigidbody;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviourPun
 	public float viewFieldRadiance;
 
 	[Header("Bomb Control Settings")]
-	public BombController bombController;
+	public PushController bombController;
 	[Range(1, 100)]
 	public float kickSpeed;              // 踢炸弹初速度
 	[Range(0.0f, 2.0f)]
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviourPun
 	private Quaternion forcedEndRotation;
 	private float totolTime;
 	private float forcedMoveTimer = 0f;
-	private Bomb carriedBomb;
+	private PushableObject pushableObject;
     #endregion
 
     void Awake()
@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviourPun
 		playerInfoInstance = GetComponent<Player>();
 
 		ChangeState(Action.FreeRun);
+		SetPushable(false);
 	}
 
 	/// <summary>
@@ -101,7 +102,7 @@ public class PlayerController : MonoBehaviourPun
         // 处理强制移动
 		if (curState == Action.ForcedMove)
         {
-			if (carriedBomb == null)
+			if (pushableObject == null)
             {
 				ResetStateIfNotConstrained();
 				forcedMoveTimer = 0f;
@@ -118,10 +119,10 @@ public class PlayerController : MonoBehaviourPun
 				{
 					forcedMoveTimer = 0f;
 					playerRigidbody.velocity = Vector3.zero;
-					if (carriedBomb != null)
+					if (pushableObject != null)
 					{
-						carriedBomb.SetPositionLock(false);
-						bombController.AttachBomb(carriedBomb);
+						pushableObject.SetPositionLock(false);
+						bombController.AttachPushable(pushableObject);
 						ChangeState(Action.Pushing);
 					}
 					else
@@ -160,10 +161,10 @@ public class PlayerController : MonoBehaviourPun
 	public void StartPush()
     {
 		if (!CheckAnimatorState("Idle", "Run")) return;
-		Bomb bomb = bombController.GetBombInRange();
-        if (bomb != null)
+		PushableObject pushable = bombController.GetPushableInRange();
+        if (pushable != null)
         {
-			HandleGetBombProcess(bomb);
+			HandleGetBombProcess(pushable);
         }
     }
 
@@ -175,17 +176,31 @@ public class PlayerController : MonoBehaviourPun
 		if (!CheckAnimatorState("Push Idle", "Push Run")) return;
 		if (nearbyCannon != null)
         {
-			ChangeState(Action.Fire);
-			Bomb bomb = bombController.GetCarriedBomb();
-			bomb.StopExplosionCountdown();    // 炸弹不会在填入炮台动画中爆炸
-			nearbyCannon.FillBomb(bomb, fireDelay);
+			PushableObject carried = bombController.GetCarried();
+            if (carried != null)
+            {
+				Bomb bomb = carried.GetComponent<Bomb>();
+				if (bomb != null)
+				{
+					ChangeState(Action.Fire);
+					bomb.StopExplosionCountdown();    // 炸弹不会在填入炮台动画中爆炸
+					nearbyCannon.FillBomb(bomb, fireDelay);
+				}
+			}
         }
     }
 
 	public void Freeze()
     {
 		ChangeState(Action.Frozen);
-    }
+		SetPushable(true);   // 冰冻后可以被队友推动
+	}
+
+	public void Unfreeze()
+    {
+		ChangeState(Action.Idle);
+		SetPushable(false);
+	}
 
 	/// <summary>
 	/// Action Responce
@@ -213,7 +228,7 @@ public class PlayerController : MonoBehaviourPun
 		playerAnimator.SetBool("IsFiring", curState == Action.Fire);
 		playerAnimator.SetBool("IsFrozen", curState == Action.Frozen);
 		//playerAnimator.SetBool("IsForcedMove", curState == Action.ForcedMove);
-		if(carriedBomb == null && !CheckStateAnimation())
+		if(pushableObject == null && !CheckStateAnimation())
         {
 			ResetStateIfNotConstrained();
         }
@@ -235,12 +250,12 @@ public class PlayerController : MonoBehaviourPun
 		}
     }
 
-	private void HandleGetBombProcess(Bomb bomb)
+	private void HandleGetBombProcess(PushableObject pushable)
     {
 		ChangeState(Action.ForcedMove);
-		carriedBomb = bomb;
-		carriedBomb.SetPositionLock(true);
-		Vector3 bombPosition = bomb.transform.position;
+		pushableObject = pushable;
+		pushableObject.SetPositionLock(true);
+		Vector3 bombPosition = pushable.transform.position;
 
 		// 人物旋转到可以拿起炸弹的方向
 		Vector3 bombDir = bombPosition - transform.position;
@@ -366,8 +381,8 @@ public class PlayerController : MonoBehaviourPun
 				curState = Action.Pushing;
                 break;
             case Action.Frozen:
-				bombController.DetachCurrentBomb();
-				carriedBomb = null;
+				bombController.DetachCurrentPushing();
+				pushableObject = null;
 				curState = Action.Frozen;
 				break;
             case Action.Kick:
@@ -378,8 +393,8 @@ public class PlayerController : MonoBehaviourPun
 				curState = Action.Fire;
                 break;
             case Action.Reborn:
-				bombController.DetachCurrentBomb();
-				carriedBomb = null;
+				bombController.DetachCurrentPushing();
+				pushableObject = null;
 				curState = Action.Reborn;
                 break;
             case Action.ForcedMove:
@@ -419,7 +434,7 @@ public class PlayerController : MonoBehaviourPun
 		unfreezeTimer += Time.deltaTime;
 		if(unfreezeTimer > unfreezeTime)
         {
-			ChangeState(Action.Idle);
+			Unfreeze();
         }
     }
 }

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: db13331a9ade1df46a30c1179d2f4539
+guid: adbd1fea8c076304fb84f7be2fe8e921
 ModelImporter:
-  serializedVersion: 19301
+  serializedVersion: 20200
   internalIDToNameTable:
   - first:
       1: 100000
@@ -283,6 +283,7 @@ ModelImporter:
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
@@ -292,6 +293,9 @@ ModelImporter:
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
@@ -303,18 +307,18 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips:
-  - f50b2a74065e11f4e80f030809aa1560
-  - c334cc8cf1d3f714c835c9a0bf8c0ae6
-  - 9c015a4eb1715ec47815f9af1d81bfe9
-  - 955b0e04bcc2e5f41a81d777033370cf
-  - 750eff70f6e9b3a47904ce9d0a8a57f6
-  - 7221ea4f4ff2e3343b3336b79679ef54
-  - a4b2dac4baf93d44095e7ff4bba7fece
-  - 0303d467a1e481348838e00ece812496
-  - 34850679b5cbcc1448e0bfd872a3e944
-  - c829c27a6c6a2214bbf53ee9abe73f33
-  - 7a62eacda9e859446904af808879522f
-  - e0c330f750d95e243a2541efaee48456
+  - 0151f7f76156725499097de2035b2019
+  - 1a8a6b8d7b800964eaf135e73cb9a865
+  - 2f7ed86b85a7c4543850f64a0e5e54ec
+  - 3492a8214b5b6e648b193622b717d814
+  - ccf4898c8a59aa243970b8861c4bb0a1
+  - a64acc102543b1a409abee9e8b234ddc
+  - ac5f017b07e7c5f4189cc718e9a46351
+  - 3c8b6eb3fb523f54a9e0e7bc6a89540f
+  - 1c3aecf11f9631b4dae8b3175ea67002
+  - e11765ea3372aa940b9be771c0d3957c
+  - faabd1703eec41f44bbcdcc4f4bc0133
+  - 103f0248437a81140b781abed6ce3c74
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
@@ -337,6 +341,7 @@ ModelImporter:
   animationType: 2
   humanoidOversampling: 1
   avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

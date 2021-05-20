@@ -77,13 +77,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7172f99f9cd0968498fb91bb5bf800d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovingSpeed: 0
+  playerMovingSpeed: 1
   playerRotationSpeed: 10
-  playerOnPushingMovingSpeed: 0
-  playerForcedMovingSpeed: 0
-  viewFieldRadiance: 0
+  playerOnPushingMovingSpeed: 1
+  playerForcedMovingSpeed: 1
+  viewFieldRadiance: 1
   bombController: {fileID: 551870736299189791}
-  kickSpeed: 0
+  kickSpeed: 1
   kickDelay: 0
   fireDelay: 0
   unfreezeTime: 5
@@ -147,10 +147,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 551870736299189778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa6e838b078bed4a8160da21c44b51a, type: 3}
+  m_Script: {fileID: 11500000, guid: ad3f230e924d4934ba7ee751238148ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 551870736287761843}
   carryPoint: {fileID: 551870736228227019}
 --- !u!135 &551870736299189776
 SphereCollider:

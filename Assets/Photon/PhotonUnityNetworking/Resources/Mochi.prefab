@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7172f99f9cd0968498fb91bb5bf800d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  snowPathFX: {fileID: 3678678509159668787}
   playerMovingSpeed: 8
   playerRotationSpeed: 10
   playerOnPushingMovingSpeed: 6
@@ -80,6 +81,7 @@ MonoBehaviour:
   kickSpeed: 40
   kickDelay: 0.58
   fireDelay: 4.2
+  unfreezeTime: 5
   selfMinimap: {fileID: 3968764088179324099}
   otherMinimap: {fileID: 4978478867495605748}
 --- !u!136 &168697849700296300
@@ -175,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15b9d657d0d3ae4dae4d27000279670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 2
 --- !u!1 &478008129313183474
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,11 +251,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 478008129367107372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfa6e838b078bed4a8160da21c44b51a, type: 3}
+  m_Script: {fileID: 11500000, guid: ad3f230e924d4934ba7ee751238148ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
+  playerController: {fileID: 168697849700296303}
   carryPoint: {fileID: 478008129313183477}
+  pushableInRange: []
 --- !u!135 &478008129367107374
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -759,6 +762,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e4a1a49906b87441ad6a2102fb35598, type: 3}
+--- !u!1 &3678678509159668787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7115275652098132671, guid: 7e4a1a49906b87441ad6a2102fb35598, type: 3}
+  m_PrefabInstance: {fileID: 5887263666404382348}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3678678509159668784 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7115275652098132668, guid: 7e4a1a49906b87441ad6a2102fb35598, type: 3}

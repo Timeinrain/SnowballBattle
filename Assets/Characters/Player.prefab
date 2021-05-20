@@ -76,11 +76,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7172f99f9cd0968498fb91bb5bf800d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCam: {fileID: 0}
-  joystick: {fileID: 0}
-  speed: 5
-  viewAdjust: {fileID: 0}
-  freeLookCam: {fileID: 0}
+  playerMovingSpeed: 1
+  playerRotationSpeed: 10
+  playerOnPushingMovingSpeed: 1
+  playerForcedMovingSpeed: 1
+  viewFieldRadiance: 1
+  bombController: {fileID: 0}
+  kickSpeed: 1
+  kickDelay: 0
+  fireDelay: 0
+  unfreezeTime: 5
+  selfMinimap: {fileID: 0}
+  otherMinimap: {fileID: 0}
 --- !u!1 &6345057721079895588
 GameObject:
   m_ObjectHideFlags: 0
