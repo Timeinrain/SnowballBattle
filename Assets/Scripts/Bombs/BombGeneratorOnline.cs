@@ -10,7 +10,7 @@ public class BombGeneratorOnline : MonoBehaviourPun
 
 	public float bombsFallingInterval = 10f;       // 冰壶炸弹降落间隔时间
 	public int bombsFallingNumber = 10;            // 每次掉落的冰壶炸弹数（无限弹药情况下）
-												   //public GameObject obiSolver;                 // 软体的solver，场景中只需要存在一个
+
 	public GameObject bombPrefab;                  // 冰壶炸弹预制件
 
 	int ammunitionStock = 0;
@@ -69,7 +69,7 @@ public class BombGeneratorOnline : MonoBehaviourPun
 		//this is an online bomb generating test
 		GameObject bomb
 		//= Instantiate(bombPrefab, position, Quaternion.identity);
-		= PhotonNetwork.Instantiate("Bomb", position, Quaternion.identity);
+		= PhotonNetwork.Instantiate("Default Curling Bomb", position, Quaternion.identity);
 		if (hasOwner)
 		{
 			bomb.GetComponent<Bomb>().AddAlly(owner);
@@ -77,9 +77,9 @@ public class BombGeneratorOnline : MonoBehaviourPun
 		//bomb.transform.parent = obiSolver.transform;
 	}
 
-	public void AddBomb()
+	public void AddBomb(int num = 1)
 	{
-		ammunitionStock++;
+		ammunitionStock += num;
 	}
 
 	/// <summary>
@@ -90,5 +90,13 @@ public class BombGeneratorOnline : MonoBehaviourPun
 	{
 		hasOwner = true;
 		owner = team;
+	}
+
+	private void OnDrawGizmosSelected()
+	{
+		const float height = 30f;
+		Vector3 center = transform.position;
+		center.y -= height / 2;
+		Gizmos.DrawWireCube(center, new Vector3(generatingArea.xWidth, height, generatingArea.zWidth));
 	}
 }

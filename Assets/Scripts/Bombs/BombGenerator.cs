@@ -72,9 +72,9 @@ namespace core.zqc.bombs
             //bomb.transform.parent = obiSolver.transform;
         }
 
-        public void AddBomb()
+        public void AddBomb(int num = 1)
         {
-            ammunitionStock++;
+            ammunitionStock += num;
         }
 
         public void SetOwner(Team team)

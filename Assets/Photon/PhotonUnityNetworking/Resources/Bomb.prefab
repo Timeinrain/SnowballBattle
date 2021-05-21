@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9194040754994683555}
   - component: {fileID: 6111536944677470346}
   - component: {fileID: 6903252590626566678}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ExplosionLightFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4880,7 +4880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7361063351200288658}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: FX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4995,7 +4995,7 @@ GameObject:
   - component: {fileID: 1424319581975162538}
   - component: {fileID: 8675690491937378754}
   - component: {fileID: 2222789613108421718}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ExplosionDustFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9860,7 +9860,7 @@ GameObject:
   - component: {fileID: 7235875197833527247}
   - component: {fileID: 5552583311559288500}
   - component: {fileID: 146304704175861334}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bomb
   m_TagString: Bomb
   m_Icon: {fileID: 0}
@@ -9926,7 +9926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snowPathFX: {fileID: 7115275652098132671, guid: 7e4a1a49906b87441ad6a2102fb35598, type: 3}
-  explosionTime: 10
+  explosionTime: 3
   explosionRange: 5
   ExplosionFx: {fileID: 4100757726055993279}
 --- !u!114 &5552583311559288500
@@ -10035,6 +10035,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: caba4ccf747aaea46836051afc842eab, type: 3}
       propertyPath: m_Name
       value: Bomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: caba4ccf747aaea46836051afc842eab, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: caba4ccf747aaea46836051afc842eab, type: 3}

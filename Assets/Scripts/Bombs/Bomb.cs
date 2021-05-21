@@ -5,6 +5,7 @@ using Photon.Pun;
 
 namespace core.zqc.bombs
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class Bomb : PushableObject
     {
         public float explosionTime;
@@ -15,6 +16,13 @@ namespace core.zqc.bombs
         public GameObject ExplosionFx;
 
         List<Team> friendlyList = new List<Team>();
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            type = CarryType.Bomb;
+        }
 
         private void Start()
         {

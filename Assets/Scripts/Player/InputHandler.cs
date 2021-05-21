@@ -29,11 +29,11 @@ public class InputHandler : MonoBehaviourPun
 		}
 		if (Input.GetKeyDown(startPush))
 		{
-			playerController.StartPush();
+			playerController.ChangePushState();
 		}
         if (Input.GetKeyDown(fire))
         {
-			playerController.Fire();
+			// 这个按键暂时弃用
         }
 	}
 

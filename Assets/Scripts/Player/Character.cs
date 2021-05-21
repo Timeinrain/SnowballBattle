@@ -14,31 +14,107 @@ public class Character : MonoBehaviourPun
     /// </summary>
     public int maxHealth = 2;
 
+    /// <summary>
+    /// 解冻所需时间
+    /// </summary>
+    public float unfreezeTime = 5f;
+
+    /// <summary>
+    /// 可以被订阅的事件
+    /// </summary>
+    public event System.Action frozen, unfrozen, died;
+    public event System.Action<int> healed, damaged;
+
     private Team team;
-    private PlayerController playerController;
+
+    private bool isFrozen = false;
+    private bool isUnfreezing = false;
+    private float unfreezeTimer = 0f;
+
     public int Health
     {
         get; private set;
     }
 
-    private void Awake()
+    private void Start()
     {
-        playerController = GetComponent<PlayerController>();
         Health = maxHealth;
     }
 
-    private void Freeze()
+    private void Update()
     {
-        playerController.Freeze();
+        HandleUnfreezeProcess();
+    }
+
+    private void SafelyDoAction(System.Action action)
+    {
+        if (action != null)
+        {
+            action();
+        }
+    }
+    private void SafelyDoAction(System.Action<int> action, int val)
+    {
+        if (action != null)
+        {
+            action(val);
+        }
     }
 
     public void DealDamage(int damage = 1)
     {
         Health -= damage;
+        SafelyDoAction(damaged, damage);
         if (Health <= 0)
         {
             Freeze();
         }
+    }
+
+    private void Freeze()
+    {
+        isFrozen = true;
+        SafelyDoAction(frozen);
+    }
+
+    private void Unfreeze()
+    {
+        isFrozen = false;
+        SafelyDoAction(unfrozen);
+        Heal(1);     // 确保有足够的血量活下来
+    }
+
+    public void StartUnfreezeCountdown()
+    {
+        isUnfreezing = true;
+        unfreezeTimer = 0f;
+    }
+
+    public void StopUnfreezeCountdown()
+    {
+        isUnfreezing = false;
+        unfreezeTimer = 0f;
+    }
+
+    /// <summary>
+    /// 处理解冻流程
+    /// </summary>
+    private void HandleUnfreezeProcess()
+    {
+        if (!isFrozen || !isUnfreezing)
+            return;
+
+        unfreezeTimer += Time.deltaTime;
+        if (unfreezeTimer > unfreezeTime)
+        {
+            Unfreeze();
+        }
+    }
+
+    public void Heal(int heal = 1)
+    {
+        Health += heal;
+        SafelyDoAction(healed, heal);
     }
 
     public void SetTeam(Team team)

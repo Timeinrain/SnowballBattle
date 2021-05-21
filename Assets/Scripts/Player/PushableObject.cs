@@ -4,21 +4,30 @@ using UnityEngine;
 
 public class PushableObject : MonoBehaviourPun
 {
+    public enum CarryType
+    {
+        Null,
+        Bomb,
+        Player,
+    }
+
     public GameObject snowPathFX;
 
     bool isPushable = true;
     Rigidbody objectRigidbody;
-    PushController carrier = null;
+    PlayerController carrier = null;
+    public CarryType type { get; set; }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         objectRigidbody = GetComponent<Rigidbody>();
+        type = CarryType.Null;
     }
 
     private void OnDestroy()
     {
         if (carrier != null)
-            carrier.DetachCurrentPushing();
+            carrier.StopPushing();
     }
 
     [PunRPC]
@@ -31,20 +40,33 @@ public class PushableObject : MonoBehaviourPun
 
     [PunRPC]
     /// <summary>
-    /// 角色获得炸弹
+    /// 附加到角色
     /// </summary>
-    public void OnAttached(PushController bombControl)
+    public void Attach(PlayerController owner)
     {
-
-        carrier = bombControl;
+        carrier = owner;
     }
+
     [PunRPC]
     /// <summary>
     /// 角色发射/丢弃炸弹等触发事件
     /// </summary>
-    public void OnDetached()
+    public void Detach()
     {
-        carrier = null;
+        if (carrier!= null)
+        {
+            carrier.pushController.DetachCurrentPushing();
+            carrier = null;
+        }
+    }
+
+    public void StopCarrierPushing()
+    {
+        if (carrier != null)
+        {
+            carrier.StopPushing();
+            carrier = null;
+        }
     }
 
     /// <summary>

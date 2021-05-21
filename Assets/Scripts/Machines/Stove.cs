@@ -5,25 +5,34 @@ using UnityEngine;
 /// <summary>
 /// 融化被冰冻的角色的火炉
 /// </summary>
+[RequireComponent(typeof(SphereCollider))]
 public class Stove : MonoBehaviour
 {
+    public float affectRadius;
+
     private void OnTriggerEnter(Collider other)
     {
-        PlayerController controller = other.GetComponent<PlayerController>();
-        if (controller != null)
+        Character character = other.GetComponent<Character>();
+        if (character != null)
         {
-            controller.StartUnfreezeCountdown();
+            character.StartUnfreezeCountdown();
         }
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        PlayerController controller = other.GetComponent<PlayerController>();
-        if (controller != null)
+        Character character = other.GetComponent<Character>();
+        if (character != null)
         {
-            controller.StopUnfreezeCountdown();
+            character.StopUnfreezeCountdown();
         }
+    }
 
+    private void OnValidate()
+    {
+        SphereCollider triggerRange = GetComponent<SphereCollider>();
+        triggerRange.isTrigger = true;
+        triggerRange.radius = affectRadius;
     }
 }

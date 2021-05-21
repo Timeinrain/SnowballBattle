@@ -16,15 +16,15 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Environment
   - Water
   - UI
   - MiniMap
   - Clouds
   - Ground
   - Player
-  - 
-  - 
+  - Pedetal
+  - Bomb
   - 
   - 
   - 

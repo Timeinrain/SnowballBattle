@@ -3,195 +3,154 @@ using UnityEngine;
 using Photon.Pun;
 using System;
 using System.Collections.Generic;
+using core.zqc.bombs;
 
-namespace core.zqc.bombs
+/// <summary>
+/// 处理推动相关逻辑
+/// </summary>
+public class PushController : MonoBehaviourPun
 {
-	/// <summary>
-	/// 处理推动相关逻辑
-	/// </summary>
-	public class PushController : MonoBehaviourPun
+	public PlayerController playerController;
+	public Transform bombCarryPoint;           // 炸弹放置的位置
+	public Transform frozenAllyCarryPoint;     // 被冰冻的队友放置的位置
+
+	public List<PushableObject> pushableInRange = new List<PushableObject>();
+	PushableObject carriedObject = null;
+	bool waitForCarrying = false;
+
+	private void OnTriggerEnter(Collider other)
 	{
-		public PlayerController playerController;
-		public Transform carryPoint;         // 推动物体放置的位置
-
-		public List<PushableObject> pushableInRange = new List<PushableObject>();
-		PushableObject carriedObject = null;
-		bool waitForCarrying = false;
-
-		private void OnTriggerEnter(Collider other)
+		if (other.CompareTag("Bomb") || other.CompareTag("Player"))
 		{
-			if (other.CompareTag("Bomb") || other.CompareTag("Player"))
-			{
-				PushableObject pushable = other.gameObject.GetComponent<PushableObject>();
-				pushableInRange.Add(pushable);
-			}
-		}
-
-		private void OnTriggerExit(Collider other)
-		{
-			if (other.CompareTag("Bomb") || other.CompareTag("Player"))
-			{
-				PushableObject pushable = other.gameObject.GetComponent<PushableObject>();
-				pushableInRange.Remove(pushable);
-			}
-		}
-
-		void FixedUpdate()
-		{
-			// 同步推动物体位置
-			if (carriedObject != null && !waitForCarrying)
-			{
-				PhotonView bombView = PhotonView.Get(carriedObject);
-				carriedObject.UpdateTransform(carryPoint.position, carryPoint.rotation);
-				bombView.RPC("UpdateTransform", RpcTarget.Others, carryPoint.position, carryPoint.rotation);
-			}
-		}
-
-		[PunRPC]
-		public void Kick(float bombShootSpeed, float kickDelay,Vector3 forwardDir)
-		{
-			if (carriedObject != null && !waitForCarrying)
-			{
-				Bomb bomb = carriedObject.GetComponent<Bomb>();
-                if (bomb != null)
-				{
-					PhotonView bombView = PhotonView.Get(bomb);
-					bomb.DelayShoot(forwardDir * bombShootSpeed, kickDelay);
-					bomb.OnDetached();
-					bombView.RPC("DelayShoot", RpcTarget.Others, forwardDir * bombShootSpeed, kickDelay);
-					bombView.RPC("OnDetached", RpcTarget.Others);
-					carriedObject = null;
-				}
-
-			}
-		}
-
-		public PushableObject GetCarried()
-		{
-			return carriedObject;
-		}
-
-
-		/*
-        /// <summary>
-        /// 角色拿到炸弹的动画
-        /// </summary>
-        /// <param name="bomb"></param>
-        /// <returns></returns>
-        IEnumerator PlayGetBombAnimation(Bomb bomb)
-        {
-            playerAnimator.SetAnimationFlag(true);
-
-            yield return new WaitForSeconds(preWaitTime);
-
-            // 人物旋转到可以拿起炸弹的方位
-            if (bomb == null)
-            {
-                ResetPlayerState();
-                yield break;
-            }
-            Vector3 bombDir = bomb.transform.position - transform.position;
-            bombDir.y = 0f;
-            bombDir.Normalize();
-            Quaternion startRotation = transform.rotation;
-            Quaternion endRotation = Quaternion.LookRotation(bombDir, Vector3.up);
-
-            for (float timer = 0f; timer <= rotateTime; timer += Time.fixedDeltaTime)
-            {
-                playerAnimator.SetRotation(Quaternion.Slerp(startRotation, endRotation, timer / rotateTime));
-                yield return new WaitForFixedUpdate();
-            }
-            playerAnimator.SetRotation(endRotation);
-
-            if (bomb == null)
-            {
-                ResetPlayerState();
-                yield break;
-            }
-            // 炸弹吸附到carryPoint的位置
-            Vector3 startPosition = bomb.transform.position;
-            Vector3 endPosition = carryPoint.position;
-            endPosition.y = bomb.transform.position.y; // 不改变炸弹的y坐标
-            carryPoint.rotation = bomb.transform.rotation; // 初始使旋转和炸弹旋转一致，便于之后计算旋转
-            for(float timer = 0f; timer <= attachTime; timer += Time.fixedDeltaTime)
-            {
-                bomb.transform.position = Vector3.Slerp(startPosition, endPosition, timer / attachTime);
-                yield return new WaitForFixedUpdate();
-                if (bomb == null)
-                {
-                    ResetPlayerState();
-                    yield break;
-                }
-            }
-            bomb.transform.position = endPosition;
-
-            bomb.OnAttached(this);
-            ResetPlayerState();
-        }
-        */
-
-		/// <summary>
-		/// 返回一个范围内最近的可以推动的物体
-		/// </summary>
-		/// <returns></returns>
-		public PushableObject GetPushableInRange()
-		{
-			if (pushableInRange.Count == 0)
-				return null;
-			else
-			{
-				// 找到距离最近的可推动物体
-				int minDistNum = -1;
-				float minDist = 0;
-				for (int i = pushableInRange.Count - 1; i >= 0; i--)
-				{
-					if (pushableInRange[i] == null)
-					{
-						// 删除空物体
-						pushableInRange.RemoveAt(i);
-						if (minDistNum != -1) minDistNum--;
-						continue;
-					}
-					if (!pushableInRange[i].CheckPushable())
-					{
-						// 跳过暂时不可以推动的物体
-						continue;
-					}
-					float dist = (pushableInRange[i].transform.position - transform.position).sqrMagnitude;
-					if (minDistNum == -1)
-					{
-						minDistNum = i;
-						minDist = (pushableInRange[i].transform.position - transform.position).sqrMagnitude;
-					}
-					else if (dist < minDist)
-					{
-						minDistNum = i;
-						minDist = dist;
-					}
-				}
-				if (minDistNum == -1) return null;
-				return pushableInRange[minDistNum];
-			}
-		}
-
-		/// <summary>
-		/// 主动解除现在正在推的物体
-		/// </summary>
-		public void DetachCurrentPushing()
-		{
-			if (pushableInRange.Contains(carriedObject))
-			{
-				pushableInRange.Remove(carriedObject);
-			}
-			carriedObject = null;
-		}
-
-		/// <summary>
-		/// 让PushController获得推动的物体
-		/// </summary>
-		public void AttachPushable(PushableObject pushable)
-		{
-			carriedObject = pushable;
+			PushableObject pushable = other.gameObject.GetComponent<PushableObject>();
+			pushableInRange.Add(pushable);
 		}
 	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.CompareTag("Bomb") || other.CompareTag("Player"))
+		{
+			PushableObject pushable = other.gameObject.GetComponent<PushableObject>();
+			pushableInRange.Remove(pushable);
+		}
+	}
+
+	void FixedUpdate()
+	{
+		// 同步推动物体位置
+		if (carriedObject != null && !waitForCarrying)
+		{
+			if (carriedObject.type == PushableObject.CarryType.Bomb)
+            {
+				PhotonView bombView = PhotonView.Get(carriedObject);
+				carriedObject.UpdateTransform(bombCarryPoint.position, bombCarryPoint.rotation);
+				bombView.RPC("UpdateTransform", RpcTarget.Others, bombCarryPoint.position, bombCarryPoint.rotation);
+			}
+			else if (carriedObject.type == PushableObject.CarryType.Player)
+            {
+				PhotonView playerView = PhotonView.Get(carriedObject);
+				carriedObject.UpdateTransform(frozenAllyCarryPoint.position, frozenAllyCarryPoint.rotation);
+				playerView.RPC("UpdateTransform", RpcTarget.Others, frozenAllyCarryPoint.position, frozenAllyCarryPoint.rotation);
+			}
+		}
+	}
+
+	[PunRPC]
+	public void Kick(float bombShootSpeed, float kickDelay,Vector3 forwardDir)
+	{
+		if (carriedObject != null && !waitForCarrying)
+		{
+			if (carriedObject.type != PushableObject.CarryType.Bomb)
+				return;
+
+			Bomb bomb = carriedObject.GetComponent<Bomb>();
+            if (bomb != null)
+			{
+				PhotonView bombView = PhotonView.Get(bomb);
+				bomb.DelayShoot(forwardDir * bombShootSpeed, kickDelay);
+				bomb.Detach();
+				bombView.RPC("DelayShoot", RpcTarget.Others, forwardDir * bombShootSpeed, kickDelay);
+				bombView.RPC("Detach", RpcTarget.Others);
+				carriedObject = null;
+			}
+		}
+	}
+
+	public PushableObject GetCarried()
+	{
+		return carriedObject;
+	}
+
+	/// <summary>
+	/// 返回一个范围内最近的可以推动的物体
+	/// </summary>
+	/// <returns></returns>
+	public PushableObject GetPushableInRange()
+	{
+		if (pushableInRange.Count == 0)
+			return null;
+		else
+		{
+			// 找到距离最近的可推动物体
+			int minDistNum = -1;
+			float minDist = 0;
+			for (int i = pushableInRange.Count - 1; i >= 0; i--)
+			{
+				if (pushableInRange[i] == null)
+				{
+					// 删除空物体
+					pushableInRange.RemoveAt(i);
+					if (minDistNum != -1) minDistNum--;
+					continue;
+				}
+				if (!pushableInRange[i].CheckPushable())
+				{
+					// 跳过暂时不可以推动的物体
+					continue;
+				}
+				float dist = (pushableInRange[i].transform.position - transform.position).sqrMagnitude;
+				if (minDistNum == -1)
+				{
+					minDistNum = i;
+					minDist = (pushableInRange[i].transform.position - transform.position).sqrMagnitude;
+				}
+				else if (dist < minDist)
+				{
+					minDistNum = i;
+					minDist = dist;
+				}
+			}
+			if (minDistNum == -1) return null;
+			return pushableInRange[minDistNum];
+		}
+	}
+
+	/// <summary>
+	/// 主动解除现在正在推的物体
+	/// </summary>
+	public void DetachCurrentPushing()
+	{
+		carriedObject = null;
+	}
+
+	public void StopPlayerPushing()
+    {
+		playerController.StopPushing();
+    }
+
+	/// <summary>
+	/// 让PushController获得推动的物体
+	/// </summary>
+	public void AttachPushable(PushableObject pushable)
+	{
+		carriedObject = pushable;
+		pushable.Attach(playerController);
+	}
+
+	public PushableObject.CarryType GetCarriedType()
+    {
+		if (carriedObject == null) return PushableObject.CarryType.Null;
+		return carriedObject.type;
+    }
 }
