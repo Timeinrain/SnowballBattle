@@ -16,6 +16,13 @@ public class SettingsPanel : PanelBase
 		lastPanel = panel;
 	}
 
+	public void CheckMochiActive()
+	{
+		if (lastPanel == UIMgr._Instance.inRoomUI)
+		{
+			UIMgr._Instance.inRoomUI.GetComponent<InRoom>().MochiInactive(true);
+		}
+	}
 	public override void Return()
 	{
 		if (lastPanel == null) {

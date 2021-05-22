@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb22c593489b5741bfb157d3865ca61, type: 3}
+  m_Name: Map_SnowMoutain
+  m_EditorClassIdentifier: 
+  mapImage: {fileID: 2800000, guid: 57f5a3385196cbb4fa32cfccc39a4b2c, type: 3}
+  mapName: "\u96EA\u5730"
+  mapDescription: 
+  tinyModel: {fileID: 1808157375899084, guid: e2e51eb55f13bf9499307755f4c7d38d, type: 3}
+  index: 1
+  mapTheme: 1

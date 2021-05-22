@@ -7,26 +7,26 @@ using Sirenix.OdinInspector;
 public class RoomButtonUI : MonoBehaviour
 {
 	public Text roomName;
-	[OnValueChanged("UpdateMapInfo")]
 	public Text mapType;
-	[ShowInInspector]
-	public Map mapInfo;
+	public Text currentPlayers;
+	public Text gameMode;
 	private void OnEnable()
 	{
 		GetComponent<Animator>().SetTrigger("Refresh");
-		//todo:
 	}
 
-	private void UpdateMapInfo()
+	public void SetInfos(string _roomName, string _mapName, string _currentPlayers, string _mode)
 	{
-		if (mapType == null) return;
-		mapInfo.OnValuaChanged(mapType.text);
+		roomName.text = _roomName;
+		mapType.text = _mapName;
+		currentPlayers.text = _currentPlayers;
+		gameMode.text = _mode;
 	}
 
 	public void JoinRoom()
 	{
+		UIMgr._Instance.AllowNeedLoadingTransitionEnter(false);
 		NetWorkMgr._Instance.JoinRoom(roomName.text);
-		UIMgr._Instance.JoinRoom();
 	}
 }
 

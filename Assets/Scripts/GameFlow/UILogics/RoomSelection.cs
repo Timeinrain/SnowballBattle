@@ -6,15 +6,15 @@ using Sirenix.OdinInspector;
 using Photon.Pun;
 using Photon.Realtime;
 
-[ExecuteInEditMode]
-/// <summary>
-/// 
-/// </summary>
 public class RoomSelection : PanelBase
 {
 	public GameObject settingsPanel;
 	public GameObject createRoomPanel;
-	public List<GameObject> roomInfos;
+	public RoomContainerPosMgr roomPosMgr;
+	public Transform roomContainer;
+	[ShowInInspector]
+	public List<RoomConfig> roomInfos = new List<RoomConfig> { };
+	public int roomSelectionPageNum = 0;
 
 	/// <summary>
 	/// Register this panel's infos
@@ -22,13 +22,14 @@ public class RoomSelection : PanelBase
 	private void Start()
 	{
 		currentPanel = gameObject;
-		panelEvents += handleUserInfo;
+		panelEvents += HandleUserInfo;
+		UpdateRoomList();
 	}
 
 	/// <summary>
 	/// Concrete actions for rollback events.
 	/// </summary>
-	private void handleUserInfo()
+	private void HandleUserInfo()
 	{
 		NetWorkMgr._Instance.client = null;
 		GC.Collect();
@@ -67,11 +68,21 @@ public class RoomSelection : PanelBase
 	/// <param name="rooms"></param>
 	public void UpdateRoomList()
 	{
-		List<RoomInfo> roomInfos = NetWorkMgr._Instance.GetRoomInfos();
+		roomPosMgr.ClearCurrentRooms();
+		if (roomInfos.Count == 0) return;
 		int num = roomInfos.Count;
-		for(int i = 0; i < 4; i++)
+		List<RoomConfig> insertingPartion = new List<RoomConfig> { };
+		for (int i = roomSelectionPageNum * 4; i < Mathf.Min(4 + roomSelectionPageNum * 4, num); i++)
 		{
-			
+			insertingPartion.Add(roomInfos[i]);
+		}
+		roomPosMgr.InsertRoomItem(insertingPartion);
+		//reset page to 0
+		if (roomSelectionPageNum * 4 + 4 < num)
+			roomSelectionPageNum++;
+		else
+		{
+			roomSelectionPageNum = 0;
 		}
 	}
 
@@ -80,9 +91,7 @@ public class RoomSelection : PanelBase
 	/// </summary>
 	public void RequestRoomList()
 	{
-		NetWorkMgr._Instance.GetRoomInfos();
-
-
+		UpdateRoomList();
 	}
 
 	/// <summary>
@@ -90,14 +99,8 @@ public class RoomSelection : PanelBase
 	/// </summary>
 	public void JoinRandomRoom()
 	{
-
+		UIMgr._Instance.JoinRandomRoom();
+		NetWorkMgr._Instance.JoinRandomRoom();
 	}
 
-	/// <summary>
-	/// Refresh the existing rooms
-	/// </summary>
-	public void RefreshRoomList()
-	{
-		
-	}
 }

@@ -32,7 +32,16 @@ MonoBehaviour:
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
-  RpcList: []
+  RpcList:
+  - ClickRpc
+  - DelayShoot
+  - DestroyRpc
+  - Kick
+  - OnAttached
+  - OnDetached
+  - Shoot
+  - StopExplosionCountdown
+  - UpdateTransform
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

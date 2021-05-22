@@ -1,37 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 [System.Serializable]
+[CreateAssetMenu(fileName = "Map", menuName = "CreateMap/create")]
 public class Map : ScriptableObject
 {
-	public string mapInfoString
+	//[PreviewField(100, Alignment = ObjectFieldAlignment.Left)]
+	//public Texture mapImage;
+
+	public string mapName;
+
+	public string mapDescription;
+
+	[PreviewField(100, Alignment = ObjectFieldAlignment.Left)]
+	public GameObject tinyModel;
+
+	public byte index;
+
+	public MapTheme mapTheme;
+
+	private bool ValidationCheck(string mapName, byte index = 0, MapTheme theme = MapTheme.Arena)
 	{
-		get
-		{
-			return mapType.ToString();
-		}
-		set
-		{
-			mapType = stringMapMapping[value];
-		}
+		return !GlobalMapInfoMgr.IsMapExisted(mapName) && !GlobalMapInfoMgr.IsMapExisted(index, theme);
 	}
 
-	public MapType mapType = MapType.SnowMountain;
-	public enum MapType
+	[Button]
+	public void RegisterMapInfo()
 	{
-		SnowMountain = 0,
-		Halloween = 1,
-	}
-
-	static Dictionary<string, MapType> stringMapMapping = new Dictionary<string, MapType>
-	{
-		{ "雪山乱斗" , MapType.SnowMountain},
-		{ "加勒比海盗" , MapType.Halloween },
-	};
-
-	public void OnValuaChanged(string targetMap)
-	{
-		mapInfoString = targetMap;
+		if (ValidationCheck(mapName, index))
+			GlobalMapInfoMgr.RegisterMap(mapName, index, mapTheme);
+		else throw new System.Exception("Map Already Existed!");
 	}
 }

@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class UIMgr : MonoBehaviour
 {
-	public NetWorkMgr _NetMgr;
 	public static UIMgr _Instance;
 	[Header("控制面板展示顺序")]
 	public GameObject loginUI;
-	public GameObject lobbyListUI;
 	public GameObject roomListUI;
 	public GameObject inRoomUI;
 	public GameObject createRoomUI;
@@ -21,16 +19,8 @@ public class UIMgr : MonoBehaviour
 
 	void Start()
 	{
-		_NetMgr = FindObjectOfType<NetWorkMgr>();
 		_Instance = this;
 		switchMaskFX = switchMaskMgr.GetComponent<SwitchMaskFX>();
-
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
 	}
 
 	public void ReturnToLogInPanel()
@@ -38,6 +28,7 @@ public class UIMgr : MonoBehaviour
 		roomListUI.SetActive(false);
 		loginUI.SetActive(true);
 	}
+
 	public void ReturnToRoomSelectingPanel()
 	{
 		createRoomUI.SetActive(false);
@@ -57,19 +48,10 @@ public class UIMgr : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Create and Enter the room
-	/// </summary>
-	public void CreateRoom()
-	{
-		loadingPanel.SetActive(true);
-	}
-
-	/// <summary>
 	/// Join room button clicked
 	/// </summary>
 	public void JoinRoom()
 	{
-		loadingPanel.SetActive(true);
 		PanelSwitchFromTo(roomListUI, inRoomUI, default, true);
 	}
 
@@ -78,7 +60,12 @@ public class UIMgr : MonoBehaviour
 	/// </summary>
 	public void JoinRandomRoom()
 	{
-		loadingPanel.SetActive(true);
+		PanelSwitchFromTo(roomListUI, inRoomUI, default, true);
+	}
+
+	public void StartSelectingMap()
+	{
+		mapSelectionUI.SetActive(true);
 	}
 
 	/// <summary>
@@ -86,15 +73,15 @@ public class UIMgr : MonoBehaviour
 	/// </summary>
 	public void OnJoinRandomFailed(string message)
 	{
+		WithdrawTransition();
+		AllowNeedLoadingTransitionEnter();
 		createRoomUI.SetActive(true);
-		//loadingPanel.SetActive(false);
-		//createRoomUI.SetActive(true);
 		print("No Available Random Room Now!" + message);
 		//todo : do something
 	}
 
 	/// <summary>
-	/// 
+	/// Do sth
 	/// </summary>
 	public void OnJoinRoomFailed(string message)
 	{
@@ -130,9 +117,9 @@ public class UIMgr : MonoBehaviour
 	/// <summary>
 	/// send the msg of allowance of play next panel 
 	/// </summary>
-	public void AllowNeedLoadingTransitionEnter()
+	public void AllowNeedLoadingTransitionEnter(bool allow = true)
 	{
-		allowTransitionEnter = true;
+		allowTransitionEnter = allow;
 	}
 	public void WithdrawTransition()
 	{
@@ -152,7 +139,10 @@ public class UIMgr : MonoBehaviour
 	{
 		while (true)
 		{
-			if (allowTransitionEnter) break;
+			if (allowTransitionEnter)
+			{
+				break;
+			}
 			yield return new WaitForEndOfFrame();
 		}
 		allowTransitionEnter = false;
