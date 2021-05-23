@@ -59,37 +59,11 @@ namespace PhotonTest.MultiCameraTest
             Team teamName = Team.Blue;
             //===============Specified==============
 
-            GameObject go = PhotonNetwork.Instantiate("Mochi", new Vector3(Random.Range(-1, 1), 3, Random.Range(-1, 1)), Quaternion.identity, 0);
-            go.tag = teamName.ToString() + "Team";
-            go.GetComponent<Character>().id = Random.value.ToString();
-            //Join team.
-            GameObject teamObj = GameObject.FindWithTag(teamName.ToString() + "Team");
-            go.transform.SetParent(teamObj.transform);
-            playerInfos.Add(go);
-            //photonView.RPC("GetNewPlayerInfo", RpcTarget.All, go.GetComponent<Character>().id);
-        }
-
-        public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
-        {
-            base.OnPlayerEnteredRoom(newPlayer);
-        }
-
-        [PunRPC]
-        public void GetNewPlayerInfo()
-        {
-            Character[] temp = FindObjectsOfType<Character>();
-            playerInfos.Clear();
-            foreach (var i in temp)
-            {
-                playerInfos.Add(i.gameObject);
-            }
-
-        }
-
-        [PunRPC]
-        public void SyncPlayersInfo()
-        {
-
-        }
-    }
+			GameObject go = PhotonNetwork.Instantiate("Mochi", new Vector3(Random.Range(-1, 1), 3, Random.Range(-1, 1)), Quaternion.identity, 0);
+			go.tag = teamName.ToString() + "Team";
+			//Join team.
+			GameObject teamObj = GameObject.FindWithTag(teamName.ToString() + "Team");
+			go.transform.SetParent(teamObj.transform);
+		}
+	}
 }

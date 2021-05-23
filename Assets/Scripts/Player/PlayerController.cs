@@ -188,13 +188,13 @@ public class PlayerController : PushableObject
     }
 
 
-    public void Freeze()
+    public void Freeze(string id)
     {
         ChangeState(Action.Frozen);
         SetPushable(true);   // 冰冻后可以被队友推动
     }
 
-    public void Unfreeze()
+    public void Unfreeze(string id)
     {
         ChangeState(Action.Idle);
         SetPushable(false);
