@@ -73,7 +73,6 @@ public class PlayerController : PushableObject
             otherMinimap.SetActive(false);
         playerRigidbody = GetComponent<Rigidbody>();
         playerAnimator = GetComponentInChildren<Animator>();
-        playerInfoInstance = GetComponent<Player>();
 
         // 为游戏逻辑处理添加事件
         gameLogicHandler = GetComponent<Character>();
@@ -188,28 +187,6 @@ public class PlayerController : PushableObject
         }
     }
 
-    /*
-    /// <summary>
-    /// Try to fill a cannon if there is a cannon nearby
-    /// </summary>
-    public void FillCannon()
-    {
-        if (!CheckAnimatorState("Push Idle", "Push Run")) return;
-        if (nearbyCannon != null && pushController.GetCarriedType() == CarryType.Bomb)
-        {
-            PushableObject carried = pushController.GetCarried();
-            if (carried != null)
-            {
-                Bomb bomb = carried.GetComponent<Bomb>();
-                if (bomb != null)
-                {
-                    ChangeState(Action.FillingCannon);
-                    nearbyCannon.FillBomb(bomb, fireDelay);
-                }
-            }
-        }
-    }
-    */
 
     public void Freeze()
     {
