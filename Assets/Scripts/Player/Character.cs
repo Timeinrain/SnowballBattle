@@ -25,8 +25,8 @@ public class Character : MonoBehaviourPun
     /// <summary>
     /// 可以被订阅的事件
     /// </summary>
-    public event System.Action<string> frozen, unfrozen, died;
-    public event System.Action<string, int> healed, damaged;
+    public event System.Action frozen, unfrozen, died;
+    public event System.Action<int> healed, damaged;
 
     private Team team;
 
@@ -49,25 +49,25 @@ public class Character : MonoBehaviourPun
         HandleUnfreezeProcess();
     }
 
-    private void SafelyDoAction(System.Action<string> action, string id)
+    private void SafelyDoAction(System.Action action)
     {
         if (action != null)
         {
-            action(id);
+            action();
         }
     }
-    private void SafelyDoAction(System.Action<string, int> action, string id, int val)
+    private void SafelyDoAction(System.Action<int> action, int val)
     {
         if (action != null)
         {
-            action(id, val);
+            action(val);
         }
     }
 
     public void DealDamage(int damage = 1)
     {
         Health -= damage;
-        SafelyDoAction(damaged, id, damage);
+        SafelyDoAction(damaged, damage);
         if (Health <= 0)
         {
             Freeze();
@@ -77,13 +77,13 @@ public class Character : MonoBehaviourPun
     private void Freeze()
     {
         isFrozen = true;
-        SafelyDoAction(frozen, id);
+        SafelyDoAction(frozen);
     }
 
     private void Unfreeze()
     {
         isFrozen = false;
-        SafelyDoAction(unfrozen, id);
+        SafelyDoAction(unfrozen);
         Heal(1);     // 确保有足够的血量活下来
     }
 
@@ -117,7 +117,7 @@ public class Character : MonoBehaviourPun
     public void Heal(int heal = 1)
     {
         Health += heal;
-        SafelyDoAction(healed, id, heal);
+        SafelyDoAction(healed, heal);
     }
 
     public void SetTeam(Team team)
