@@ -65,16 +65,13 @@ public class BombGeneratorOnline : MonoBehaviourPun
 			Random.Range(transform.position.x - generatingArea.xWidth / 2, transform.position.x + generatingArea.xWidth / 2),
 			transform.position.y,
 			Random.Range(transform.position.z - generatingArea.zWidth / 2, transform.position.z + generatingArea.zWidth / 2));
-		//todo :
-		//this is an online bomb generating test
 		GameObject bomb
-		//= Instantiate(bombPrefab, position, Quaternion.identity);
-		= PhotonNetwork.Instantiate("Default Curling Bomb", position, Quaternion.identity);
+		= PhotonNetwork.Instantiate("DefaultBomb", position, Quaternion.identity);
+		bomb.GetComponent<Rigidbody>().velocity = new Vector3(Random.value > 0.5 ? 1 : -1, 0, Random.value > 0.5 ? 1 : -1);
 		if (hasOwner)
 		{
 			bomb.GetComponent<Bomb>().AddAlly(owner);
 		}
-		//bomb.transform.parent = obiSolver.transform;
 	}
 
 	public void AddBomb(int num = 1)

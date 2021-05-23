@@ -69,7 +69,6 @@ namespace core.zqc.bombs
         }
 
         [PunRPC]
-        //todo:
         /// <summary>
         /// Set Lock Sync For online 
         /// </summary>

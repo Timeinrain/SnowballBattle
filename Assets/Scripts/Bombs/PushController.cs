@@ -42,13 +42,13 @@ public class PushController : MonoBehaviourPun
 		if (carriedObject != null && !waitForCarrying)
 		{
 			if (carriedObject.type == PushableObject.CarryType.Bomb)
-            {
+			{
 				PhotonView bombView = PhotonView.Get(carriedObject);
 				carriedObject.UpdateTransform(bombCarryPoint.position, bombCarryPoint.rotation);
 				bombView.RPC("UpdateTransform", RpcTarget.Others, bombCarryPoint.position, bombCarryPoint.rotation);
 			}
 			else if (carriedObject.type == PushableObject.CarryType.Player)
-            {
+			{
 				PhotonView playerView = PhotonView.Get(carriedObject);
 				carriedObject.UpdateTransform(frozenAllyCarryPoint.position, frozenAllyCarryPoint.rotation);
 				playerView.RPC("UpdateTransform", RpcTarget.Others, frozenAllyCarryPoint.position, frozenAllyCarryPoint.rotation);
