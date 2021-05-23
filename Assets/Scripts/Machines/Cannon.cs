@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Cannon : MonoBehaviour
 {
-    public BombGenerator linkedGenerator;
+    public BombGeneratorOnline linkedGenerator;
     public Animator cannonAnimator;
     public Animator porterAnimator;        // 炮弹搬运工
     public Team owner;
@@ -98,7 +98,7 @@ public class Cannon : MonoBehaviour
                 // 超过高度后销毁，并加入三个到BombGenerator
                 falseBombsWatchList.RemoveAt(i);
                 Destroy(bomb);
-                linkedGenerator.AddBomb(3);
+                linkedGenerator.AddBombAndGenerate(owner, 3);
             }
         }
     }

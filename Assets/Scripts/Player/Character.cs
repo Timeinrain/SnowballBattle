@@ -14,6 +14,8 @@ public class Character : MonoBehaviourPun
     /// </summary>
     public int maxHealth = 2;
 
+    public string id;
+
     /// <summary>
     /// 解冻所需时间
     /// </summary>
@@ -21,9 +23,10 @@ public class Character : MonoBehaviourPun
 
     /// <summary>
     /// 可以被订阅的事件
+    /// 第一个参数是用户的id
     /// </summary>
-    public event System.Action frozen, unfrozen, died;
-    public event System.Action<int> healed, damaged;
+    public event System.Action<string> frozen, unfrozen, died;
+    public event System.Action<string, int> healed, damaged;
 
     private Team team;
 
@@ -39,6 +42,7 @@ public class Character : MonoBehaviourPun
     private void Start()
     {
         Health = maxHealth;
+        team = GetComponent<Player>().team;
     }
 
     private void Update()
@@ -46,25 +50,25 @@ public class Character : MonoBehaviourPun
         HandleUnfreezeProcess();
     }
 
-    private void SafelyDoAction(System.Action action)
+    private void SafelyDoAction(System.Action<string> action, string selfID)
     {
         if (action != null)
         {
-            action();
+            action(selfID);
         }
     }
-    private void SafelyDoAction(System.Action<int> action, int val)
+    private void SafelyDoAction(System.Action<string, int> action, string selfID, int val)
     {
         if (action != null)
         {
-            action(val);
+            action(selfID, val);
         }
     }
 
     public void DealDamage(int damage = 1)
     {
         Health -= damage;
-        SafelyDoAction(damaged, damage);
+        SafelyDoAction(damaged, id, damage);
         if (Health <= 0)
         {
             Freeze();
@@ -74,13 +78,13 @@ public class Character : MonoBehaviourPun
     private void Freeze()
     {
         isFrozen = true;
-        SafelyDoAction(frozen);
+        SafelyDoAction(frozen, id);
     }
 
     private void Unfreeze()
     {
         isFrozen = false;
-        SafelyDoAction(unfrozen);
+        SafelyDoAction(unfrozen, id);
         Heal(1);     // 确保有足够的血量活下来
     }
 
@@ -114,12 +118,7 @@ public class Character : MonoBehaviourPun
     public void Heal(int heal = 1)
     {
         Health += heal;
-        SafelyDoAction(healed, heal);
-    }
-
-    public void SetTeam(Team team)
-    {
-        this.team = team;
+        SafelyDoAction(healed, id, heal);
     }
 
     public Team GetTeam()
