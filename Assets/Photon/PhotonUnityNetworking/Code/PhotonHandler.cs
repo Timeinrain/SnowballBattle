@@ -340,7 +340,7 @@ namespace Photon.Pun
                 // Master rejoined - reset all ownership. The master will be broadcasting non-creator ownership shortly
                 else if (isRejoiningMaster)
                 {
-                    Debug.LogError("It's unexpected that the Master Client rejoins. Someone else should be (and stay) Master Client by now.");
+                    //Debug.LogWarning("Master Client rejoined. If that player was gone for longer, someone else should be (and stay) Master Client by now.");
                     view.ResetOwnership();
                 }
             }
