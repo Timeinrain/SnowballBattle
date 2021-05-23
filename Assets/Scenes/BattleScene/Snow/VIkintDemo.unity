@@ -14678,11 +14678,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 936627454}
-  - component: {fileID: 936627453}
   - component: {fileID: 936627452}
   - component: {fileID: 936627455}
   m_Layer: 0
-  m_Name: NetworkMgr
+  m_Name: InGameNetworkMgr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14700,19 +14699,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1aa9a67a8fa1d4f9d1d30eea6ed9e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &936627453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 936627451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d0005448656acf4b961a166580177ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerInfos: []
+  BlueTeam: {fileID: 271936780}
+  YellowTeam: {fileID: 1105765241}
+  RedTeam: {fileID: 96744402}
+  GreenTeam: {fileID: 1572673861}
 --- !u!4 &936627454
 Transform:
   m_ObjectHideFlags: 0

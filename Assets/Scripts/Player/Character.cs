@@ -14,6 +14,7 @@ public class Character : MonoBehaviourPun
     /// </summary>
     public int maxHealth = 2;
 
+
     public string id;
 
     /// <summary>

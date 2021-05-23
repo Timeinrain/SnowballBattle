@@ -42,6 +42,7 @@ public class InRoom : PanelBase
 	public List<PlayerInfoInRoom> playerInfos = new List<PlayerInfoInRoom> { };
 	public GameObject playerInfoPrefab;
 	public List<RectTransform> playerInfoPos;
+	public InOutGameRoomInfo inOutGameRoomInfo;
 	#endregion
 	[Space]
 	[Header("Local Client's InRoom Info")]
@@ -53,6 +54,19 @@ public class InRoom : PanelBase
 	public GameObject MochiCharacter;
 	public int indexOfCurrentTeam = 0;
 	#endregion
+
+	public PlayerInfoInRoom GetPlayerByName(string playerName)
+	{
+		foreach (var playerInfo in playerInfos)
+		{
+			if (playerInfo.id == playerName)
+			{
+				return playerInfo;
+			}
+		}
+
+		return null;
+	}
 
 	/// <summary>
 	/// Init the index-team sprite Dictionary
@@ -96,7 +110,7 @@ public class InRoom : PanelBase
 	/// <param name="playerId"></param>
 	public void OnRoomMasterSwitched(string playerId)
 	{
-		foreach(var playerInfo in playerInfos)
+		foreach (var playerInfo in playerInfos)
 		{
 			if (playerInfo != null)
 			{
@@ -107,6 +121,14 @@ public class InRoom : PanelBase
 				}
 			}
 		}
+	}
+
+	/// <summary>
+	/// To Synchronize the information between ingame scene and inroom scene.
+	/// </summary>
+	public void SyncInOutGameRoomInfo()
+	{
+		inOutGameRoomInfo.SetInRoomPlayerInfos(playerInfos);
 	}
 
 	/// <summary>
@@ -123,7 +145,7 @@ public class InRoom : PanelBase
 			indexOfCurrentTeam--;
 		}
 		teamIndicator.sprite = teamIcon[indexOfCurrentTeam];
-		NetWorkMgr._Instance.UpdateTeamInfo(indexOfCurrentTeam,PhotonNetwork.LocalPlayer.NickName);
+		NetWorkMgr._Instance.UpdateTeamInfo(indexOfCurrentTeam, PhotonNetwork.LocalPlayer.NickName);
 	}
 
 	/// <summary>

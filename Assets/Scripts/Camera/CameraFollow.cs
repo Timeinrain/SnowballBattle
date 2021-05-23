@@ -11,6 +11,7 @@ public class CameraFollow : MonoBehaviour
 	public Transform lookAt = null;
 	public Transform follow = null;
 	public Vector3 offset = new Vector3(0, 20, -20);
+
 	public GameObject player;
 	[Range(0.5f, 5)]
 	public float followSpeed = 2;
