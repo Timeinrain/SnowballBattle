@@ -29,12 +29,6 @@ public class GameManager : MonoBehaviourPun
 	private void Start()
 	{
 		Instance = this;
-		if (PhotonNetwork.IsMasterClient)
-		{
-			//todo : sync global time.
-			Debug.Log("Is Master.");
-			Debug.Log("Todo: GameManager.cs sync global time.");
-		}
 		StartCoroutine(WaitForAllPlayersToJoin());
 	}
 

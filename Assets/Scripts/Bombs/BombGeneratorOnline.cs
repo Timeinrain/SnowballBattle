@@ -11,8 +11,6 @@ public class BombGeneratorOnline : MonoBehaviourPun
 	public float bombsFallingInterval = 10f;       // 冰壶炸弹降落间隔时间
 	public int bombsFallingNumber = 10;            // 每次掉落的冰壶炸弹数（无限弹药情况下）
 
-	public GameObject bombPrefab;                  // 冰壶炸弹预制件
-
 	int ammunitionStock = 0;
 	bool hasOwner = false;
 	Team owner;
