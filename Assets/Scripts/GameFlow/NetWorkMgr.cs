@@ -63,7 +63,6 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 	/// </summary>
 	private void Start()
 	{
-		DontDestroyOnLoad(gameObject);
 		_Instance = this;
 		PhotonNetwork.AutomaticallySyncScene = true;
 		PhotonNetwork.SendRate = 90;
@@ -91,9 +90,10 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 
 	public void StartGame()
 	{
-		if (IsBalanced())
+		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().SyncInOutGameRoomInfo();
+		if (PhotonNetwork.LocalPlayer.IsMasterClient)
 		{
-			//todo : start Game
+			PhotonNetwork.LoadLevel(1);
 		}
 	}
 

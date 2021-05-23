@@ -5,39 +5,29 @@ using Photon.Pun;
 
 public class PlayerCamera : MonoBehaviourPun
 {
-    GameObject mainCam;
-    public CameraSettings cameraSettings;
+	GameObject mainCam;
+	public Cinemachine.CinemachineVirtualCamera virtualCam;
 
-    private void Awake()
-    {
-        if (photonView.IsMine)
-        {
-            mainCam = GameObject.FindGameObjectWithTag("MainCamera");
-            mainCam.transform.position = cameraSettings.offset + transform.position;
-            mainCam.GetComponent<CameraFollow>().lookAt = transform;
-            mainCam.GetComponent<CameraFollow>().follow = transform;
-            mainCam.GetComponent<CameraFollow>().offset = cameraSettings.offset;
-        }
-        else if (!PhotonNetwork.IsConnected)
+	private void Awake()
+	{
+		if (photonView.IsMine || !PhotonNetwork.IsConnected)
 		{
-            mainCam = GameObject.FindGameObjectWithTag("MainCamera");
-            mainCam.transform.position = cameraSettings.offset + transform.position;
-            mainCam.GetComponent<CameraFollow>().lookAt = transform;
-            mainCam.GetComponent<CameraFollow>().follow = transform;
-            mainCam.GetComponent<CameraFollow>().offset = cameraSettings.offset;
-        }
-    }
+			virtualCam = FindObjectOfType<Cinemachine.CinemachineVirtualCamera>();
+			mainCam = GameObject.FindGameObjectWithTag("MainCamera");
+			mainCam.GetComponent<CameraFollow>().SetTransform(transform.position);
+			mainCam.GetComponent<CameraFollow>().lookAt = transform;
+			mainCam.GetComponent<CameraFollow>().follow = transform;
+			mainCam.GetComponent<CameraFollow>().player = gameObject;
+			//virtualCam.Follow = transform;
+			//virtualCam.LookAt = transform;
+		}
+	}
 
-    void Update()
-    {
-        if (photonView.IsMine)
-        {
-            mainCam.GetComponent<CameraFollow>().UpdatePosition(transform.position);
-        }
-        else if (!PhotonNetwork.IsConnected)
+	void Update()
+	{
+		if (photonView.IsMine || !PhotonNetwork.IsConnected)
 		{
-            mainCam.GetComponent<CameraFollow>().UpdatePosition(transform.position);
-        }
-
-    }
+			mainCam.GetComponent<CameraFollow>().UpdatePosition(transform.position);
+		}
+	}
 }

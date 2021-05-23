@@ -6,23 +6,23 @@ using Photon.Pun;
 /// <summary>
 /// Player information sharing
 /// </summary>
-public class Player : MonoBehaviourPun
+public class Player
 {
-	/// <summary>
-	/// For player scoring.
-	/// </summary>
-	[SerializeField]
-	public int kill = 0;
-	[SerializeField]
-	public int death = 0;
+	public string playerId;
+	public int maxLifeCount = 3;
 	public Team team;
 	public Status status;
-	public GameObject instance;
+	//public static Dictionary<int, Team> teamIntMapping = new Dictionary<int, Team> { { 0, Team.Blue }, { 1, Team.Red }, { 2, Team.Yellow }, { 3, Team.Green } };
 	public enum Status
 	{
-		Alive = 0,
-		Dead = 1,
+		InGame = 0,
+		Out = 1,
 		Offline = 2,
 	}
-
+	public void InitInfo(string id, Team _team)
+	{
+		playerId = id;
+		team = _team;
+		status = Status.InGame;
+	}
 }

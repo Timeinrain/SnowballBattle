@@ -8,59 +8,22 @@ using Photon.Pun;
 /// </summary>
 public class PhotonMasterMgr : MonoBehaviourPun
 {
-	private void Awake()
+	public GameObject BlueTeam;
+	public GameObject YellowTeam;
+	public GameObject RedTeam;
+	public GameObject GreenTeam;
+	public InOutGameRoomInfo roomInfo;
+	public static Dictionary<Team, GameObject> teamPosMap;
+	public void OnEnable()
 	{
-		if (PhotonNetwork.IsMasterClient)
-		{
-			StartCoroutine(m_Update());
-		}
-		else
-		{
-			StartCoroutine(sub_Update());
-		}
-	}
-
-	/// <summary>
-	/// To fake master's update
-	/// </summary>
-	/// <returns></returns>
-	private IEnumerator m_Update()
-	{
-		while (true)
-		{
-			PhotonMaterPlayerUpdate();
-			yield return new WaitForEndOfFrame();
-		}
-	}
-
-	/// <summary>
-	/// To fake subordinates' update
-	/// </summary>
-	/// <returns></returns>
-	private IEnumerator sub_Update()
-	{
-		while (true)
-		{
-			PhotonSubPlayerUpdate();
-			yield return new WaitForEndOfFrame();
-		}
-
-	}
-
-	/// <summary>
-	/// 主机同步总控制
-	/// </summary>
-	private void PhotonMaterPlayerUpdate()
-	{
-		Debug.Log("Master Update");
-	}
-
-	/// <summary>
-	/// 副机同步总控制
-	/// </summary>
-	private void PhotonSubPlayerUpdate()
-	{
-		Debug.Log("Subordinates Update");
+		roomInfo = FindObjectOfType<InOutGameRoomInfo>();
+		teamPosMap = new Dictionary<Team, GameObject> { { Team.Blue, BlueTeam }, { Team.Green, GreenTeam }, { Team.Yellow, YellowTeam }, { Team.Red, RedTeam } };
+		GameObject go = PhotonNetwork.Instantiate("Mochi", new Vector3(Random.Range(-1, 1), 3, Random.Range(-1, 1)), Quaternion.identity, 0);
+		Player playerInfo = roomInfo.GetPlayerByName(PhotonNetwork.LocalPlayer.NickName);
+		go.tag = playerInfo.team.ToString() + "Team";
+		go.GetComponent<Character>().id = playerInfo.playerId;
+		GameObject teamObject = teamPosMap[playerInfo.team];
+		go.transform.SetParent(teamObject.transform);
 	}
 
 }
