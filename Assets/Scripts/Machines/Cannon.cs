@@ -39,6 +39,11 @@ public class Cannon : MonoBehaviour
         }
     }
 
+    private void Fire()
+    {
+        Debug.Log("fire!!!!!!");
+    }
+
     private float shootTimer = 0f;
     private bool canFire = true;
     private void Update()
