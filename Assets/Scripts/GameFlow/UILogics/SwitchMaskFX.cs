@@ -73,7 +73,7 @@ public class SwitchMaskFX : MonoBehaviour
 	}
 	IEnumerator ZoomOut(GameObject target, List<GameObject> panels, int index,bool needLoading = false)
 	{
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.7f);
 		if (index == panels.Count - 1)
 			target.SetActive(true);
 		while (true)

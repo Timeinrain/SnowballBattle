@@ -7,12 +7,15 @@ public class InOutGameRoomInfo : MonoBehaviour
 {
 
 	[ShowInInspector]
-	List<Player> inRoomPlayerInfos;
+	public List<Player> inRoomPlayerInfos;
+	public static InOutGameRoomInfo Instance;
+	public string localPlayerId;
 
 	private void Awake()
 	{
 		DontDestroyOnLoad(gameObject);
 		inRoomPlayerInfos = new List<Player>() { };
+		Instance = this;
 	}
 
 	public void SetInRoomPlayerInfos(List<PlayerInfoInRoom> src)
@@ -22,6 +25,10 @@ public class InOutGameRoomInfo : MonoBehaviour
 			if (playerInfo != null)
 			{
 				inRoomPlayerInfos.Add(new Player() { playerId = playerInfo.id, maxLifeCount = 3, team = playerInfo.team, status = Player.Status.InGame });
+				if (NetWorkMgr._Instance.IsLocal(playerInfo.id))
+				{
+					localPlayerId = playerInfo.id;
+				}
 			}
 		}
 	}

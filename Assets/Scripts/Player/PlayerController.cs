@@ -11,7 +11,6 @@ public class PlayerController : PushableObject
 
 	Rigidbody playerRigidbody;
 	Animator playerAnimator;
-	Player playerInfoInstance;
 	Character gameLogicHandler;
 
 	[Header("Player Movement Params")]
@@ -38,16 +37,6 @@ public class PlayerController : PushableObject
 	[Range(0.0f, 10.0f)]
 	public float fireDelay;              // 角色点火动画持续时间
 
-	[Header("Map Settings")]
-	/// <summary>
-	/// Indicator in minimap
-	/// </summary>
-	public GameObject selfMinimap;
-	/// <summary>
-	/// Indicator in minimap
-	/// </summary>
-	public GameObject otherMinimap;
-
 	private Action curState;
 	// private Cannon nearbyCannon;
 
@@ -64,15 +53,7 @@ public class PlayerController : PushableObject
 	{
 		base.Awake();
 		type = CarryType.Player;
-		//如果不是本人，就隐藏对应的另一个小地图标识
-		if (PhotonNetwork.IsConnected && !photonView.IsMine)
-		{
-			if (selfMinimap != null) selfMinimap.SetActive(false);
-			return;
-		}
 		playerViewCam = GameObject.FindWithTag("MainCamera");
-		if (otherMinimap != null)
-			otherMinimap.SetActive(false);
 		playerRigidbody = GetComponent<Rigidbody>();
 		playerAnimator = GetComponentInChildren<Animator>();
 
@@ -348,15 +329,6 @@ public class PlayerController : PushableObject
 		ResetStateIfNotConstrained();
 	}
 
-	/// <summary>
-	/// Set the player's belonged team.
-	/// </summary>
-	/// <param name="team"></param>
-	public void SetTeam(Team team)
-	{
-		playerInfoInstance.team = team;
-	}
-
 	public void ChangeState(Action action)
 	{
 		switch (action)
@@ -398,17 +370,6 @@ public class PlayerController : PushableObject
 		return curState;
 	}
 
-	/*
-    public void AddNearbyCannon(Cannon cannon)
-    {
-        nearbyCannon = cannon;
-    }
-
-    public void RemoveNearbyCannon()
-    {
-        nearbyCannon = null;
-    }
-    */
 }
 
 /// <summary>

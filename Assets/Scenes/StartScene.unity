@@ -439,13 +439,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 58743800}
   m_TextComponent: {fileID: 1914294758}
   m_Placeholder: {fileID: 0}
-  m_ContentType: 2
+  m_ContentType: 0
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 4
+  m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 1
+  m_CharacterValidation: 0
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -3428,7 +3428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxZoomSize: 52
-  transitionSpeed: 13
+  transitionSpeed: 20
   zoomOutAllowed: 0
   masksDelay: 0.05
   masks:
@@ -16621,19 +16621,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7544334277907037967, guid: c3330c0f12a9e1347b3942bac05f4bb5, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 9.1858e-41
+      value: -2.1124782e+11
       objectReference: {fileID: 0}
     - target: {fileID: 7544334277907037967, guid: c3330c0f12a9e1347b3942bac05f4bb5, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0.1764679
+      value: 7.68e-43
       objectReference: {fileID: 0}
     - target: {fileID: 7544334277907037967, guid: c3330c0f12a9e1347b3942bac05f4bb5, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 1
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 7544334277907037967, guid: c3330c0f12a9e1347b3942bac05f4bb5, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 1.5078841e-19
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3330c0f12a9e1347b3942bac05f4bb5, type: 3}

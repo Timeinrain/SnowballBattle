@@ -18,8 +18,6 @@ public class PlayerCamera : MonoBehaviourPun
 			mainCam.GetComponent<CameraFollow>().lookAt = transform;
 			mainCam.GetComponent<CameraFollow>().follow = transform;
 			mainCam.GetComponent<CameraFollow>().player = gameObject;
-			//virtualCam.Follow = transform;
-			//virtualCam.LookAt = transform;
 		}
 	}
 

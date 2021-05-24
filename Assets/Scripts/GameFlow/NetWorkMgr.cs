@@ -68,7 +68,7 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 		PhotonNetwork.SendRate = 90;
 	}
 
-	// 2Todos
+	// 1Todos====================
 	#region Subjective Calls
 	/// <summary>
 	/// Controlling the Return Button Logic
@@ -90,11 +90,26 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 
 	public void StartGame()
 	{
-		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().SyncInOutGameRoomInfo();
 		if (PhotonNetwork.LocalPlayer.IsMasterClient)
 		{
+			photonView.RPC("OnLoadingLevel", RpcTarget.All);
 			PhotonNetwork.LoadLevel(1);
 		}
+	}
+
+	[PunRPC]
+	public void OnLoadingLevel()
+	{
+		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().SyncInOutGameRoomInfo();
+	}
+
+	public bool IsLocal(string playerID)
+	{
+		if (PhotonNetwork.LocalPlayer.NickName == playerID)
+		{
+			return true;
+		}
+		else return false;
 	}
 
 	/// <summary>

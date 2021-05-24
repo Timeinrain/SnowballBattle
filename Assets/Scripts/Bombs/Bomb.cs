@@ -74,7 +74,6 @@ namespace core.zqc.bombs
             StartCoroutine(Shoot(speed, delay));
         }
 
-        [PunRPC]
         /// <summary>
         /// Set Lock Sync For online 
         /// </summary>
