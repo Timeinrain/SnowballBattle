@@ -73,7 +73,8 @@ public class GameManager : MonoBehaviourPun
 			{
 				foreach (var player in PhotonNetwork.PlayerList)
 				{
-					Debug.Log(player.ToString() + player.IsMasterClient);
+					//todo:
+
 				}
 			}
 			yield return new WaitForEndOfFrame();

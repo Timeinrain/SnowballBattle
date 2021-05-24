@@ -12,7 +12,6 @@ public class UIMgr : MonoBehaviour
 	public GameObject createRoomUI;
 	public GameObject settingsUI;
 	public GameObject mapSelectionUI;
-	public GameObject loadingPanel;
 	public GameObject switchMaskMgr;
 
 	private SwitchMaskFX switchMaskFX;

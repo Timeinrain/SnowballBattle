@@ -9,6 +9,7 @@ public class Player
 {
 	public string playerId;
 	public int maxLifeCount = 3;
+	public GameObject Instance;
 	public Team team;
 	public Status status;
 	//public static Dictionary<int, Team> teamIntMapping = new Dictionary<int, Team> { { 0, Team.Blue }, { 1, Team.Red }, { 2, Team.Yellow }, { 3, Team.Green } };
