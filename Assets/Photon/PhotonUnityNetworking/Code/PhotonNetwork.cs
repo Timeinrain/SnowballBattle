@@ -64,7 +64,7 @@ namespace Photon.Pun
     public static partial class PhotonNetwork
     {
         /// <summary>Version number of PUN. Used in the AppVersion, which separates your playerbase in matchmaking.</summary>
-        public const string PunVersion = "2.29";
+        public const string PunVersion = "2.31";
 
         /// <summary>Version number of your game. Setting this updates the AppVersion, which separates your playerbase in matchmaking.</summary>
         /// <remarks>
@@ -169,8 +169,12 @@ namespace Photon.Pun
         }
 
         /// <summary>
-        /// False until you connected to Photon initially. True in offline mode, while connected to any server and even while switching servers.
+        /// False until you connected to Photon initially. True immediately after Connect-call, in offline mode, while connected to any server and even while switching servers.
         /// </summary>
+        /// <remarks>
+        /// It is recommended to use the IConnectionCallbacks to establish a connection workflow.
+        /// Also have a look at IsConnectedAndReady, which provides more info on when you can call operations at all.
+        /// </remarks>
         public static bool IsConnected
         {
             get
@@ -656,7 +660,6 @@ namespace Photon.Pun
 
             set
             {
-                NetworkingClient.LoadBalancingPeer.IsSendingOnlyAcks = !value;
                 isMessageQueueRunning = value;
             }
         }
@@ -1033,7 +1036,7 @@ namespace Photon.Pun
             ConnectionProtocol protocol = PhotonNetwork.PhotonServerSettings.AppSettings.Protocol;
             NetworkingClient = new LoadBalancingClient(protocol);
             NetworkingClient.LoadBalancingPeer.QuickResendAttempts = 2;
-            NetworkingClient.LoadBalancingPeer.SentCountAllowance = 7;
+            NetworkingClient.LoadBalancingPeer.SentCountAllowance = 9;
 
             NetworkingClient.EventReceived -= OnEvent;
             NetworkingClient.EventReceived += OnEvent;
@@ -1044,7 +1047,6 @@ namespace Photon.Pun
 
             StartupStopwatch = new Stopwatch();
             StartupStopwatch.Start();
-            NetworkingClient.LoadBalancingPeer.LocalMsTimestampDelegate = () => (int)StartupStopwatch.ElapsedMilliseconds;
 
             // using a singleton PhotonHandler to control the new client (which is also a singleton for PUN)
             PhotonHandler.Instance.Client = NetworkingClient;
@@ -1080,8 +1082,8 @@ namespace Photon.Pun
         /// To ignore the settings file, set the relevant values and connect by calling
         /// ConnectToMaster, ConnectToRegion.
         ///
-        /// To connect to the Photon Cloud, a valid AppId must be in the settings file (shown in the Photon Cloud Dashboard).
-        /// https://dashboard.photonengine.com
+        /// To connect to the Photon Cloud, a valid AppId must be in the settings file
+        /// (shown in the <a href="https://dashboard.photonengine.com">Photon Cloud Dashboard</a>).
         ///
         /// Connecting to the Photon Cloud might fail due to:
         /// - Invalid AppId
@@ -2851,7 +2853,7 @@ namespace Photon.Pun
         /// <summary>
         /// Internal to send an RPC on given PhotonView. Do not call this directly but use: PhotonView.RPC!
         /// </summary>
-        internal static void RPC(PhotonView view, string methodName, Player targetPlayer, bool encrpyt, params object[] parameters)
+        internal static void RPC(PhotonView view, string methodName, Player targetPlayer, bool encrypt, params object[] parameters)
         {
             if (!VerifyCanUseNetwork())
             {
@@ -2871,7 +2873,7 @@ namespace Photon.Pun
 
             if (NetworkingClient != null)
             {
-                RPC(view, methodName, RpcTarget.Others, targetPlayer, encrpyt, parameters);
+                RPC(view, methodName, RpcTarget.Others, targetPlayer, encrypt, parameters);
             }
             else
             {

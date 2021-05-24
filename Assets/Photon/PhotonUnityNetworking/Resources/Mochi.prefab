@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 8577367970670711602}
   - component: {fileID: 2534039527518685129}
   - component: {fileID: 379569093061846293}
-  - component: {fileID: 1476187679094054649}
   m_Layer: 9
   m_Name: Mochi
   m_TagString: Player
@@ -73,6 +72,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snowPathFX: {fileID: 3678678509159668787}
+  useAbsoluteDirection: 0
+  playerViewCam: {fileID: 0}
   playerMovingSpeed: 8
   playerRotationSpeed: 10
   playerOnPushingMovingSpeed: 6
@@ -118,7 +119,7 @@ MonoBehaviour:
   observableSearch: 0
   ObservedComponents:
   - {fileID: 2888141506836016955}
-  sceneViewId: 2
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &2888141506836016955
@@ -180,23 +181,6 @@ MonoBehaviour:
   maxHealth: 2
   id: 
   unfreezeTime: 5
---- !u!114 &1476187679094054649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 168697849700296301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62c2f2b529dcbb0458e9e855acaad206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kill: 0
-  death: 0
-  team: 0
-  status: 0
-  instance: {fileID: 0}
 --- !u!1 &478008129313183474
 GameObject:
   m_ObjectHideFlags: 0

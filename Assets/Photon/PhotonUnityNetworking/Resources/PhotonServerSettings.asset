@@ -42,6 +42,17 @@ MonoBehaviour:
   - Shoot
   - StopExplosionCountdown
   - UpdateTransform
+  - Attach
+  - DeleteThePlayer
+  - DestroySpaceship
+  - Detach
+  - Fire
+  - GetNewPlayerInfo
+  - RespawnSpaceship
+  - SwitchTeam
+  - SyncInRoomPlayerInfo
+  - SyncPlayersInfo
+  - UpdateRoomMaster
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -251,8 +251,8 @@ namespace Photon.Pun
 
         [DidReloadScripts]
         private static void OnDidReloadScripts()
-        {
-            if (postInspectorUpdate)
+        { 
+            if (!EditorApplication.isPlayingOrWillChangePlaymode)
             {
                 PhotonEditor.UpdateRpcList(); // could be called when compilation finished (instead of when reload / compile starts)
             }
@@ -618,7 +618,7 @@ namespace Photon.Pun
             this.emailSentToAccount = email;
             this.emailSentToAccountIsRegistered = false;
 
-            if (this.serviceClient.RegisterByEmail(email, types, RegisterWithEmailSuccessCallback, RegisterWithEmailErrorCallback))
+            if (this.serviceClient.RegisterByEmail(email, types, RegisterWithEmailSuccessCallback, RegisterWithEmailErrorCallback, "PUN"+PhotonNetwork.PunVersion))
             {
                 this.photonSetupState = PhotonSetupStates.EmailRegistrationPending;
                 EditorUtility.DisplayProgressBar(CurrentLang.ConnectionTitle, CurrentLang.ConnectionInfo, 0.5f);
@@ -720,7 +720,7 @@ namespace Photon.Pun
                 Debug.LogWarning("UpdateRpcList() wasn't able to access the PhotonServerSettings");
                 return;
             }
-
+             
 
             // check all "script assemblies" for methods with PunRPC attribute
             List<string> additionalRpcs = new List<string>();       // not yet listed rpc-method names go here

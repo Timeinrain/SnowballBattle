@@ -10,14 +10,19 @@ namespace core.zqc.bombs
     {
         public float explosionTime;
         public float explosionRange;
-
+        public float explosionTTL = 0.5f;
         bool freezeCountdown = false;
 
         public GameObject ExplosionFx;
 
         List<Team> friendlyList = new List<Team>();
 
-        protected override void Awake()
+		private void OnDrawGizmos()
+		{
+            Gizmos.DrawWireSphere(transform.position, explosionRange);
+		}
+
+		protected override void Awake()
         {
             base.Awake();
 
@@ -58,7 +63,8 @@ namespace core.zqc.bombs
         IEnumerator ExplosionFxPlay()
 		{
             ExplosionFx.SetActive(true);
-            yield return new WaitForSeconds(0.95f);
+            ExplosionFx.transform.SetParent(null);
+            yield return null;
             Destroy(gameObject);
         }
 

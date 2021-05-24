@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
 /// <summary>
 /// Player information sharing
@@ -18,11 +17,5 @@ public class Player
 		InGame = 0,
 		Out = 1,
 		Offline = 2,
-	}
-	public void InitInfo(string id, Team _team)
-	{
-		playerId = id;
-		team = _team;
-		status = Status.InGame;
 	}
 }
