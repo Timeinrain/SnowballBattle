@@ -108,7 +108,7 @@ public class PushableObject : MonoBehaviourPun
         }
         else
         {
-            objectRigidbody.constraints = RigidbodyConstraints.None;
+            objectRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
     }
 

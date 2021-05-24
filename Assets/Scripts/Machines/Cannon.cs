@@ -13,18 +13,24 @@ public class Cannon : MonoBehaviour
     public Team owner;
 
     [Header("Shoot Settings")]
-    public float shootCycleTime;           // 炮弹发射处理流程最短间隔时间，必须大于以下两项之和
     public float fillDelay = 5f;           // 从炮弹踢入到大炮播放动画的时间（搬运工动画时间）
     public float fireDelay = 1.1f;         // 大炮从填充到发射炮弹的动画间隔时间
+    public float fireTime = 2.15f;         // 大炮发射动画的完整时间
     public Transform bombShootPosition;    // 发射的初始位置
     public float bombShootSpeed;           // 发射的速度
-    public float maxFalseBombHeight;       // 当假炸弹超过此高度时就销毁
+    public float falseBombLifespan;        // 当假炸弹的生命周期
 
     private Queue<GameObject> bombsPool = new Queue<GameObject>();          // 等待发射的炸弹池队列
     private List<GameObject> falseBombsWatchList = new List<GameObject>();  // 监视的发射的假炸弹
+    private float maxFalseBombHeight;
 
     private void Start()
     {
+        // 计算到0速度的时间
+        float upperBound = bombShootSpeed / Physics.gravity.magnitude;
+        if (falseBombLifespan > upperBound)
+            falseBombLifespan = upperBound;
+        maxFalseBombHeight = bombShootSpeed * falseBombLifespan - 0.5f * Physics.gravity.magnitude * falseBombLifespan * falseBombLifespan;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,61 +39,59 @@ public class Cannon : MonoBehaviour
         {
             if (falseBombsWatchList.Contains(other.gameObject))
                 return;
-            bombsPool.Enqueue(other.gameObject);
-            other.GetComponent<Bomb>().StopCarrierPushing();
-            other.gameObject.gameObject.SetActive(false);  // 隐藏炸弹
+
+            int generateNum = 3;
+            for(int i = 0; i < generateNum; i++)
+            {
+                // 克隆原有的炸弹
+                GameObject bomb = Instantiate(other.gameObject);
+                bomb.GetComponent<Bomb>().SetPushable(false);
+                bomb.GetComponent<Bomb>().StopExplosionCountdown();
+                bomb.GetComponent<Bomb>().StopCarrierPushing();
+                bomb.SetActive(false);     // 隐藏炸弹
+                bombsPool.Enqueue(bomb.gameObject);
+            }
+            Destroy(other.gameObject);
         }
     }
 
-    private void Fire()
-    {
-        Debug.Log("fire!!!!!!");
-    }
-
-    private float shootTimer = 0f;
-    private bool canFire = true;
+    private bool isLoaded = false;  // 已经载入炮弹
     private void Update()
     {
-        // 计时发射冷却
-        if (!canFire)
+        if (bombsPool.Count > 0 && !isLoaded)
         {
-            if (shootTimer >= shootCycleTime)
-            {
-                shootTimer = 0f;
-                canFire = true;
-            }
-            else
-            {
-                shootTimer += Time.deltaTime;
-            }            
-        }
-
-        if (canFire && bombsPool.Count > 0)
-        {
-            // 对新的炮弹执行一系列动画
-            GameObject bomb = bombsPool.Dequeue();
-            StartCoroutine(ShootFalseBomb(bomb));
-            canFire = false;
+            isLoaded = true;
+            StartCoroutine(ShootAllBombs());
         }
 
         HandleBombsLifespan();
     }
 
-    private IEnumerator ShootFalseBomb(GameObject bomb)
+    private IEnumerator ShootAllBombs()
     {
         // 播放搬运工动画
         porterAnimator.SetTrigger("FillCannon");    
         yield return new WaitForSeconds(fillDelay);
 
-        // 播放大炮动画
-        cannonAnimator.SetTrigger("Fire");          
-        yield return new WaitForSeconds(fireDelay);
+        GameObject bomb = bombsPool.Count > 0 ? bombsPool.Dequeue() : null;
+        while(bomb != null)
+        {
+            // 播放大炮动画
+            cannonAnimator.SetTrigger("Fire");
+            yield return new WaitForSeconds(fireDelay);
 
-        // 激活炮弹并发射
-        falseBombsWatchList.Add(bomb);
-        bomb.SetActive(true);
-        bomb.transform.position = bombShootPosition.position;
-        bomb.GetComponent<Rigidbody>().velocity = new Vector3(0f, bombShootSpeed, 0f);
+            // 激活炮弹并发射
+            falseBombsWatchList.Add(bomb);
+            bomb.SetActive(true);
+            bomb.transform.position = bombShootPosition.position;
+            bomb.GetComponent<Rigidbody>().velocity = new Vector3(0f, bombShootSpeed, 0f);
+            yield return new WaitForSeconds(fireTime - fireDelay);
+
+            // 获取炮弹池中下个炮弹
+            bomb = bombsPool.Count > 0 ? bombsPool.Dequeue() : null;
+        }
+
+        isLoaded = false;
     }
 
     /// <summary>
@@ -103,16 +107,16 @@ public class Cannon : MonoBehaviour
                 // 超过高度后销毁，并加入三个到BombGenerator
                 falseBombsWatchList.RemoveAt(i);
                 Destroy(bomb);
-                linkedGenerator.AddBombAndGenerate(owner, 3);
+                linkedGenerator.AddBombAndGenerate(owner, 1);
             }
         }
     }
 
     private void OnValidate()
     {
-        if (shootCycleTime < fillDelay + fireDelay)
+        if(fireTime < fireDelay)
         {
-            shootCycleTime = fillDelay + fireDelay;
+            fireTime = fireDelay;
         }
     }
 }

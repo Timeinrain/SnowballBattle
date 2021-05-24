@@ -98,13 +98,12 @@ MonoBehaviour:
   cannonAnimator: {fileID: 2435363875761009556}
   porterAnimator: {fileID: 1306965950029774615}
   owner: 0
-  collisionCollider: {fileID: 6382510564218372980}
-  shootCycleTime: 5.5
   fillDelay: 3.2
-  fireDelay: 1.1
+  fireDelay: 1.5
+  fireTime: 2.5
   bombShootPosition: {fileID: 8929246386407053499}
   bombShootSpeed: 100
-  maxFalseBombHeight: 40
+  falseBombLifespan: 3
 --- !u!1 &646361894705147659
 GameObject:
   m_ObjectHideFlags: 0

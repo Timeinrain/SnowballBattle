@@ -64,25 +64,27 @@ public class PlayerController : PushableObject
 	{
 		base.Awake();
 		type = CarryType.Player;
-		//如果不是本人，就隐藏对应的另一个小地图标识
-		if (PhotonNetwork.IsConnected && !photonView.IsMine)
-		{
-			if (selfMinimap != null) selfMinimap.SetActive(false);
-			return;
-		}
-		playerViewCam = GameObject.FindWithTag("MainCamera");
-		if (otherMinimap != null)
-			otherMinimap.SetActive(false);
-		playerRigidbody = GetComponent<Rigidbody>();
-		playerAnimator = GetComponentInChildren<Animator>();
+		SetPushable(false);
+		ChangeState(Action.FreeRun);
 
 		// 为游戏逻辑处理添加事件
 		gameLogicHandler = GetComponent<Character>();
 		gameLogicHandler.frozen += Freeze;
 		gameLogicHandler.unfrozen += Unfreeze;
 
-		ChangeState(Action.FreeRun);
-		SetPushable(false);
+		/*
+		//如果不是本人，就隐藏对应的另一个小地图标识
+		if (PhotonNetwork.IsConnected && !photonView.IsMine)
+		{
+			if (selfMinimap != null) selfMinimap.SetActive(false);
+			return;
+		}
+		*/
+		playerViewCam = GameObject.FindWithTag("MainCamera");
+		if (otherMinimap != null)
+			otherMinimap.SetActive(false);
+		playerRigidbody = GetComponent<Rigidbody>();
+		playerAnimator = GetComponentInChildren<Animator>();
 	}
 
 	private void OnDestroy()
@@ -283,14 +285,18 @@ public class PlayerController : PushableObject
 	/// </summary>
 	private void RefreshAnimation()
 	{
-		Vector3 dir = new Vector3(playerRigidbody.velocity.x, 0, playerRigidbody.velocity.z).normalized;
-		if (dir.magnitude != 0)
+		Vector3 dir = new Vector3(playerRigidbody.velocity.x, 0, playerRigidbody.velocity.z);
+		const float minRotateThreshold = 0.1f;
+		if (dir.sqrMagnitude > minRotateThreshold * minRotateThreshold)
 		{
-			Quaternion targetRotation = Quaternion.LookRotation(dir, Vector3.up);
+			Quaternion targetRotation = Quaternion.LookRotation(dir.normalized, Vector3.up);
 			Quaternion lerp = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * playerRotationSpeed);
 			playerRigidbody.MoveRotation(lerp);
 		}
 	}
+	public Vector3 ddd;
+	public float ccc;
+
 
 	/// <summary>
 	/// To display the visible enemy's position in the minimap.
