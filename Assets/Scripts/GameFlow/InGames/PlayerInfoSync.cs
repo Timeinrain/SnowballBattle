@@ -21,6 +21,15 @@ public class PlayerInfoSync : MonoBehaviourPun
 
 	public GameObject teamMiniMap;
 
+	public GameObject playerModel;
+
+	[Header("Materials")]
+	public Material halloweenMat;
+	public Material snowMat;
+	public Material sweetMat;
+
+	public GameObject lightObject;
+
 	public Text playerName;
 
 	[FoldoutGroup("Sprites")]
@@ -35,6 +44,28 @@ public class PlayerInfoSync : MonoBehaviourPun
 	private void OnEnable()
 	{
 		SetInfo();
+		FitToMap(InOutGameRoomInfo.Instance.currentMap);
+	}
+
+	private void FitToMap(Map map)
+	{
+		switch (map.index)
+		{
+			case 1:
+				{
+					//Ñ©µØ
+					lightObject.SetActive(false);
+					playerModel.GetComponent<SkinnedMeshRenderer>().material = snowMat;
+					break;
+				}
+			case 2:
+				{
+					//ÍòÊ¥½Ú
+					lightObject.SetActive(true);
+					playerModel.GetComponent<SkinnedMeshRenderer>().material = halloweenMat;
+					break;
+				}
+		}
 	}
 
 	public void SetWorldUIInfo()

@@ -17,7 +17,7 @@ public class CameraMapSelecting : MonoBehaviour
 	public float lookAtSmoothness = 5;
 	public float lookAdjustThreshold = 0.02f;
 	public byte currentIndex = 0;
-	[ReadOnly] public Map currentMap;
+	public Map currentMap;
 	public MapSelectionUI mapSelectionUI;
 
 	[System.Serializable]

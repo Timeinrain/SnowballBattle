@@ -10,7 +10,10 @@ EditorBuildSettings:
     guid: 4bc69138bd3b0f541ab84ba521e279c7
   - enabled: 1
     path: Assets/Scenes/BattleScene/Snow/VIkintDemo.unity
-    guid: 6249193a812375b46b982f06419b1a3f
+    guid: 7d93ab21a53b097469cf76fc3e163b75
+  - enabled: 1
+    path: Assets/Scenes/BattleScene/Halloween Map/Halloween map.unity
+    guid: 0ce08a15417eac54c853fb842336553d
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 3883553fcbb0cf34c8b065afc5812ff1, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 9c37aeb06beaa9b4d9c11f4940599699, type: 2}

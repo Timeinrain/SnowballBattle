@@ -93,7 +93,7 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 		if (PhotonNetwork.LocalPlayer.IsMasterClient)
 		{
 			photonView.RPC("OnLoadingLevel", RpcTarget.All);
-			PhotonNetwork.LoadLevel(1);
+			PhotonNetwork.LoadLevel(UIMgr._Instance.inRoomUI.GetComponent<InRoom>().mapInfo.index);
 		}
 	}
 

@@ -129,6 +129,7 @@ public class InRoom : PanelBase
 	public void SyncInOutGameRoomInfo()
 	{
 		inOutGameRoomInfo.SetInRoomPlayerInfos(playerInfos);
+		inOutGameRoomInfo.currentMap = mapInfo;
 	}
 
 	/// <summary>

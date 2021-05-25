@@ -15,5 +15,5 @@ MonoBehaviour:
   mapName: "\u4E07\u5723\u8282"
   mapDescription: 
   tinyModel: {fileID: 4392405680292201648, guid: c3330c0f12a9e1347b3942bac05f4bb5, type: 3}
-  index: 0
+  index: 2
   mapTheme: 2

@@ -85,6 +85,7 @@ Material:
     - Vector1_5A9E5888: 0
     - Vector1_CD9CB9E8: 0.1
     - Vector1_F5DCAAE8: 0.5
+    - Vector1_dfcc6aae90f44a028cecd0a5ed71036a: 0.5
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -103,8 +104,10 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - Color_36016984e329406fb82749f9cc1ad907: {r: 1, g: 0.86146414, b: 0.7773585, a: 0}
     - Color_FA669E8D: {r: 0, g: 0, b: 0, a: 0}
     - Color_f48706cafb204d63bb86be320f137bf8: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_4d470cdaa02a4e4aba410c682666b3d6: {r: 0, g: 1.64, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}

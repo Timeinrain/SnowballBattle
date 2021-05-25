@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb22c593489b5741bfb157d3865ca61, type: 3}
   m_Name: Map_SnowMoutain
   m_EditorClassIdentifier: 
-  mapImage: {fileID: 2800000, guid: 57f5a3385196cbb4fa32cfccc39a4b2c, type: 3}
   mapName: "\u96EA\u5730"
   mapDescription: 
-  tinyModel: {fileID: 1808157375899084, guid: e2e51eb55f13bf9499307755f4c7d38d, type: 3}
+  tinyModel: {fileID: 378445116290931391, guid: c0d9b0328fd123a4db2a019d6e0a5339, type: 3}
   index: 1
   mapTheme: 1

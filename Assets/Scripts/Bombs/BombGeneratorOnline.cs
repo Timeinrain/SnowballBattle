@@ -59,7 +59,7 @@ public class BombGeneratorOnline : MonoBehaviourPun
 		}
 	}
 
-	private void OnDrawGizmosSelected()
+	private void OnDrawGizmos()
 	{
 		const float height = 30f;
 		Vector3 center = transform.position;

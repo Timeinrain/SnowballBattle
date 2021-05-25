@@ -18,7 +18,6 @@ public class Character : MonoBehaviourPun
 
 	public string id;
 
-
 	[ShowInInspector]
 	public Player playerInfo;
 

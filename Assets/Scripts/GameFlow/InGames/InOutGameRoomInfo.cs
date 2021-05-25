@@ -10,6 +10,7 @@ public class InOutGameRoomInfo : MonoBehaviour
 	public List<Player> inRoomPlayerInfos;
 	public static InOutGameRoomInfo Instance;
 	public string localPlayerId;
+	public Map currentMap;
 
 	private void Awake()
 	{
