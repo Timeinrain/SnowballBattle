@@ -38,43 +38,24 @@ public class BombGeneratorOnline : MonoBehaviourPun
 		}
 	}
 
-	GameObject GenerateBomb(string resourceName = "DefaultBomb")
+	GameObject GenerateBomb()
 	{
 		Vector3 position = new Vector3(
 			Random.Range(transform.position.x - generatingArea.xWidth / 2, transform.position.x + generatingArea.xWidth / 2),
 			transform.position.y,
 			Random.Range(transform.position.z - generatingArea.zWidth / 2, transform.position.z + generatingArea.zWidth / 2));
 		GameObject bomb
-		= PhotonNetwork.Instantiate(resourceName, position, Quaternion.identity);
+		= PhotonNetwork.Instantiate("DefaultBomb", position, Quaternion.identity);
 		bomb.GetComponent<Rigidbody>().velocity = new Vector3(Random.value > 0.5 ? 1 : -1, 0, Random.value > 0.5 ? 1 : -1);
 		return bomb;
 	}
 
 	public void AddBombAndGenerate(Team owner, int number)
 	{
-		string resouceName;
-		switch (owner)
-		{
-			case Team.Blue:
-				resouceName = "BlueBomb";
-				break;
-			case Team.Red:
-				resouceName = "RedBomb";
-				break;
-			case Team.Yellow:
-				resouceName = "YellowBomb";
-				break;
-			case Team.Green:
-				resouceName = "GreenBomb";
-				break;
-			default:
-				resouceName = "";
-				break;
-		}
 		for (int i = 0; i < number; i++)
 		{
-			GameObject bombObject = GenerateBomb(resouceName);
-			bombObject.GetComponent<Bomb>().AddAlly(owner);
+			GameObject bombObject = GenerateBomb();
+			bombObject.GetComponent<Bomb>().ChangeTeam(owner);
 		}
 	}
 

@@ -15,6 +15,10 @@ namespace core.zqc.bombs
 
         public GameObject ExplosionFx;
 
+        public MeshRenderer meshRenderer;
+        public Material redTeamMaterial;
+        public Material blueTeamMaterial;
+
         List<Team> friendlyList = new List<Team>();
 
 		private void OnDrawGizmos()
@@ -94,18 +98,38 @@ namespace core.zqc.bombs
             freezeCountdown = true;
         }
 
-        public void AddAlly(Team team)
+        /// <summary>
+        /// 改变队伍属性并更换贴图
+        /// </summary>
+        /// <param name="team"></param>
+        public void ChangeTeam(Team team)
         {
             if (!friendlyList.Contains(team))
                 friendlyList.Add(team);
+
+            switch (team)
+            {
+                case Team.Blue:
+                    meshRenderer.material = blueTeamMaterial;
+                    break;
+                case Team.Red:
+                    meshRenderer.material = redTeamMaterial;
+                    break;
+                case Team.Yellow:
+                    break;
+                case Team.Green:
+                    break;
+                case Team.Null:
+                    break;
+            }
         }
 
-		private void OnCollisionEnter(Collision collision)
+        private void OnCollisionEnter(Collision collision)
 		{
 			if (collision.gameObject.CompareTag("Ground"))
 			{
                 snowPathFX.SetActive(true);
 			}
 		}
-	}
+    }
 }

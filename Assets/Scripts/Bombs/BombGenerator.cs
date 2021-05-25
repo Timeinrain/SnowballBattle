@@ -67,7 +67,7 @@ namespace core.zqc.bombs
             GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
             if (hasOwner)
             {
-                bomb.GetComponent<Bomb>().AddAlly(owner);
+                bomb.GetComponent<Bomb>().ChangeTeam(owner);
             }
             //bomb.transform.parent = obiSolver.transform;
         }

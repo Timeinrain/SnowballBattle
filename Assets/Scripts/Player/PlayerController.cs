@@ -36,6 +36,7 @@ public class PlayerController : PushableObject
 	[Header("Other Animation Settings")]
 	[Range(0.0f, 10.0f)]
 	public float fireDelay;              // 角色点火动画持续时间
+	public GameObject ice;               // 角色被冰冻时启用
 
 	private Action curState;
 	// private Cannon nearbyCannon;
@@ -52,9 +53,15 @@ public class PlayerController : PushableObject
 	protected override void Awake()
 	{
 		base.Awake();
+
+		playerViewCam = GameObject.FindWithTag("MainCamera");
+		playerRigidbody = GetComponent<Rigidbody>();
+		playerAnimator = GetComponentInChildren<Animator>();
+
 		type = CarryType.Player;
 		SetPushable(false);
 		ChangeState(Action.FreeRun);
+		ice.SetActive(false);
 
 		// 为游戏逻辑处理添加事件
 		gameLogicHandler = GetComponent<Character>();
@@ -69,9 +76,6 @@ public class PlayerController : PushableObject
 			return;
 		}
 		*/
-		playerViewCam = GameObject.FindWithTag("MainCamera");
-		playerRigidbody = GetComponent<Rigidbody>();
-		playerAnimator = GetComponentInChildren<Animator>();
 	}
 
 	private void OnDestroy()
@@ -186,6 +190,7 @@ public class PlayerController : PushableObject
 	{
 		ChangeState(Action.Frozen);
 		SetPushable(true);   // 冰冻后可以被队友推动
+		ice.SetActive(true);
 	}
 
 	public void Unfreeze(string id)
@@ -194,6 +199,7 @@ public class PlayerController : PushableObject
 		SetPushable(false);
 		StopCarrierPushing();
 		playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+		ice.SetActive(false);
 	}
 
 	/// <summary>
@@ -281,9 +287,6 @@ public class PlayerController : PushableObject
 			playerRigidbody.MoveRotation(lerp);
 		}
 	}
-	public Vector3 ddd;
-	public float ccc;
-
 
 	/// <summary>
 	/// To display the visible enemy's position in the minimap.
