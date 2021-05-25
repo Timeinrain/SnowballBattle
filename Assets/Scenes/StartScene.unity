@@ -5531,7 +5531,6 @@ MonoBehaviour:
   createRoomUI: {fileID: 2720987973458386871}
   settingsUI: {fileID: 7315530002085228381}
   mapSelectionUI: {fileID: 5012203476298383148}
-  loadingPanel: {fileID: 1339371297}
   switchMaskMgr: {fileID: 697543617}
 --- !u!4 &1444638750
 Transform:
@@ -5755,6 +5754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63ecafbf75b1a0546914e068b2b976ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localPlayerId: 
 --- !u!1 &1553892884
 GameObject:
   m_ObjectHideFlags: 0
