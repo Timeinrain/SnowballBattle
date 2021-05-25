@@ -1628,7 +1628,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6237213560389670899, guid: d3c7866ef680dd84d9dd6bf131f8845c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d3c7866ef680dd84d9dd6bf131f8845c, type: 3}
 --- !u!4 &3926553430167384475 stripped
 Transform:

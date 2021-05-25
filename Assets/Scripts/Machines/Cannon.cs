@@ -74,14 +74,16 @@ public class Cannon : MonoBehaviour
 
     private void ShootBomb()
     {
-        GameObject bomb = Instantiate(bombPrefab);
-        falseBombsWatchList.Add(bomb); 
-        bomb.GetComponent<Bomb>().SetPushable(false);
-        bomb.GetComponent<Bomb>().StopExplosionCountdown();
-        bomb.GetComponent<Bomb>().StopCarrierPushing();
-        bomb.transform.position = bombShootPosition.position;
-        bomb.SetActive(true);
-        bomb.GetComponent<Rigidbody>().velocity = new Vector3(0f, bombShootSpeed, 0f);
+        GameObject bombGO = Instantiate(bombPrefab);
+        Bomb bomb = bombGO.GetComponent<Bomb>();
+        falseBombsWatchList.Add(bombGO);
+        bomb.SetPushable(false);
+        bomb.StopExplosionCountdown();
+        bomb.StopCarrierPushing();
+        bomb.ChangeTeam(owner);
+        bombGO.transform.position = bombShootPosition.position;
+        bombGO.SetActive(true);
+        bombGO.GetComponent<Rigidbody>().velocity = new Vector3(0f, bombShootSpeed, 0f);
     }
 
     private void HandleShootAnimationEnd()

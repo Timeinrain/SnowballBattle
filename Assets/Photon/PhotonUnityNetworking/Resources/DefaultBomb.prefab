@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a5a1c1db024adfd85bc64cf0ef39df92, type: 2}
+  - {fileID: 2100000, guid: 4f47089817066d94f97c8a33cccc2da2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -182,6 +182,9 @@ MonoBehaviour:
   explosionRange: 5
   explosionTTL: 0.5
   ExplosionFx: {fileID: 5699073387066702103}
+  meshRenderer: {fileID: 6976818813193220064}
+  redTeamMaterial: {fileID: 2100000, guid: c16ae4750e733253d8dc7e61814e343b, type: 2}
+  blueTeamMaterial: {fileID: 2100000, guid: a5a1c1db024adfd85bc64cf0ef39df92, type: 2}
 --- !u!54 &7722683668810715434
 Rigidbody:
   m_ObjectHideFlags: 0

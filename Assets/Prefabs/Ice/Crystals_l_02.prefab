@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6237213560387346987}
   - component: {fileID: 6237213560386519539}
   - component: {fileID: 6237213560385500071}
-  - component: {fileID: 6237213560389670899}
   m_Layer: 0
   m_Name: Crystals_l_02
   m_TagString: Untagged
@@ -82,17 +81,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6237213560389670899
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6237213560387627739}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 0b15df98b102f0f4f943cab5e6dfdddf, type: 3}
