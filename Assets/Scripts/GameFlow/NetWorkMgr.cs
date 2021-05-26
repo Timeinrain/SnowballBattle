@@ -85,7 +85,6 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 	public void StartOfflineMode()
 	{
 		//todo: Jump To Offline Panels
-
 	}
 
 	public void StartGame()

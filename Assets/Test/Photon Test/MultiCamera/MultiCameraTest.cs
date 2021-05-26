@@ -52,13 +52,7 @@ namespace PhotonTest.MultiCameraTest
         {
             base.OnJoinedRoom();
             Debug.Log("Joined Room!");
-
-
-            //todo specified the team.
-            //===============Need to be=============
             Team teamName = Team.Blue;
-            //===============Specified==============
-
             GameObject go = PhotonNetwork.Instantiate("Mochi", new Vector3(Random.Range(-1, 1), 3, Random.Range(-1, 1)), Quaternion.identity, 0);
             go.tag = teamName.ToString() + "Team";
             go.GetComponent<Character>().id = Random.value.ToString();

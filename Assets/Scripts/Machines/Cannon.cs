@@ -45,6 +45,7 @@ public class Cannon : MonoBehaviour
             other.gameObject.GetComponent<Bomb>().SetPushable(false);
             other.gameObject.GetComponent<Bomb>().StopExplosionCountdown();
             other.gameObject.GetComponent<Bomb>().StopCarrierPushing();
+            other.gameObject.GetComponent<Bomb>().DetachBombPath();
             other.gameObject.SetActive(false);     // вўВиеЈЕЏ
             bombsPool.Enqueue(other.gameObject);
         }

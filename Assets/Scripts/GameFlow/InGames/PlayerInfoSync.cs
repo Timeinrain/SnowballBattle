@@ -53,9 +53,6 @@ public class PlayerInfoSync : MonoBehaviourPun
 		{
 			case 1:
 				{
-					//Ñ©µØ
-					lightObject.SetActive(false);
-					playerModel.GetComponent<SkinnedMeshRenderer>().material = snowMat;
 					break;
 				}
 			case 2:
@@ -63,6 +60,11 @@ public class PlayerInfoSync : MonoBehaviourPun
 					//ÍòÊ¥½Ú
 					lightObject.SetActive(true);
 					playerModel.GetComponent<SkinnedMeshRenderer>().material = halloweenMat;
+					break;
+				}
+			case 3:
+				{
+					
 					break;
 				}
 		}

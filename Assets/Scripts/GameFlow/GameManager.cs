@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviourPun
 			}
 			yield return new WaitForEndOfFrame();
 		}
+
 		StartCoroutine(StartGameTimer());
 	}
 
