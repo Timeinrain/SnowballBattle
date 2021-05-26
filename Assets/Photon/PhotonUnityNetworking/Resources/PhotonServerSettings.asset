@@ -13,51 +13,26 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 173ad590-47f0-4573-b1cb-3be35654688b
+    AppIdRealtime: 
     AppIdChat: 
     AppIdVoice: 
-    AppVersion: 1
+    AppVersion: 
     UseNameServer: 1
-    FixedRegion: cn
-    Server: ns.photonengine.cn
+    FixedRegion: 
+    Server: 
     Port: 0
     ProxyServer: 
     Protocol: 0
     EnableProtocolFallback: 1
     AuthMode: 0
-    EnableLobbyStatistics: 1
+    EnableLobbyStatistics: 0
     NetworkLogging: 1
-  DevRegion: cn
-  PunLogging: 2
+  DevRegion: 
+  PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
-  RpcList:
-  - ClickRpc
-  - DelayShoot
-  - DestroyRpc
-  - Kick
-  - OnAttached
-  - OnDetached
-  - Shoot
-  - StopExplosionCountdown
-  - UpdateTransform
-  - Attach
-  - DeleteThePlayer
-  - DestroySpaceship
-  - Detach
-  - Fire
-  - GetNewPlayerInfo
-  - RespawnSpaceship
-  - SwitchTeam
-  - SyncInRoomPlayerInfo
-  - SyncPlayersInfo
-  - UpdateRoomMaster
-  - SetWorldUIInfo
-  - OnLoadingLevel
-  - SyncName
-  - StartScoreCount
-  - EndScoreCount
-  DisableAutoOpenWizard: 1
-  ShowSettings: 1
-  DevRegionSetOnce: 1
+  RpcList: []
+  DisableAutoOpenWizard: 0
+  ShowSettings: 0
+  DevRegionSetOnce: 0

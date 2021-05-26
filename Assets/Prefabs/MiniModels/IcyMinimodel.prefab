@@ -213,7 +213,7 @@ Transform:
   m_GameObject: {fileID: 557279495392854116}
   m_LocalRotation: {x: -0.673427, y: -0.20912048, z: 0.20894586, w: -0.67757386}
   m_LocalPosition: {x: 1.3394774, y: 50.199997, z: 0.12570013}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.054549, y: 0.054549, z: 0.054549}
   m_Children: []
   m_Father: {fileID: 6720533572006279629}
   m_RootOrder: 32
@@ -233,7 +233,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -4944,7 +4944,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0534005572a7ac34ab676bb58eccb1f2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6331,6 +6331,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6720533572006279629}
+  - component: {fileID: 1066739551}
   m_Layer: 10
   m_Name: IcyMinimodel
   m_TagString: Untagged
@@ -6385,6 +6386,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1066739551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8533337017155200040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 575f435029f188442897dcde93b15f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 30
+  floatingSpeed: 0.5
+  rotateAround: {fileID: 0}
+  floatingStrength: 0.5
 --- !u!1 &9059153333371925203
 GameObject:
   m_ObjectHideFlags: 0
