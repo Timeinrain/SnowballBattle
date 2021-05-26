@@ -18,6 +18,8 @@ public class PhotonMasterMgr : MonoBehaviourPun
 	public static PhotonMasterMgr _Instance;
 	public Dictionary<Team, GameObject> teamPosMap;
 
+	public ScoreManager scoreManager;
+
 	public void Awake()
 	{
 		_Instance = this;

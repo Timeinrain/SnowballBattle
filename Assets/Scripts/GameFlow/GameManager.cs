@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviourPun
 	/// </summary>
 	public int maxPlayers;
 
+	// ¼Æ·Ö°å
+	public ScoreManager scoreManager;
+
 
 	private void Start()
 	{
@@ -44,6 +47,8 @@ public class GameManager : MonoBehaviourPun
 		SortTeamList(teams);
 		//Display game outcome.
 
+		//Reset scores
+		scoreManager.EndScoreCount();
 	}
 
 	/// <summary>
@@ -79,6 +84,7 @@ public class GameManager : MonoBehaviourPun
 			}
 			yield return new WaitForEndOfFrame();
 		}
+		scoreManager.StartScoreCount();
 		StartCoroutine(StartGameTimer());
 	}
 
