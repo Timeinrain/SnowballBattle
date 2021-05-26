@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PolyAdventureMaterial_01
+  m_Name: PolyVikings_Material_01
   m_Shader: {fileID: -6465566751694194690, guid: d56cffc8c4aac67428e343152fa22558, type: 3}
-  m_ShaderKeywords: _EMISSION
+  m_ShaderKeywords: 
   m_LightmapFlags: 6
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20,11 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_D7D2919C:
-        m_Texture: {fileID: 2800000, guid: e0be30d5a101f4d4cbf56ac664b81e86, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0e16611dc4905bc40b3602e5077d5d94, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: b8f889a91be35174bbbb38d1057b6493, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0e16611dc4905bc40b3602e5077d5d94, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -48,7 +48,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b8f889a91be35174bbbb38d1057b6493, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0e16611dc4905bc40b3602e5077d5d94, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -81,10 +81,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_2A455339: 1
-    - Vector1_5A9E5888: 0.116
-    - Vector1_CD9CB9E8: 1
-    - Vector1_F5DCAAE8: 0.5
-    - Vector1_dfcc6aae90f44a028cecd0a5ed71036a: 1.33
+    - Vector1_4e290cf4e91f469d8520b5c751497174: 0.1
+    - Vector1_5A9E5888: 0
+    - Vector1_CD9CB9E8: 0
+    - Vector1_F5DCAAE8: 0.536
+    - Vector1_dfcc6aae90f44a028cecd0a5ed71036a: 0.59
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -98,7 +99,7 @@ Material:
     - _EmissionScaleUI: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
-    - _Glossiness: 0.2
+    - _Glossiness: 0.25
     - _GlossyReflections: 0
     - _Metallic: 0
     - _Mode: 0
@@ -106,7 +107,7 @@ Material:
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.2
+    - _Smoothness: 0.25
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -115,8 +116,10 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_36016984e329406fb82749f9cc1ad907: {r: 0.8166023, g: 0.7962264, b: 1, a: 0}
+    - Color_36016984e329406fb82749f9cc1ad907: {r: 0.9078795, g: 0.88235295, b: 1, a: 0}
     - Color_FA669E8D: {r: 0, g: 0, b: 0, a: 0}
+    - Color_c5ac0b55a68f4f62a76e7287a7b77129: {r: 1, g: 1, b: 1, a: 0}
+    - Color_f48706cafb204d63bb86be320f137bf8: {r: 0, g: 0, b: 0, a: 0}
     - Vector2_4d470cdaa02a4e4aba410c682666b3d6: {r: 0, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -124,7 +127,7 @@ Material:
     - _EmissionColorUI: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &3666439127768324079
+--- !u!114 &763316811424738150
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
