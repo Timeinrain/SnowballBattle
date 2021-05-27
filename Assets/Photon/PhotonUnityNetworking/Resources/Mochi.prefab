@@ -935,8 +935,7 @@ MonoBehaviour:
   viewFieldRadiance: 13.7
   pushController: {fileID: 6579003777152274622}
   kickSpeed: 40
-  kickDelay: 0.58
-  fireDelay: 4.2
+  kickDelay: 0.42
   ice: {fileID: 7751402228602244852}
 --- !u!136 &6897329919029907955
 CapsuleCollider:

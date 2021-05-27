@@ -33,9 +33,7 @@ public class PlayerController : PushableObject
 	[Range(0.0f, 2.0f)]
 	public float kickDelay;              // 踢动画开始到实际踢出炸弹的延迟
 
-	[Header("Other Animation Settings")]
-	[Range(0.0f, 10.0f)]
-	public float fireDelay;              // 角色点火动画持续时间
+	[Header("Other Settings")]
 	public GameObject ice;               // 角色被冰冻时启用
 
 	private Action curState;
