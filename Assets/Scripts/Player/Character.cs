@@ -21,22 +21,37 @@ public class Character : MonoBehaviourPun
 	[ShowInInspector]
 	public Player playerInfo;
 
-	/// <summary>
-	/// 解冻所需时间
-	/// </summary>
+	[Tooltip("解冻所需时间")]
 	public float unfreezeTime = 5f;
+	[Tooltip("冰冻后可以存活的时间(这个倒计时在解冻时会被暂停)")]
+	public float surviveTimeAfterFrozen = 15f;
+	[Tooltip("复活时间")]
+	public float respawnTime = 20f;
 
 	/// <summary>
 	/// 可以被订阅的事件
 	/// </summary>
-	public event System.Action<string> frozen, unfrozen, died;
+	public event System.Action<string> frozen, unfrozen, died, respawned;
 	public event System.Action<string, int> healed, damaged;
 
 	private Team team;
 
+	private bool isDead = false;
 	private bool isFrozen = false;
 	private bool isUnfreezing = false;
 	private float unfreezeTimer = 0f;
+	private float surviveTimer = 0f;
+	private float respawnTimer = 0f;
+
+	/// <summary>
+	/// 暂时性的地图枚举
+	/// </summary>
+	private enum MapType
+    {
+		Snow,
+		Others
+    }
+	private MapType mapType = MapType.Snow;
 
 	public int Health
 	{
@@ -46,48 +61,56 @@ public class Character : MonoBehaviourPun
 	private void Start()
 	{
 		Health = maxHealth;
+		team = playerInfo.team;
 	}
 
 	private void Update()
 	{
+		HandleRespawnProcess();
+		HandleFrozenSurviveTime();
 		HandleUnfreezeProcess();
 	}
 
-	private void SafelyDoAction(System.Action<string> action, string id)
+	public void TakeDamage(int damage = 1)
 	{
-		if (action != null)
+		if (Health <= 0) return;
+
+		Health -= damage;
+		damaged?.Invoke(id, damage);
+		if (Health <= 0)
 		{
-			action(id);
-		}
-	}
-	private void SafelyDoAction(System.Action<string, int> action, string id, int val)
-	{
-		if (action != null)
-		{
-			action(id, val);
+			if (mapType == MapType.Snow)
+				Freeze();
+            else
+				Die();
 		}
 	}
 
-	public void DealDamage(int damage = 1)
+	public void Heal(int heal = 1)
 	{
-		Health -= damage;
-		SafelyDoAction(damaged, id, damage);
-		if (Health <= 0)
-		{
-			Freeze();
-		}
+		Health += heal;
+		if (Health > maxHealth) Health = maxHealth;
+		healed?.Invoke(id, heal);
 	}
+
+	public Team GetTeam()
+	{
+		return team;
+	}
+
+	#region Scene Snow Mechanics
 
 	private void Freeze()
 	{
 		isFrozen = true;
-		SafelyDoAction(frozen, id);
+		frozen?.Invoke(id);
 	}
 
 	private void Unfreeze()
 	{
 		isFrozen = false;
-		SafelyDoAction(unfrozen, id);
+		surviveTimer = 0f;
+		unfrozen?.Invoke(id);
 		Heal(1);     // 确保有足够的血量活下来
 	}
 
@@ -101,6 +124,23 @@ public class Character : MonoBehaviourPun
 	{
 		isUnfreezing = false;
 		unfreezeTimer = 0f;
+	}
+
+	/// <summary>
+	/// 处理冰冻后存活时间
+	/// </summary>
+	private void HandleFrozenSurviveTime()
+    {
+		if (isFrozen && !isUnfreezing)
+		{
+			surviveTimer += Time.deltaTime;
+			if (surviveTimer > surviveTimeAfterFrozen)
+			{
+				// 冰冻时间过长，角色死亡
+				isFrozen = false;
+				Die();
+			}
+		}
 	}
 
 	/// <summary>
@@ -118,19 +158,40 @@ public class Character : MonoBehaviourPun
 		}
 	}
 
-	public void Heal(int heal = 1)
-	{
-		Health += heal;
-		SafelyDoAction(healed, id, heal);
+    #endregion
+
+	private void Die()
+    {
+		isDead = true;
+		respawnTimer = 0f;
+		died?.Invoke(id);
 	}
 
-	public void SetTeam(Team team)
-	{
-		this.team = team;
+	private void Respawn()
+    {
+		isDead = false;
+		isFrozen = false;
+		isUnfreezing = false;
+		Health = maxHealth;
+		unfreezeTimer = 0f;
+		surviveTimer = 0f;
+		respawnTimer = 0f;
+		respawned?.Invoke(id);
 	}
 
-	public Team GetTeam()
-	{
-		return team;
+	/// <summary>
+	/// 每帧处理复活的时间
+	/// </summary>
+	private void HandleRespawnProcess()
+    {
+		if (!isDead)
+			return;
+
+		respawnTimer += Time.deltaTime;
+		if (respawnTimer > respawnTime)
+		{
+			Respawn();
+		}
 	}
+
 }

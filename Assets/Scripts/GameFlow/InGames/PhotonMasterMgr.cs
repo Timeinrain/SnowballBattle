@@ -23,10 +23,20 @@ public class PhotonMasterMgr : MonoBehaviourPun
 	public void Awake()
 	{
 		_Instance = this;
-		var roomInfo = InOutGameRoomInfo.Instance;
+		roomInfo = InOutGameRoomInfo.Instance;
 		teamPosMap = new Dictionary<Team, GameObject> { { Team.Blue, BlueTeam }, { Team.Green, GreenTeam }, { Team.Yellow, YellowTeam }, { Team.Red, RedTeam } };
-		GameObject go = PhotonNetwork.Instantiate("Mochi", new Vector3(Random.Range(-1, 1), 3, Random.Range(-1, 1)), Quaternion.identity, 0);
+
+		// 生成角色被移入Start()，防止与其他初始化冲突
+	}
+
+    public void Start()
+    {
+		//生成角色
 		Player playerInfo = roomInfo.GetPlayerByName(PhotonNetwork.LocalPlayer.NickName);
+
+		Transform spawnPoint = SpawnManager.Instance.GetSpawnPoint(playerInfo);
+		GameObject go = PhotonNetwork.Instantiate("Mochi", spawnPoint.position, spawnPoint.rotation, 0);
+
 		go.tag = playerInfo.team.ToString() + "Team";
 		go.GetComponent<Character>().id = playerInfo.playerId;
 		go.GetComponent<PlayerInfoSync>().SetInfo();

@@ -54,7 +54,7 @@ namespace core.zqc.bombs
 				if (character != null)
 				{
 					if (friendlyList.Contains(character.GetTeam())) return;
-					character.DealDamage();
+					character.TakeDamage();
 					Debug.Log(string.Format("{0}'s health was reduced to {1}", character.ToString(), character.Health));
 				}
 			}

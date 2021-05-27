@@ -67,6 +67,8 @@ public class PlayerController : PushableObject
 		gameLogicHandler = GetComponent<Character>();
 		gameLogicHandler.frozen += Freeze;
 		gameLogicHandler.unfrozen += Unfreeze;
+		gameLogicHandler.died += Die;
+		gameLogicHandler.respawned += Respawn;
 
 		/*
 		//如果不是本人，就隐藏对应的另一个小地图标识
@@ -83,6 +85,8 @@ public class PlayerController : PushableObject
 		// 注销事件
 		gameLogicHandler.frozen -= Freeze;
 		gameLogicHandler.unfrozen -= Unfreeze;
+		gameLogicHandler.died -= Die;
+		gameLogicHandler.respawned -= Respawn;
 	}
 
 	/// <summary>
@@ -185,15 +189,14 @@ public class PlayerController : PushableObject
 		}
 	}
 
-
-	public void Freeze(string id)
+	private void Freeze(string id)
 	{
 		ChangeState(Action.Frozen);
 		SetPushable(true);   // 冰冻后可以被队友推动
 		ice.SetActive(true);
 	}
 
-	public void Unfreeze(string id)
+	private void Unfreeze(string id)
 	{
 		ChangeState(Action.Idle);
 		SetPushable(false);
@@ -201,6 +204,26 @@ public class PlayerController : PushableObject
 		playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
 		ice.SetActive(false);
 	}
+
+	private void Die(string id)
+    {
+		ChangeState(Action.Reborn);
+		SetPushable(false);
+		StopCarrierPushing();
+		ice.SetActive(false);
+    }
+
+	/// <summary>
+	/// 在特定位置复活
+	/// </summary>
+	/// <param name="id"></param>
+	private void Respawn(string id)
+    {
+		ChangeState(Action.Idle);
+		Transform spawnPoint = SpawnManager.Instance.GetSpawnPoint(gameLogicHandler.playerInfo);
+		transform.position = spawnPoint.position;
+		transform.rotation = spawnPoint.rotation;
+	} 
 
 	/// <summary>
 	/// Action Responce
@@ -227,6 +250,7 @@ public class PlayerController : PushableObject
 		playerAnimator.SetBool("IsPushing", curState == Action.Pushing);
 		playerAnimator.SetBool("IsFiring", curState == Action.FillingCannon);
 		playerAnimator.SetBool("IsFrozen", curState == Action.Frozen);
+		playerAnimator.SetBool("IsDead", curState == Action.Reborn);
 		//playerAnimator.SetBool("IsForcedMove", curState == Action.ForcedMove);
 	}
 

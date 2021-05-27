@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 
+    AppIdRealtime: 173ad590-47f0-4573-b1cb-3be35654688b
     AppIdChat: 
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
-    FixedRegion: 
-    Server: 
+    FixedRegion: cn
+    Server: ns.photonengine.cn
     Port: 0
     ProxyServer: 
     Protocol: 0
@@ -32,7 +32,27 @@ MonoBehaviour:
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
-  RpcList: []
-  DisableAutoOpenWizard: 0
+  RpcList:
+  - Attach
+  - ClickRpc
+  - DelayShoot
+  - DeleteThePlayer
+  - DestroyRpc
+  - Detach
+  - EndScoreCount
+  - GetNewPlayerInfo
+  - Kick
+  - OnLoadingLevel
+  - StartScoreCount
+  - StopExplosionCountdown
+  - SwitchTeam
+  - SyncInRoomPlayerInfo
+  - SyncPlayersInfo
+  - UpdateRoomMaster
+  - UpdateTransform
+  - AddDeathCount
+  - AddFrozen
+  - AddUnfrozen
+  DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0
