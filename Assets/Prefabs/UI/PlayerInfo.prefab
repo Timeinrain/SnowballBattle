@@ -102,7 +102,6 @@ MonoBehaviour:
   yellow: {fileID: 21300000, guid: 3aedc83ca6cbfa545b247148a493e704, type: 3}
   blue: {fileID: 21300000, guid: 0cbbb9b30d05ceb4e889c7ff3daaf314, type: 3}
   inRoomPosIndex: 0
-  anim: {fileID: 0}
 --- !u!95 &4409154734716137055
 Animator:
   serializedVersion: 3
@@ -378,7 +377,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 0ed2f6b52414a67489abd54301a8ece4, type: 3}
+    m_Font: {fileID: 12800000, guid: 822a2666ee945694db0312d542b90289, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0

@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BattleScene/Snow/VIkintDemo.unity
     guid: 7d93ab21a53b097469cf76fc3e163b75
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/BattleScene/Halloween Map/Halloween map.unity
     guid: 0ce08a15417eac54c853fb842336553d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/BattleScene/CandyMiniModel/SweetCastle.unity
     guid: bd1953b2f723cb64894d8f7577d95587
   m_configObjects:
