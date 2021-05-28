@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Sirenix.OdinInspector;
 using UnityEngine.UI;
 
 namespace core.zqc.bombs
@@ -15,6 +16,10 @@ namespace core.zqc.bombs
 		bool freezeCountdown = true;
 		float countdownTimer = 0f;
 		bool hasExploded = false;
+
+		public GameObject traceFX;
+
+		public GameObject bombWarningFX;
 
 		public GameObject ExplosionFx;
 
@@ -37,29 +42,41 @@ namespace core.zqc.bombs
 			type = CarryType.Bomb;
 		}
 
-        private void Update()
-        {
+		[Button]
+		public void StartCountDown()
+		{
+			freezeCountdown = false;
+			countdownTimer = 5;
+		}
+
+		private void Update()
+		{
 			if (freezeCountdown)
-            {
+			{
 				textCountdown.text = "";
 			}
-            else
-            {
+			else
+			{
 				countdownTimer -= Time.deltaTime;
+				//fresnel 2-0  speed 0.5 - 3
+				if (countdownTimer <= 3)
+				{
+					GetComponent<BombWarning>().StartExplosion();
+				}
 
 				// œ‘ æµπº∆ ±
 				int displayNum = (int)(countdownTimer + 0.99f);
 				textCountdown.text = (displayNum.ToString());
 
-				if(countdownTimer <= 0f && !hasExploded)
-                {
+				if (countdownTimer <= 0f && !hasExploded)
+				{
 					hasExploded = true;
 					Explode();
-                }
-            }
-        }
+				}
+			}
+		}
 
-        public void OnPhotonInstantiate(PhotonMessageInfo info)
+		public void OnPhotonInstantiate(PhotonMessageInfo info)
 		{
 			object[] data = info.photonView.InstantiationData;
 			Vector3 initialVelocity = (Vector3)data[0];
@@ -86,6 +103,7 @@ namespace core.zqc.bombs
 					}
 				}
 			}
+			traceFX.GetComponent<BombPathController>().Detach();
 			StartCoroutine(ExplosionFxPlay());
 		}
 
@@ -191,5 +209,5 @@ namespace core.zqc.bombs
 				snowPathFX.SetActive(true);
 			}
 		}
-    }
+	}
 }

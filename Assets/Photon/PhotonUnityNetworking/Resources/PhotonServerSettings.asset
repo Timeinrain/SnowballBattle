@@ -39,25 +39,20 @@ MonoBehaviour:
   - DeleteThePlayer
   - DestroyRpc
   - Detach
-  - EndScoreCount
+  - Die
   - GetNewPlayerInfo
   - Kick
   - OnLoadingLevel
-  - StartScoreCount
+  - Respawn
   - StopExplosionCountdown
   - SwitchTeam
   - SyncInRoomPlayerInfo
-  - SyncPlayersInfo
-  - UpdateRoomMaster
-  - UpdateTransform
-  - AddDeathCount
-  - AddFrozen
-  - AddUnfrozen
   - SyncKillCount
-  - Die
-  - Respawn
+  - SyncPlayersInfo
   - TakeDamage
   - Unfreeze
+  - UpdateRoomMaster
+  - UpdateTransform
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0

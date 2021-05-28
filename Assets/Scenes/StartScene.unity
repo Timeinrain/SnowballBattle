@@ -8163,7 +8163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -15989,7 +15989,7 @@ MonoBehaviour:
   red: {fileID: 21300000, guid: 26dc3d83aef4cea4388f67c0b69a907f, type: 3}
   maxTeamNum: 4
   maxPlayers: 10
-  mapInfo: {fileID: 11400000, guid: c9f601583115b1f48be355b494e6a1ec, type: 2}
+  mapInfo: {fileID: 11400000, guid: 803af6ab27503584aa615e104d797177, type: 2}
   mapSelectionButton: {fileID: 6322938187090503213}
   launchButton: {fileID: 6322938186516004512}
   isEmpty: 
