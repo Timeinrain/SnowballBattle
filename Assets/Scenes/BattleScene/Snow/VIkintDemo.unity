@@ -3010,7 +3010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8409619086013616229, guid: 9c3b50ca02c53174fa8bb3d5747f3e84, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c3b50ca02c53174fa8bb3d5747f3e84, type: 3}
@@ -5907,8 +5907,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombsFallingInterval: 10
   bombsFallingNumber: 10
+  autoGenerate: 1
+  bombString: {fileID: 5889036278040675372, guid: c20971d8dc8dfa14c95b7947519af075, type: 3}
   generatingArea:
-  - xWidth: 63.44
+  - xOffset: 0
+    zOffset: 0
+    xWidth: 63.44
     zWidth: 106.9
 --- !u!1 &354559343 stripped
 GameObject:
@@ -10588,7 +10592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3661383748065624246, guid: b9509498807a9524987b95a9e8445073, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9509498807a9524987b95a9e8445073, type: 3}
@@ -15293,7 +15297,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946686039}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.34, y: 9.76, z: -0.04}
+  m_LocalPosition: {x: 0.34, y: 70.5, z: -0.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 256386389}
@@ -15358,11 +15362,11 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 37.67
+  orthographic size: 59.4
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 72
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: c27160d2774baad42987bd8ab98842da, type: 2}
   m_TargetDisplay: 0
@@ -16228,7 +16232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3661383748065624246, guid: b9509498807a9524987b95a9e8445073, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9509498807a9524987b95a9e8445073, type: 3}
@@ -18194,7 +18198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1142032278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18383,7 +18387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3661383748065624246, guid: b9509498807a9524987b95a9e8445073, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9509498807a9524987b95a9e8445073, type: 3}
@@ -18461,7 +18465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8409619086013616229, guid: 9c3b50ca02c53174fa8bb3d5747f3e84, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c3b50ca02c53174fa8bb3d5747f3e84, type: 3}
@@ -21794,7 +21798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3661383748065624246, guid: b9509498807a9524987b95a9e8445073, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9509498807a9524987b95a9e8445073, type: 3}
@@ -23031,8 +23035,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
+  m_RequiresDepthTextureOption: 1
+  m_RequiresOpaqueTextureOption: 1
   m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: -1
@@ -23041,7 +23045,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_RenderPostProcessing: 1
-  m_Antialiasing: 2
+  m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -25770,7 +25774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3661383748065624246, guid: b9509498807a9524987b95a9e8445073, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9509498807a9524987b95a9e8445073, type: 3}
@@ -28185,7 +28189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8409619086013616229, guid: 9c3b50ca02c53174fa8bb3d5747f3e84, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c3b50ca02c53174fa8bb3d5747f3e84, type: 3}

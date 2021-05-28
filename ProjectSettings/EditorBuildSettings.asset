@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BattleScene/Halloween Map/Halloween map.unity
     guid: 0ce08a15417eac54c853fb842336553d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/BattleScene/Candy Map/SweetCastle.unity
     guid: bd1953b2f723cb64894d8f7577d95587
   m_configObjects:

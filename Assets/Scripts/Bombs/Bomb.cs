@@ -103,7 +103,8 @@ namespace core.zqc.bombs
 					}
 				}
 			}
-			traceFX.GetComponent<BombPathController>().Detach();
+			if (traceFX != null)
+				traceFX.GetComponent<BombPathController>().Detach();
 			StartCoroutine(ExplosionFxPlay());
 		}
 

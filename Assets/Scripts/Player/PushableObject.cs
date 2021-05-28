@@ -98,6 +98,7 @@ public class PushableObject : MonoBehaviourPun
 	{
 		if (collision.gameObject.CompareTag("Ground"))
 		{
+			if(snowPathFX!=null)
 			snowPathFX.SetActive(true);
 		}
 	}

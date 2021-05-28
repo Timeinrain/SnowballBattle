@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 
 public class BombWarning : MonoBehaviour
 {
-	public GameObject bombWarningFX;
+	public GameObject[] bombWarningFX;
 
 	public GameObject bombRange;
 
@@ -20,11 +20,6 @@ public class BombWarning : MonoBehaviour
 	public float explosionTime = 3;
 
 	bool isOnExplosion = false;
-
-	public void Start()
-	{
-
-	}
 
 	[Button]
 	public void StartRotation()
@@ -61,9 +56,12 @@ public class BombWarning : MonoBehaviour
 		while (temp < explosionTime)
 		{
 			temp += Time.deltaTime;
-			bombWarningFX.GetComponent<MeshRenderer>().materials[1].SetFloat("_Alpha", bombFlash.Evaluate(temp));
-			Color tmpColor = bombRange.GetComponent<MeshRenderer>().material.color;
-			bombRange.GetComponent<MeshRenderer>().material.color = new Color(tmpColor.r, tmpColor.g, tmpColor.b, temp);
+			foreach(var warningFX in bombWarningFX)
+			{
+				warningFX.GetComponent<MeshRenderer>().materials[1].SetFloat("_Alpha", bombFlash.Evaluate(temp));
+				Color tmpColor = bombRange.GetComponent<MeshRenderer>().material.color;
+				bombRange.GetComponent<MeshRenderer>().material.color = new Color(tmpColor.r, tmpColor.g, tmpColor.b, temp);
+			}
 			yield return new WaitForEndOfFrame();
 		}
 

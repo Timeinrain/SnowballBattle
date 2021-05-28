@@ -9,6 +9,7 @@ public class BombGeneratorOnline : MonoBehaviourPun
 	public float bombsFallingInterval = 10f;       // 冰壶炸弹降落间隔时间
 	public int bombsFallingNumber = 10;            // 每次掉落的冰壶炸弹数（无限弹药情况下）
 	public bool autoGenerate = true;               // 是否自动生成炸弹，取消选择后只会被动接受大炮传入的炸弹
+	public GameObject bombString;
 
 	[System.Serializable]
 	public class GeneratingArea
@@ -75,7 +76,7 @@ public class BombGeneratorOnline : MonoBehaviourPun
 					Random.Range(transform.position.z + area.zOffset - area.zWidth / 2, transform.position.z + area.zOffset + area.zWidth / 2));
 
 				Vector3 initialVelocity = new Vector3(Random.value > 0.5 ? 1 : -1, 0, Random.value > 0.5 ? 1 : -1);
-				PhotonNetwork.Instantiate("DefaultBomb", position, Quaternion.identity, 0, new object[] { initialVelocity, owner });
+				PhotonNetwork.Instantiate(bombString.name, position, Quaternion.identity, 0, new object[] { initialVelocity, owner });
 			}
 		}
 	}
@@ -95,7 +96,7 @@ public class BombGeneratorOnline : MonoBehaviourPun
 		return (areaChance.Count - 1);
 	}
 
-	private void OnDrawGizmos()
+	private void OnDrawGizmosSelected()
 	{
 		const float height = 30f;
 
