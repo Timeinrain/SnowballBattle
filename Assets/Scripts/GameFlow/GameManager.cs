@@ -109,7 +109,12 @@ public class GameManager : MonoBehaviourPun
 	/// </summary>
 	public void StartGame()
 	{
-		FindObjectOfType<BombGeneratorOnline>().StartGenerateBomb();
+		BombGeneratorOnline[] generators = FindObjectsOfType<BombGeneratorOnline>();
+		foreach(var gen in generators)
+        {
+			if (gen.autoGenerate) gen.StartGenerateBomb();
+
+		}
 	}
 
 
