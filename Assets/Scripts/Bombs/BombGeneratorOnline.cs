@@ -38,24 +38,20 @@ public class BombGeneratorOnline : MonoBehaviourPun
 		}
 	}
 
-	GameObject GenerateBomb()
+	public void GenerateBomb(Team owner = Team.Null, int number = 1)
 	{
-		Vector3 position = new Vector3(
-			Random.Range(transform.position.x - generatingArea.xWidth / 2, transform.position.x + generatingArea.xWidth / 2),
-			transform.position.y,
-			Random.Range(transform.position.z - generatingArea.zWidth / 2, transform.position.z + generatingArea.zWidth / 2));
-		GameObject bomb
-		= PhotonNetwork.Instantiate("DefaultBomb", position, Quaternion.identity);
-		bomb.GetComponent<Rigidbody>().velocity = new Vector3(Random.value > 0.5 ? 1 : -1, 0, Random.value > 0.5 ? 1 : -1);
-		return bomb;
-	}
-
-	public void AddBombAndGenerate(Team owner, int number)
-	{
-		for (int i = 0; i < number; i++)
+		if (PhotonNetwork.IsConnected && PhotonNetwork.IsMasterClient)
 		{
-			GameObject bombObject = GenerateBomb();
-			bombObject.GetComponent<Bomb>().ChangeTeam(owner);
+			for (int i = 0; i < number; i++)
+			{
+				Vector3 position = new Vector3(
+					Random.Range(transform.position.x - generatingArea.xWidth / 2, transform.position.x + generatingArea.xWidth / 2),
+					transform.position.y,
+					Random.Range(transform.position.z - generatingArea.zWidth / 2, transform.position.z + generatingArea.zWidth / 2));
+
+				Vector3 initialVelocity = new Vector3(Random.value > 0.5 ? 1 : -1, 0, Random.value > 0.5 ? 1 : -1);
+				PhotonNetwork.Instantiate("DefaultBomb", position, Quaternion.identity, 0, new object[] { initialVelocity, owner });
+			}
 		}
 	}
 

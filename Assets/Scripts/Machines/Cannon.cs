@@ -1,4 +1,5 @@
 using core.zqc.bombs;
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -90,7 +91,8 @@ public class Cannon : MonoBehaviour
     private void HandleShootAnimationEnd()
     {
         GameObject bombTemplate = bombsPool.Dequeue();
-        Destroy(bombTemplate);
+        if (PhotonNetwork.LocalPlayer.IsMasterClient)
+            PhotonNetwork.Destroy(bombTemplate);
         canFire = true;
     }
 
@@ -107,7 +109,7 @@ public class Cannon : MonoBehaviour
                 // 超过高度后销毁，并加入三个到BombGenerator
                 falseBombsWatchList.RemoveAt(i);
                 Destroy(bomb);
-                linkedGenerator.AddBombAndGenerate(owner, 1);
+                linkedGenerator.GenerateBomb(owner, 1);
             }
         }
     }

@@ -53,6 +53,11 @@ MonoBehaviour:
   - AddDeathCount
   - AddFrozen
   - AddUnfrozen
+  - SyncKillCount
+  - Die
+  - Respawn
+  - TakeDamage
+  - Unfreeze
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0

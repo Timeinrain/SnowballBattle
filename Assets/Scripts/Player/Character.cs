@@ -71,6 +71,7 @@ public class Character : MonoBehaviourPun
 		HandleUnfreezeProcess();
 	}
 
+	[PunRPC]
 	public void TakeDamage(int damage = 1)
 	{
 		if (Health <= 0) return;
@@ -80,17 +81,14 @@ public class Character : MonoBehaviourPun
 		if (Health <= 0)
 		{
 			if (mapType == MapType.Snow)
+            {
 				Freeze();
+			}
             else
+            {
 				Die();
+			}
 		}
-	}
-
-	public void Heal(int heal = 1)
-	{
-		Health += heal;
-		if (Health > maxHealth) Health = maxHealth;
-		healed?.Invoke(id, heal);
 	}
 
 	public Team GetTeam()
@@ -106,12 +104,13 @@ public class Character : MonoBehaviourPun
 		frozen?.Invoke(id);
 	}
 
+	[PunRPC]
 	private void Unfreeze()
 	{
 		isFrozen = false;
 		surviveTimer = 0f;
 		unfrozen?.Invoke(id);
-		Heal(1);     // 确保有足够的血量活下来
+		Health += 1; // 确保有足够的血量活下来
 	}
 
 	public void StartUnfreezeCountdown()
@@ -131,6 +130,9 @@ public class Character : MonoBehaviourPun
 	/// </summary>
 	private void HandleFrozenSurviveTime()
     {
+		if (!PhotonNetwork.LocalPlayer.IsMasterClient)  // 非主机不处理角色游戏逻辑，只接受主机广播
+			return;
+
 		if (isFrozen && !isUnfreezing)
 		{
 			surviveTimer += Time.deltaTime;
@@ -138,7 +140,7 @@ public class Character : MonoBehaviourPun
 			{
 				// 冰冻时间过长，角色死亡
 				isFrozen = false;
-				Die();
+				photonView.RPC("Die", RpcTarget.All);
 			}
 		}
 	}
@@ -148,18 +150,22 @@ public class Character : MonoBehaviourPun
 	/// </summary>
 	private void HandleUnfreezeProcess()
 	{
+		if (!PhotonNetwork.LocalPlayer.IsMasterClient)  // 非主机不处理角色游戏逻辑，只接受主机广播
+			return;
+
 		if (!isFrozen || !isUnfreezing)
 			return;
 
 		unfreezeTimer += Time.deltaTime;
 		if (unfreezeTimer > unfreezeTime)
 		{
-			Unfreeze();
+			photonView.RPC("Unfreeze", RpcTarget.All);
 		}
 	}
 
     #endregion
 
+	[PunRPC]
 	private void Die()
     {
 		isDead = true;
@@ -167,6 +173,7 @@ public class Character : MonoBehaviourPun
 		died?.Invoke(id);
 	}
 
+	[PunRPC]
 	private void Respawn()
     {
 		isDead = false;
@@ -184,13 +191,16 @@ public class Character : MonoBehaviourPun
 	/// </summary>
 	private void HandleRespawnProcess()
     {
+		if (!PhotonNetwork.LocalPlayer.IsMasterClient)  // 非主机不处理角色游戏逻辑，只接受主机广播
+			return;
+
 		if (!isDead)
 			return;
 
 		respawnTimer += Time.deltaTime;
 		if (respawnTimer > respawnTime)
 		{
-			Respawn();
+			photonView.RPC("Respawn", RpcTarget.All);
 		}
 	}
 

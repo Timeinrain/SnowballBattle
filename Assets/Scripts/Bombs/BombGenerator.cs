@@ -69,7 +69,6 @@ namespace core.zqc.bombs
             {
                 bomb.GetComponent<Bomb>().ChangeTeam(owner);
             }
-            //bomb.transform.parent = obiSolver.transform;
         }
 
         public void AddBomb(int num = 1)

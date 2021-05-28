@@ -2,22 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 namespace core.zqc.bombs
 {
 	[RequireComponent(typeof(Rigidbody))]
-	public class Bomb : PushableObject
+	public class Bomb : PushableObject, IPunInstantiateMagicCallback
 	{
 		public float explosionTime;
 		public float explosionRange;
 		public float explosionTTL = 0.5f;
-		bool freezeCountdown = false;
+		bool freezeCountdown = true;
+		float countdownTimer = 0f;
+		bool hasExploded = false;
 
 		public GameObject ExplosionFx;
 
 		public MeshRenderer meshRenderer;
 		public Material redTeamMaterial;
 		public Material blueTeamMaterial;
+
+		public Text textCountdown;
 
 		List<Team> friendlyList = new List<Team>();
 
@@ -29,33 +34,56 @@ namespace core.zqc.bombs
 		protected override void Awake()
 		{
 			base.Awake();
-
 			type = CarryType.Bomb;
 		}
 
-		private void Start()
-		{
-			StartCoroutine(ExplosionCountdown());
-		}
+        private void Update()
+        {
+			if (freezeCountdown)
+            {
+				textCountdown.text = "";
+			}
+            else
+            {
+				countdownTimer -= Time.deltaTime;
 
-		private IEnumerator ExplosionCountdown()
+				// 显示倒计时
+				int displayNum = (int)(countdownTimer + 0.99f);
+				textCountdown.text = (displayNum.ToString());
+
+				if(countdownTimer <= 0f && !hasExploded)
+                {
+					hasExploded = true;
+					Explode();
+                }
+            }
+        }
+
+        public void OnPhotonInstantiate(PhotonMessageInfo info)
 		{
-			yield return new WaitForSeconds(explosionTime);
-			if (freezeCountdown) yield break;
-			Explode();
+			object[] data = info.photonView.InstantiationData;
+			Vector3 initialVelocity = (Vector3)data[0];
+			Team owner = (Team)data[1];
+			GetComponent<Rigidbody>().velocity = initialVelocity;
+			ChangeTeam(owner);
+			countdownTimer = explosionTime;
+			freezeCountdown = false; // 开始计时
 		}
 
 		private void Explode()
 		{
-			Collider[] cols = Physics.OverlapSphere(transform.position, explosionRange, LayerMask.GetMask("Player"));
-			foreach (var col in cols)
+			if (PhotonNetwork.LocalPlayer.IsMasterClient)
 			{
-				Character character = col.GetComponent<Character>();
-				if (character != null)
+				// 非主机不处理角色游戏逻辑，只接受主机广播
+				Collider[] cols = Physics.OverlapSphere(transform.position, explosionRange, LayerMask.GetMask("Player"));
+				foreach (var col in cols)
 				{
-					if (friendlyList.Contains(character.GetTeam())) return;
-					character.TakeDamage();
-					Debug.Log(string.Format("{0}'s health was reduced to {1}", character.ToString(), character.Health));
+					Character character = col.GetComponent<Character>();
+					if (character != null)
+					{
+						if (friendlyList.Contains(character.GetTeam())) continue;
+						character.photonView.RPC("TakeDamage", RpcTarget.All, 1);
+					}
 				}
 			}
 			StartCoroutine(ExplosionFxPlay());
@@ -163,5 +191,5 @@ namespace core.zqc.bombs
 				snowPathFX.SetActive(true);
 			}
 		}
-	}
+    }
 }

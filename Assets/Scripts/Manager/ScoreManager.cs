@@ -34,15 +34,18 @@ public class ScoreManager : MonoBehaviourPun
         currentPlayer = InOutGameRoomInfo.Instance.GetPlayerByName(PhotonNetwork.LocalPlayer.NickName);
 
         // 初始化UI
+        if (!PhotonNetwork.LocalPlayer.IsMasterClient)
+        {
+            // 非主机情况
+            // 这里直接视为只有红队和蓝队
+            teamScores.Add(Team.Blue, new TeamScoreInfo());
+            teamScores.Add(Team.Red, new TeamScoreInfo());
+        }
         textKillCount.text = "Team Kill Count: 0";
     }
 
     private void Update()
     {
-        if (IsGameStart)
-        {
-
-        }
     }
 
     /// <summary>
@@ -92,50 +95,39 @@ public class ScoreManager : MonoBehaviourPun
         character.unfrozen += AddUnfrozen;
     }
 
-    [PunRPC]
     private void AddDeathCount(string id)
     {
         Team team = idTeamTable[id];
+        Team hostile = GetHostileTeam(team);
         teamScores[team].deathCount++;
-        teamScores[GetHostileTeam(team)].killCount++;  // 死亡会给敌对的队伍增加击杀数
-
+        teamScores[hostile].killCount++;  // 死亡会给敌对的队伍增加击杀数
         UpdateScore();
 
-        if (PhotonNetwork.LocalPlayer.IsMasterClient)
-        {
-            PhotonView scoreView = PhotonView.Get(this);
-            scoreView.RPC("AddDeathCount", RpcTarget.Others, id);
-        }
+        // 向客户端发起同步
+        photonView.RPC("SyncKillCount", RpcTarget.Others, hostile, teamScores[hostile].killCount);
     }
 
     [PunRPC]
+    private void SyncKillCount(Team team, int value)
+    {
+        teamScores[team].killCount = value;
+        UpdateScore();
+    }
+
     private void AddFrozen(string id)
     {
         Team team = idTeamTable[id];
         teamScores[team].frozenNum++;
 
         UpdateScore();
-
-        if (PhotonNetwork.LocalPlayer.IsMasterClient)
-        {
-            PhotonView scoreView = PhotonView.Get(this);
-            scoreView.RPC("AddFrozen", RpcTarget.Others, id);
-        }
     }
 
-    [PunRPC]
     private void AddUnfrozen(string id)
     {
         Team team = idTeamTable[id];
         teamScores[team].frozenNum--;
 
         UpdateScore();
-
-        if (PhotonNetwork.LocalPlayer.IsMasterClient)
-        {
-            PhotonView scoreView = PhotonView.Get(this);
-            scoreView.RPC("AddUnfrozen", RpcTarget.Others, id);
-        }
     }
 
     private static Team GetHostileTeam(Team team)
