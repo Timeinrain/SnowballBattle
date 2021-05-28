@@ -4457,6 +4457,7 @@ MonoBehaviour:
   GreenTeam: {fileID: 1224858228}
   localPlayer: {fileID: 0}
   roomInfo: {fileID: 0}
+  scoreManager: {fileID: 0}
 --- !u!4 &524528721
 Transform:
   m_ObjectHideFlags: 0
@@ -13023,6 +13024,7 @@ MonoBehaviour:
   totalTime: 0
   currentTime: 0
   maxPlayers: 4
+  scoreManager: {fileID: 0}
 --- !u!4 &2053709929
 Transform:
   m_ObjectHideFlags: 0

@@ -23,16 +23,10 @@ public class CameraFollow : MonoBehaviour
 		{
 			initDir = -follow.position + cam.transform.position;
 		}
-		Cursor.visible = false;
 	}
 	private void Update()
 	{
 		//RotateWithMouse();
-	}
-
-	private void OnDisable()
-	{
-		Cursor.visible = true;
 	}
 
 	public void SetTransform(Vector3 targetPos)
