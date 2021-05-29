@@ -130,9 +130,6 @@ public class Character : MonoBehaviourPun
 	/// </summary>
 	private void HandleFrozenSurviveTime()
     {
-		if (!PhotonNetwork.LocalPlayer.IsMasterClient)  // 非主机不处理角色游戏逻辑，只接受主机广播
-			return;
-
 		if (isFrozen && !isUnfreezing)
 		{
 			surviveTimer += Time.deltaTime;
@@ -140,6 +137,9 @@ public class Character : MonoBehaviourPun
 			{
 				// 冰冻时间过长，角色死亡
 				isFrozen = false;
+
+				if (!PhotonNetwork.LocalPlayer.IsMasterClient)  // 非主机不处理角色游戏逻辑，只接受主机广播
+					return;
 				photonView.RPC("Die", RpcTarget.All);
 			}
 		}
@@ -204,4 +204,12 @@ public class Character : MonoBehaviourPun
 		}
 	}
 
+	/// <summary>
+	/// 返回冰冻后剩余多少时间死亡
+	/// </summary>
+	/// <returns></returns>
+	public float GetFrozenCountdown()
+    {
+		return surviveTimeAfterFrozen - surviveTimer;
+    }
 }

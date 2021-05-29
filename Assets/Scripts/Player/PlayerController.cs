@@ -8,6 +8,8 @@ public class PlayerController : PushableObject
 {
 	public bool useAbsoluteDirection = false;
 	public GameObject playerViewCam;
+	private Camera overlayCam;
+	private RectTransform canvasTransform;
 
 	Rigidbody playerRigidbody;
 	Animator playerAnimator;
@@ -30,6 +32,8 @@ public class PlayerController : PushableObject
 	public PushController pushController;
 	[Range(1, 100)]
 	public float kickSpeed;              // 踢炸弹初速度
+	[Range(0.0f, 1.0f)]
+	public float rotateTime;             // 踢炸弹前转身时间
 	[Range(0.0f, 2.0f)]
 	public float kickDelay;              // 踢动画开始到实际踢出炸弹的延迟
 
@@ -78,7 +82,13 @@ public class PlayerController : PushableObject
 		*/
 	}
 
-	private void OnDestroy()
+    private void Start()
+    {
+		overlayCam = GameObject.Find("OverlayCam").GetComponent<Camera>();
+		canvasTransform = GameObject.Find("CameraCanvas").GetComponent<RectTransform>();
+	}
+
+    private void OnDestroy()
 	{
 		// 注销事件
 		gameLogicHandler.frozen -= Freeze;
@@ -159,8 +169,16 @@ public class PlayerController : PushableObject
 	{
 		if (!CheckAnimatorState("Push Idle", "Push Run")) return;
 		if (pushController.GetCarriedType() != PushableObject.CarryType.Bomb) return;
-		ChangeState(Action.Kick);
-		pushController.Kick(kickSpeed, kickDelay, transform.forward);
+
+		Vector3 clickPosition;
+		if (LocateMousePosition(out clickPosition))
+        {
+			Vector3 direction = clickPosition - transform.position;
+			direction.y = 0f;
+
+			ChangeState(Action.Kick);
+			pushController.Kick(kickSpeed, rotateTime, kickDelay, direction.normalized);
+		}
 	}
 
 	/// <summary>
@@ -407,6 +425,36 @@ public class PlayerController : PushableObject
 		return curState;
 	}
 
+	/// <summary>
+	/// 根据鼠标位置获得一个三维坐标
+	/// </summary>
+	/// <param name="position">返回的坐标</param>
+	/// <returns>鼠标点击位置是否合法</returns>
+	private bool LocateMousePosition(out Vector3 position)
+    {
+		// 用于显示场景的画布大小
+		const float rawImageWidth = 1920f;
+		const float rawImageHeight = 1080f;
+
+		Vector3 mouse = Input.mousePosition;
+		Vector3 newMousePos = new Vector3(
+			mouse.x / Screen.width * rawImageWidth,
+			mouse.y / Screen.width * rawImageWidth + (rawImageWidth - rawImageHeight) / 2f,
+			mouse.z);
+
+		Ray ray = Camera.main.ScreenPointToRay(newMousePos);
+		RaycastHit hit;
+		if (Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("Ground")))
+		{
+			position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+			return true;
+		}
+		else
+		{
+			position = Vector3.up;
+			return false;
+		}
+	}
 }
 
 /// <summary>
