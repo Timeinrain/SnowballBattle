@@ -12787,23 +12787,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b50259b729e73e7439b090e66bc8ecca, type: 3}
       propertyPath: m_LocalScale.x
-      value: 77.61074
+      value: 7.2370143
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b50259b729e73e7439b090e66bc8ecca, type: 3}
       propertyPath: m_LocalScale.y
-      value: 77.61074
+      value: 7.2370143
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b50259b729e73e7439b090e66bc8ecca, type: 3}
       propertyPath: m_LocalScale.z
-      value: 77.61074
+      value: 7.2370143
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b50259b729e73e7439b090e66bc8ecca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.046
+      value: 5.1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b50259b729e73e7439b090e66bc8ecca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.23
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b50259b729e73e7439b090e66bc8ecca, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12849,6 +12849,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3300000, guid: b50259b729e73e7439b090e66bc8ecca, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b50259b729e73e7439b090e66bc8ecca, type: 3}
 --- !u!4 &1486935397 stripped
@@ -15091,7 +15095,7 @@ PrefabInstance:
     - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: bombPrefab
       value: 
-      objectReference: {fileID: 5889036278040675372, guid: c20971d8dc8dfa14c95b7947519af075, type: 3}
+      objectReference: {fileID: 5889036278040675372, guid: 82523a651ab71864382af013d7e78da2, type: 3}
     - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: linkedGenerator
       value: 
@@ -16124,7 +16128,7 @@ PrefabInstance:
     - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: bombPrefab
       value: 
-      objectReference: {fileID: 5889036278040675372, guid: c20971d8dc8dfa14c95b7947519af075, type: 3}
+      objectReference: {fileID: 5889036278040675372, guid: 82523a651ab71864382af013d7e78da2, type: 3}
     - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: linkedGenerator
       value: 

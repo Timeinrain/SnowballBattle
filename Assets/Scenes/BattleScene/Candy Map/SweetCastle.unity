@@ -4956,7 +4956,7 @@ MonoBehaviour:
   totalTime: 0
   currentTime: 0
   maxPlayers: 4
-  scoreManager: {fileID: 0}
+  scoreManager: {fileID: 1822266358}
 --- !u!4 &1822266356
 Transform:
   m_ObjectHideFlags: 0

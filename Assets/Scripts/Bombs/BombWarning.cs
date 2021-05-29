@@ -40,13 +40,15 @@ public class BombWarning : MonoBehaviour
 	}
 
 	[Button]
-	public void StartExplosion()
+	public void StartWarning()
 	{
 		if (!isOnExplosion)
 		{
 			isOnExplosion = true;
 			StartCoroutine(Explosion());
 			StartRotation();
+			if (GetComponent<pumpkinRandomJump>())
+				GetComponent<pumpkinRandomJump>().OnWarning();
 		}
 	}
 
@@ -56,7 +58,7 @@ public class BombWarning : MonoBehaviour
 		while (temp < explosionTime)
 		{
 			temp += Time.deltaTime;
-			foreach(var warningFX in bombWarningFX)
+			foreach (var warningFX in bombWarningFX)
 			{
 				warningFX.GetComponent<MeshRenderer>().materials[1].SetFloat("_Alpha", bombFlash.Evaluate(temp));
 				Color tmpColor = bombRange.GetComponent<MeshRenderer>().material.color;
