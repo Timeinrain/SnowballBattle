@@ -85,7 +85,6 @@ public class PushController : MonoBehaviourPun
         {
 			//PhotonView bombView = PhotonView.Get(bomb);
 			bomb.UpdateTransform(bombCarryPoint.position, bombCarryPoint.rotation);
-			Debug.Log(bombCarryPoint.position);
 			//bombView.RPC("UpdateTransform", RpcTarget.Others, bombCarryPoint.position, bombCarryPoint.rotation);
 
 			playerController.transform.forward = Vector3.Slerp(originDir, targetDir, timer / time);

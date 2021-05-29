@@ -1,4 +1,3 @@
-using core.zqc.bombs;
 using Photon.Pun;
 using UnityEngine;
 /// <summary>
@@ -9,7 +8,6 @@ public class PlayerController : PushableObject
 	public bool useAbsoluteDirection = false;
 	public GameObject playerViewCam;
 	private Camera overlayCam;
-	private RectTransform canvasTransform;
 
 	Rigidbody playerRigidbody;
 	Animator playerAnimator;
@@ -37,11 +35,20 @@ public class PlayerController : PushableObject
 	[Range(0.0f, 2.0f)]
 	public float kickDelay;              // 踢动画开始到实际踢出炸弹的延迟
 
+	[Header("Throw Settings")]
+	[Range(0, 3)]
+	public float minThrowSpeedY;         // 垂直方向的最小投掷速度（和单位速度比较）
+	[Range(0, 3)]
+	public float maxThrowSpeedY;         // 垂直方向的最大投掷速度（和单位速度比较）
+	[Range(0, 10)]
+	public float maxChargeTime;          // 最大蓄力时间
+
 	[Header("Other Settings")]
 	public GameObject ice;               // 角色被冰冻时启用
 
 	private Action curState;
-	// private Cannon nearbyCannon;
+
+	private bool useThrow;               // 启用后投掷会代替踢的动作
 
 	#region 强制移动相关
 	private Vector3 forcedMoveDir;
@@ -85,7 +92,28 @@ public class PlayerController : PushableObject
     private void Start()
     {
 		overlayCam = GameObject.Find("OverlayCam").GetComponent<Camera>();
-		canvasTransform = GameObject.Find("CameraCanvas").GetComponent<RectTransform>();
+
+		switch (InOutGameRoomInfo.Instance.currentMap.index)
+		{
+			case 1:
+				{
+					//雪地
+					useThrow = false;
+					break;
+				}
+			case 2:
+				{
+					//万圣节
+					useThrow = true;
+					break;
+				}
+			case 3:
+				{
+					//糖果城堡
+					useThrow = true;
+					break;
+				}
+		}
 	}
 
     private void OnDestroy()
@@ -162,13 +190,24 @@ public class PlayerController : PushableObject
 
 	}
 
+	private bool waitForThrowing = true;
+
 	/// <summary>
 	/// Kick the bomb into specific direction
+	/// Or start throwing
 	/// </summary>
 	public void Kick()
 	{
 		if (!CheckAnimatorState("Push Idle", "Push Run")) return;
 		if (pushController.GetCarriedType() != PushableObject.CarryType.Bomb) return;
+
+		if (useThrow)
+        {
+			// 开始投掷动画，但并没有真的开始投掷
+			waitForThrowing = false;
+			ChangeState(Action.Kick);
+			return;
+        }
 
 		Vector3 clickPosition;
 		if (LocateMousePosition(out clickPosition))
@@ -178,6 +217,29 @@ public class PlayerController : PushableObject
 
 			ChangeState(Action.Kick);
 			pushController.Kick(kickSpeed, rotateTime, kickDelay, direction.normalized);
+		}
+	}
+
+	public void Throw(float chargeTime)
+    {
+		if (!useThrow && waitForThrowing) return;
+		if (pushController.GetCarriedType() != PushableObject.CarryType.Bomb) return;
+
+		Vector3 clickPosition;
+		if (LocateMousePosition(out clickPosition))
+		{
+			Vector3 direction = clickPosition - transform.position;
+			direction.y = 0f;
+
+			float throwSpeedY;
+			if (chargeTime > maxChargeTime) chargeTime = maxChargeTime;
+			throwSpeedY = chargeTime / maxChargeTime * (maxThrowSpeedY - minThrowSpeedY) + minThrowSpeedY;
+			Debug.Log(throwSpeedY);
+
+			Vector3 initialVelocity = direction.normalized + new Vector3(0f, throwSpeedY, 0f);
+			pushController.Kick(kickSpeed, rotateTime, kickDelay, initialVelocity.normalized);
+
+			waitForThrowing = true;
 		}
 	}
 
@@ -262,12 +324,11 @@ public class PlayerController : PushableObject
 	public void UpdateAnimatorParams()
 	{
 		playerAnimator.SetFloat("MovingSpeed", (new Vector2(playerRigidbody.velocity.x, playerRigidbody.velocity.z)).magnitude);
-		playerAnimator.SetBool("IsKick", curState == Action.Kick);
+		playerAnimator.SetBool("IsKick", curState == Action.Kick && !useThrow);
 		playerAnimator.SetBool("IsPushing", curState == Action.Pushing);
-		playerAnimator.SetBool("IsFiring", curState == Action.FillingCannon);
 		playerAnimator.SetBool("IsFrozen", curState == Action.Frozen);
 		playerAnimator.SetBool("IsDead", curState == Action.Reborn);
-		//playerAnimator.SetBool("IsForcedMove", curState == Action.ForcedMove);
+		playerAnimator.SetBool("IsThrow", curState == Action.Kick && useThrow);
 	}
 
 	/// <summary>
@@ -444,7 +505,7 @@ public class PlayerController : PushableObject
 
 		Ray ray = Camera.main.ScreenPointToRay(newMousePos);
 		RaycastHit hit;
-		if (Physics.Raycast(ray, out hit, 1000, LayerMask.GetMask("Ground")))
+		if (Physics.Raycast(ray, out hit, 1000))
 		{
 			position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
 			return true;
@@ -455,6 +516,11 @@ public class PlayerController : PushableObject
 			return false;
 		}
 	}
+
+    private void OnValidate()
+    {
+		if (maxThrowSpeedY < minThrowSpeedY) maxThrowSpeedY = minThrowSpeedY;
+    }
 }
 
 /// <summary>
@@ -466,7 +532,7 @@ public enum Action
 	FreeRun = 1,
 	Pushing = 2,
 	Frozen = 3,
-	Kick = 4,
+	Kick = 4,           // 包括踢和投掷
 	FillingCannon = 5,
 	Reborn = 6,
 	ForcedMove = 7,     // 强制移动

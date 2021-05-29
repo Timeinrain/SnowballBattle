@@ -46,12 +46,7 @@ public class Character : MonoBehaviourPun
 	/// <summary>
 	/// 暂时性的地图枚举
 	/// </summary>
-	private enum MapType
-    {
-		Snow,
-		Others
-    }
-	private MapType mapType = MapType.Snow;
+	private int mapIndex;
 
 	public int Health
 	{
@@ -62,6 +57,7 @@ public class Character : MonoBehaviourPun
 	{
 		Health = maxHealth;
 		team = playerInfo.team;
+		mapIndex = InOutGameRoomInfo.Instance.currentMap.index;
 	}
 
 	private void Update()
@@ -80,13 +76,26 @@ public class Character : MonoBehaviourPun
 		damaged?.Invoke(id, damage);
 		if (Health <= 0)
 		{
-			if (mapType == MapType.Snow)
+            switch (mapIndex)
             {
-				Freeze();
-			}
-            else
-            {
-				Die();
+				case 1:
+					{
+						//雪地
+						Freeze();
+						break;
+					}
+				case 2:
+					{
+						//万圣节
+						Die();
+						break;
+					}
+				case 3:
+					{
+						//糖果城堡
+						Die();
+						break;
+					}
 			}
 		}
 	}
