@@ -13,6 +13,9 @@ public class InputHandler : MonoBehaviourPun
 	[SerializeField] public KeyCode kick;
 	[SerializeField] public KeyCode fire;
 
+	private bool isMouseDown = false;
+	private float chargeTimer = 0f;     // 记录蓄力时间
+
 	private void Awake()
 	{
 		if (PhotonNetwork.IsConnected && !photonView.IsMine) return;
@@ -23,9 +26,19 @@ public class InputHandler : MonoBehaviourPun
     {
 		if (PhotonNetwork.IsConnected && !photonView.IsMine) return;
 
-		if (Input.GetKeyDown(kick))
+		if (Input.GetMouseButtonDown(0))
 		{
+			// 左键点击
+			isMouseDown = true;
+			chargeTimer = 0f;
 			playerController.Kick();
+		}
+        if (Input.GetMouseButtonUp(0) || chargeTimer >= playerController.maxChargeTime)
+        {
+			// 松开左键或到达蓄力时间上限强制松开
+			isMouseDown = false;
+			playerController.Throw(chargeTimer);
+			chargeTimer = 0f;
 		}
 		if (Input.GetKeyDown(startPush))
 		{
@@ -40,6 +53,11 @@ public class InputHandler : MonoBehaviourPun
 	private void FixedUpdate()
 	{
 		if (PhotonNetwork.IsConnected && !photonView.IsMine) return;
+
+        if (isMouseDown)
+        {
+			chargeTimer += Time.fixedDeltaTime;
+        }
 		var xV = Input.GetAxisRaw("Horizontal");
 		var yV = Input.GetAxisRaw("Vertical");
 		playerController.Move(xV, yV);

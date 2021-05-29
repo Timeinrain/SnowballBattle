@@ -84,6 +84,7 @@ public class PushableObject : MonoBehaviourPun
 	/// <param name="flag"></param>
 	public void SetPositionLock(bool flag)
 	{
+		return; // TODO: 是否需要锁定
 		if (flag)
 		{
 			objectRigidbody.constraints = RigidbodyConstraints.FreezeAll;

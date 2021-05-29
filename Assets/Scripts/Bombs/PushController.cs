@@ -57,7 +57,7 @@ public class PushController : MonoBehaviourPun
 	}
 
 	[PunRPC]
-	public void Kick(float bombShootSpeed, float kickDelay,Vector3 forwardDir)
+	public void Kick(float bombShootSpeed, float rotateTime, float kickDelay, Vector3 forwardDir)
 	{
 		if (carriedObject != null && !waitForCarrying)
 		{
@@ -67,6 +67,7 @@ public class PushController : MonoBehaviourPun
 			Bomb bomb = carriedObject.GetComponent<Bomb>();
             if (bomb != null)
 			{
+				StartCoroutine(RotateToTarget(bomb, forwardDir, rotateTime));
 				PhotonView bombView = PhotonView.Get(bomb);
 				bomb.DelayShoot(forwardDir * bombShootSpeed, kickDelay);
 				bomb.Detach();
@@ -77,10 +78,19 @@ public class PushController : MonoBehaviourPun
 		}
 	}
 
-	public PushableObject GetCarried()
-	{
-		return carriedObject;
-	}
+	private IEnumerator RotateToTarget(Bomb bomb, Vector3 targetDir, float time)
+    {
+		Vector3 originDir = playerController.transform.forward;
+		for (float timer = 0f; timer <= time; timer += Time.deltaTime)
+        {
+			//PhotonView bombView = PhotonView.Get(bomb);
+			bomb.UpdateTransform(bombCarryPoint.position, bombCarryPoint.rotation);
+			//bombView.RPC("UpdateTransform", RpcTarget.Others, bombCarryPoint.position, bombCarryPoint.rotation);
+
+			playerController.transform.forward = Vector3.Slerp(originDir, targetDir, timer / time);
+			yield return null;
+		}
+    }
 
 	/// <summary>
 	/// 返回一个范围内最近的可以推动的物体
@@ -133,11 +143,6 @@ public class PushController : MonoBehaviourPun
 	{
 		carriedObject = null;
 	}
-
-	public void StopPlayerPushing()
-    {
-		playerController.StopPushing();
-    }
 
 	/// <summary>
 	/// 让PushController获得推动的物体
