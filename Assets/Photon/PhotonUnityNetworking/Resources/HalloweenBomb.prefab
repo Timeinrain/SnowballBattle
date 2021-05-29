@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: -7593978621858288775}
   - component: {fileID: -6645725658537611961}
   - component: {fileID: 1244470715029150604}
+  - component: {fileID: 2212234946426298268}
   m_Layer: 11
   m_Name: HalloweenBomb
   m_TagString: Bomb
@@ -577,6 +578,20 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 1
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &2212234946426298268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5889036278040675372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3979dc573dcb01d41872b2685da15c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpInterval: 1.5
+  jumpStrength: 15
 --- !u!1 &6243812481935254861
 GameObject:
   m_ObjectHideFlags: 0
@@ -5414,7 +5429,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 12fb1d84a82a2de4f8b3e8b1f2747b43, type: 2}
+  - {fileID: 2100000, guid: 9dffbc0b9b36468498cd6de67ec297c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15275,7 +15290,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 47.884216, z: 5.77e-43, w: 1.024e-42}
+  m_BoundingSphereOverride: {x: 0, y: 4.48e-43, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -15502,7 +15517,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.69569504, b: 0.6, a: 1}
+      maxColor: {r: 0.35499156, g: 0, b: 0.4509804, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -20117,7 +20132,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 12fb1d84a82a2de4f8b3e8b1f2747b43, type: 2}
+  - {fileID: 2100000, guid: 223ce1a1d829e9a45b6aa22129e026e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -59718,9 +59733,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a0dc54a6a71ace42a42204a87424777, type: 3}
---- !u!1 &6022042442184633266 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -2834154742201862810, guid: 7a0dc54a6a71ace42a42204a87424777, type: 3}
+--- !u!4 &915112033300609343 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7a0dc54a6a71ace42a42204a87424777, type: 3}
   m_PrefabInstance: {fileID: 808845793710317268}
   m_PrefabAsset: {fileID: 0}
 --- !u!23 &2702082601207057040 stripped
@@ -59733,8 +59748,8 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -168655372697024844, guid: 7a0dc54a6a71ace42a42204a87424777, type: 3}
   m_PrefabInstance: {fileID: 808845793710317268}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &915112033300609343 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7a0dc54a6a71ace42a42204a87424777, type: 3}
+--- !u!1 &6022042442184633266 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -2834154742201862810, guid: 7a0dc54a6a71ace42a42204a87424777, type: 3}
   m_PrefabInstance: {fileID: 808845793710317268}
   m_PrefabAsset: {fileID: 0}

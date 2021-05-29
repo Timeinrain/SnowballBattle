@@ -61,7 +61,7 @@ namespace core.zqc.bombs
 				//fresnel 2-0  speed 0.5 - 3
 				if (countdownTimer <= 3)
 				{
-					GetComponent<BombWarning>().StartExplosion();
+					GetComponent<BombWarning>().StartWarning();
 				}
 
 				// œ‘ æµπº∆ ±
