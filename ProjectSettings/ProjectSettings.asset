@@ -15,7 +15,7 @@ PlayerSettings:
   companyName: "\u9EBB\u8FA3\u9EBB\u85AF"
   productName: MochiBattle
   defaultCursor: {fileID: 2800000, guid: a4a8026178d08984f96704fd21dd43f9, type: 3}
-  cursorHotspot: {x: 0, y: 0}
+  cursorHotspot: {x: 20, y: 2}
   m_SplashScreenBackgroundColor: {r: 0.47592562, g: 0.80502856, b: 0.8773585, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1

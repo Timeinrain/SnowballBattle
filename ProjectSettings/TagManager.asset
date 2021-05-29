@@ -12,6 +12,7 @@ TagManager:
   - MinimapCamera
   - Ground
   - Settings
+  - AudioMgr
   layers:
   - Default
   - TransparentFX
