@@ -15091,7 +15091,7 @@ PrefabInstance:
     - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: bombPrefab
       value: 
-      objectReference: {fileID: 5889036278040675372, guid: c20971d8dc8dfa14c95b7947519af075, type: 3}
+      objectReference: {fileID: 5889036278040675372, guid: 82523a651ab71864382af013d7e78da2, type: 3}
     - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: linkedGenerator
       value: 
@@ -16124,7 +16124,7 @@ PrefabInstance:
     - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: bombPrefab
       value: 
-      objectReference: {fileID: 5889036278040675372, guid: c20971d8dc8dfa14c95b7947519af075, type: 3}
+      objectReference: {fileID: 5889036278040675372, guid: 82523a651ab71864382af013d7e78da2, type: 3}
     - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: linkedGenerator
       value: 
