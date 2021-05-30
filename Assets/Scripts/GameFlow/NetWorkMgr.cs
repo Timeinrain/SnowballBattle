@@ -255,7 +255,7 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 	public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
 	{
 		base.OnPlayerEnteredRoom(newPlayer);
-		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().InsertNewPlayer(newPlayer.NickName, Team.Blue);
+		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().InsertNewPlayer(newPlayer.NickName, Team.Green);
 		if (!PhotonNetwork.LocalPlayer.IsMasterClient) return;
 		//让新玩家同步当前的房间玩家信息
 		var playerInfos = UIMgr._Instance.inRoomUI.GetComponent<InRoom>().playerInfos;
@@ -368,7 +368,7 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 	[PunRPC]
 	public void SyncInRoomPlayerInfo(string playerId, int teamNum, int posIndex)
 	{
-		Dictionary<int, Team> intToTeam = new Dictionary<int, Team> { { 0, Team.Blue }, { 3, Team.Green }, { 1, Team.Red }, { 2, Team.Yellow } };
+		Dictionary<int, Team> intToTeam = new Dictionary<int, Team> { { 0, Team.Green }, { 1, Team.Red } };
 		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().InsertNewPlayer(playerId, intToTeam[teamNum], posIndex);
 		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().MasterClientCheck();
 		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().OnRoomMasterSwitched(PhotonNetwork.CurrentRoom.Players[PhotonNetwork.CurrentRoom.MasterClientId].NickName);
@@ -383,7 +383,7 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 	[PunRPC]
 	public void SwitchTeam(int targetTeamIndex, string whichPlayer)
 	{
-		Dictionary<int, Team> teamMap = new Dictionary<int, Team> { { 0, Team.Blue }, { 1, Team.Red }, { 2, Team.Yellow }, { 3, Team.Green } };
+		Dictionary<int, Team> teamMap = new Dictionary<int, Team> { { 0, Team.Green }, { 1, Team.Red }};
 		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().SwitchTeam(teamMap[targetTeamIndex], whichPlayer);
 	}
 

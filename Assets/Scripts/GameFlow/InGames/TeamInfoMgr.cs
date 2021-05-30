@@ -25,9 +25,7 @@ public sealed class TeamInfoMgr : MonoBehaviourPun
 /// </summary>
 public enum Team
 {
-	Blue = 0,
+	Green = 0,
 	Red = 1,
-	Yellow = 2,
-	Green = 3,
-	Null = 4,
+	Null = 2,
 }

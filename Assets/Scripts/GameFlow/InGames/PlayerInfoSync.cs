@@ -35,11 +35,7 @@ public class PlayerInfoSync : MonoBehaviourPun
 	[FoldoutGroup("Sprites")]
 	public Material red;
 	[FoldoutGroup("Sprites")]
-	public Material yellow;
-	[FoldoutGroup("Sprites")]
 	public Material green;
-	[FoldoutGroup("Sprites")]
-	public Material blue;
 
 	private void OnEnable()
 	{
@@ -74,7 +70,7 @@ public class PlayerInfoSync : MonoBehaviourPun
 	{
 		thisCharacter = GetComponent<Character>();
 		thisCharacter.playerInfo = InOutGameRoomInfo.Instance.GetPlayerByName(InOutGameRoomInfo.Instance.localPlayerId);
-		Dictionary<Team, Material> teamSpriteMap = new Dictionary<Team, Material> { { Team.Blue, blue }, { Team.Green, green }, { Team.Yellow, yellow }, { Team.Red, red } };
+		Dictionary<Team, Material> teamSpriteMap = new Dictionary<Team, Material> { { Team.Green, green }, { Team.Red, red } };
 		GameObject teamObject = PhotonMasterMgr._Instance.teamPosMap[thisCharacter.playerInfo.team];
 		transform.SetParent(teamObject.transform);
 		thisCharacter.playerInfo.Instance = gameObject;
@@ -92,7 +88,7 @@ public class PlayerInfoSync : MonoBehaviourPun
 			thisCharacter.id = photonView.Owner.NickName;
 			Player playerInfo = InOutGameRoomInfo.Instance.GetPlayerByName(photonView.Owner.NickName);
 			thisCharacter.playerInfo = playerInfo;
-			Dictionary<Team, Material> teamSpriteMap = new Dictionary<Team, Material> { { Team.Blue, blue }, { Team.Green, green }, { Team.Yellow, yellow }, { Team.Red, red } };
+			Dictionary<Team, Material> teamSpriteMap = new Dictionary<Team, Material> { { Team.Green, green },{ Team.Red, red } };
 			GameObject teamObject = PhotonMasterMgr._Instance.teamPosMap[thisCharacter.playerInfo.team];
 			transform.SetParent(teamObject.transform);
 			thisCharacter.playerInfo.Instance = gameObject;

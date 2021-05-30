@@ -18,7 +18,7 @@ public class ClientInfo
 	/// </summary>
 	/// <param name="uName"></param>
 	/// <param name="uPwd"></param>
-	public void SetInfo(string uName, string uPwd, string rId = "", Team t = Team.Blue)
+	public void SetInfo(string uName, string uPwd, string rId = "", Team t = Team.Green)
 	{
 		userName = uName;
 		password = uPwd;
