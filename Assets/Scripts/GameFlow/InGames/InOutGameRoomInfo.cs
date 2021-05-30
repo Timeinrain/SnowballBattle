@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using Photon.Pun;
 
 public class InOutGameRoomInfo : MonoBehaviour
 {
@@ -12,11 +13,45 @@ public class InOutGameRoomInfo : MonoBehaviour
 	public string localPlayerId;
 	public Map currentMap;
 
+	public bool isSettlement = false;
+
+	public float currTime = 0;
+
 	private void Awake()
 	{
 		DontDestroyOnLoad(gameObject);
 		inRoomPlayerInfos = new List<Player>() { };
 		Instance = this;
+	}
+
+	public void StartGameTiming()
+	{
+		StartCoroutine(Timer());
+	}
+
+	IEnumerator Timer()
+	{
+		while (true)
+		{
+			currTime += Time.deltaTime;
+			if (PhotonNetwork.LocalPlayer.IsMasterClient)
+			{
+				if (currTime >= 180)
+				{
+					isSettlement = true;
+					currTime = 0;
+					ExitGameRound();
+					break;
+				}
+			}
+			yield return new WaitForEndOfFrame();
+		}
+	}
+
+	public void ExitGameRound()
+	{
+		PhotonNetwork.LoadLevel(0);
+
 	}
 
 	public void SetInRoomPlayerInfos(List<PlayerInfoInRoom> src)

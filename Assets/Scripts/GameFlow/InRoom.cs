@@ -126,7 +126,6 @@ public class InRoom : PanelBase
 	{
 		inOutGameRoomInfo.SetInRoomPlayerInfos(playerInfos);
 		inOutGameRoomInfo.currentMap = mapInfo;
-		NetWorkMgr._Instance.photonView.RPC("SyncMapInfo", RpcTarget.All, mapInfo.index);
 	}
 
 	/// <summary>
@@ -199,6 +198,7 @@ public class InRoom : PanelBase
 	{
 		mapInfo = _mapInfo;
 		inOutGameRoomInfo.currentMap = _mapInfo;
+		NetWorkMgr._Instance.photonView.RPC("SyncMapInfo", RpcTarget.All, (int)mapInfo.index);
 	}
 
 	/// <summary>

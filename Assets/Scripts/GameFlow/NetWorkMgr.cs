@@ -68,6 +68,23 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 		PhotonNetwork.SendRate = 90;
 	}
 
+	private void Update()
+	{
+		if (InOutGameRoomInfo.Instance.isSettlement)
+		{
+			InOutGameRoomInfo.Instance.isSettlement = false;
+			Settle();
+		}
+	}
+
+	/// <summary>
+	/// Ω·À„ΩÁ√Ê
+	/// </summary>
+	public void Settle()
+	{
+		print("Settle");
+	}
+
 	// 1Todos====================
 	#region Subjective Calls
 	/// <summary>
@@ -375,7 +392,7 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 	}
 
 	[PunRPC]
-	public void SyncMapInfo(byte index)
+	public void SyncMapInfo(int index)
 	{
 		foreach(var map in GlobalMapInfoMgr.Instance.readInMaps)
 		{
