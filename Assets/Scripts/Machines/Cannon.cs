@@ -43,13 +43,22 @@ public class Cannon : MonoBehaviour
 			if (falseBombsWatchList.Contains(other.gameObject))
 				return;
 
-			other.gameObject.GetComponent<Bomb>().SetPushable(false);
-			other.gameObject.GetComponent<Bomb>().StopExplosionCountdown();
-			other.gameObject.GetComponent<Bomb>().StopCarrierPushing();
-			if (other.gameObject.GetComponent<Bomb>().snowPathFX != null)
-				other.gameObject.GetComponent<Bomb>().DetachBombPath();
-			other.gameObject.SetActive(false);     // 隐藏炸弹
-			bombsPool.Enqueue(other.gameObject);
+			Bomb bomb = other.gameObject.GetComponent<Bomb>();
+
+			PlayerController player = bomb.GetLastCarrier();
+			if (player != null && owner == player.GetComponent<Character>().GetTeam())
+            {
+				// 投入同队的大炮，得分
+				player.GetComponent<Character>().ScoreFillCannon();
+            }
+
+			bomb.SetPushable(false);
+			bomb.StopExplosionCountdown();
+			bomb.StopCarrierPushing();
+			if (bomb.snowPathFX != null)
+				bomb.DetachBombPath();
+			bomb.gameObject.SetActive(false);     // 隐藏炸弹
+			bombsPool.Enqueue(bomb.gameObject);
 		}
 	}
 

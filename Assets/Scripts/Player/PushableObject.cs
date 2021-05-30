@@ -16,6 +16,7 @@ public class PushableObject : MonoBehaviourPun
 	bool isPushable = true;
 	Rigidbody objectRigidbody;
 	PlayerController carrier = null;
+	PlayerController lastCarrier = null;
 	public CarryType type { get; set; }
 
 	protected virtual void Awake()
@@ -42,6 +43,7 @@ public class PushableObject : MonoBehaviourPun
 		position.y = transform.position.y;
 		objectRigidbody.MovePosition(position);
 		objectRigidbody.MoveRotation(rotation);
+		objectRigidbody.transform.up = Vector3.up;
 	}
 
 	[PunRPC]
@@ -50,7 +52,12 @@ public class PushableObject : MonoBehaviourPun
 	/// </summary>
 	public void Attach(PlayerController owner)
 	{
+		if (type == CarryType.Bomb)
+        {
+			owner.GetComponent<Character>().ScoreGetBomb();
+        }
 		carrier = owner;
+		lastCarrier = owner;
 		objectRigidbody.gameObject.GetPhotonView().RequestOwnership();
 	}
 
@@ -113,4 +120,9 @@ public class PushableObject : MonoBehaviourPun
 	{
 		return isPushable;
 	}
+
+	public PlayerController GetLastCarrier()
+    {
+		return lastCarrier;
+    }
 }

@@ -102,7 +102,7 @@ public class PlayerController : PushableObject
 			case 1:
 				{
 					//Ñ©µØ
-					useThrow = false;
+					useThrow = true;
 					break;
 				}
 			case 2:

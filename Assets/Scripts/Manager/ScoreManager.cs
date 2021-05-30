@@ -18,15 +18,20 @@ public class ScoreManager : MonoBehaviourPun
 
     class TeamScoreInfo
     {
-        public int playerNum = 0;
-        public int frozenNum = 0;
-        public int deathCount = 0;
         public int killCount = 0;
+    }
+    class PlayerScoreInfo
+    {
+        public int fillCannonCount = 0;
+        public int getBombCount = 0;
+        public int deathCount = 0;
+        public int hurtCount = 0;
     }
 
     private Player currentPlayer;
     private Dictionary<string, Team> idTeamTable = new Dictionary<string, Team>();
     private Dictionary<Team, TeamScoreInfo> teamScores = new Dictionary<Team, TeamScoreInfo>();
+    private Dictionary<string, PlayerScoreInfo> playerScores = new Dictionary<string, PlayerScoreInfo>();
 
     private void Start()
     {
@@ -34,13 +39,6 @@ public class ScoreManager : MonoBehaviourPun
         currentPlayer = InOutGameRoomInfo.Instance.GetPlayerByName(PhotonNetwork.LocalPlayer.NickName);
 
         // 初始化UI
-        if (!PhotonNetwork.LocalPlayer.IsMasterClient)
-        {
-            // 非主机情况
-            // 这里直接视为只有红队和蓝队
-            teamScores.Add(Team.Blue, new TeamScoreInfo());
-            teamScores.Add(Team.Red, new TeamScoreInfo());
-        }
         textKillCount.text = "Team Kill Count: 0";
     }
 
@@ -68,21 +66,18 @@ public class ScoreManager : MonoBehaviourPun
     {
         IsGameStart = false;
 
-        foreach(var key in teamScores.Keys)
-        {
-            teamScores[key] = new TeamScoreInfo();
-        }
-    }
+        idTeamTable = new Dictionary<string, Team>();
+        teamScores = new Dictionary<Team, TeamScoreInfo>();
+        playerScores = new Dictionary<string, PlayerScoreInfo>();
+}
 
     private void AddCharacter(Team team, Character character)
     {
         idTeamTable.Add(character.id, team);
-        RegisterEventsForCharacter(character);
-
         if (!teamScores.ContainsKey(team))
             teamScores.Add(team, new TeamScoreInfo());
-
-        teamScores[team].playerNum++;
+        playerScores.Add(character.id, new PlayerScoreInfo());
+        RegisterEventsForCharacter(character);
     }
 
     private void RegisterEventsForCharacter(Character character)
@@ -91,43 +86,43 @@ public class ScoreManager : MonoBehaviourPun
             return;
 
         character.died += AddDeathCount;
-        character.frozen += AddFrozen;
-        character.unfrozen += AddUnfrozen;
+        character.damaged += AddHurtCount;
+        character.filledCannon += AddFillCannonCount;
+        character.gotBomb += AddGetBombCount;
     }
 
     private void AddDeathCount(string id)
     {
         Team team = idTeamTable[id];
         Team hostile = GetHostileTeam(team);
-        teamScores[team].deathCount++;
+        playerScores[id].deathCount++;
         teamScores[hostile].killCount++;  // 死亡会给敌对的队伍增加击杀数
-        UpdateScore();
+        UpdateScoreUI();
 
         // 向客户端发起同步
         photonView.RPC("SyncKillCount", RpcTarget.Others, hostile, teamScores[hostile].killCount);
+    }
+
+    private void AddFillCannonCount(string id)
+    {
+        playerScores[id].fillCannonCount++;
+    }
+
+    private void AddGetBombCount(string id)
+    {
+        playerScores[id].getBombCount++;
+    }
+
+    private void AddHurtCount(string id, int damage)
+    {
+        playerScores[id].hurtCount++;
     }
 
     [PunRPC]
     private void SyncKillCount(Team team, int value)
     {
         teamScores[team].killCount = value;
-        UpdateScore();
-    }
-
-    private void AddFrozen(string id)
-    {
-        Team team = idTeamTable[id];
-        teamScores[team].frozenNum++;
-
-        UpdateScore();
-    }
-
-    private void AddUnfrozen(string id)
-    {
-        Team team = idTeamTable[id];
-        teamScores[team].frozenNum--;
-
-        UpdateScore();
+        UpdateScoreUI();
     }
 
     private static Team GetHostileTeam(Team team)
@@ -135,26 +130,6 @@ public class ScoreManager : MonoBehaviourPun
         if (team == Team.Red) return Team.Blue;
         if (team == Team.Blue) return Team.Red;
         else return Team.Null;
-    }
-
-    /// <summary>
-    /// 获取队伍总人数
-    /// </summary>
-    /// <param name="team"></param>
-    /// <returns></returns>
-    public int GetTeamPlayerNum(Team team)
-    {
-        return teamScores[team].playerNum;
-    }
-
-    /// <summary>
-    /// 获取队伍被冰冻住人员的数量
-    /// </summary>
-    /// <param name="team"></param>
-    /// <returns></returns>
-    public int GetTeamFrozenNum(Team team)
-    {
-        return teamScores[team].frozenNum;
     }
 
     /// <summary>
@@ -167,7 +142,7 @@ public class ScoreManager : MonoBehaviourPun
         return teamScores[team].killCount;
     }
 
-    public void UpdateScore()
+    public void UpdateScoreUI()
     {
         textKillCount.text = "Team Kill Count:" + GetTeamKillCount(currentPlayer.team).ToString();
     }

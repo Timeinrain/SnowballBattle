@@ -34,6 +34,7 @@ public class Character : MonoBehaviourPun
 	public event System.Action<string> frozen, unfrozen, died, respawned;
 	public event System.Action<string, int> healed, damaged;
 	public event System.Action<Vector3, bool> affectedByExplosion;        // 被爆炸波及：Vector3表示伤害来源炸弹的坐标, bool表示当次是否被冰冻
+	public event System.Action<string> gotBomb, filledCannon;
 
 	private Team team;
 
@@ -223,4 +224,14 @@ public class Character : MonoBehaviourPun
     {
 		return surviveTimeAfterFrozen - surviveTimer;
     }
+
+	public void ScoreFillCannon()
+    {
+		filledCannon?.Invoke(id);
+    }
+
+	public void ScoreGetBomb()
+    {
+		gotBomb?.Invoke(id);
+	}
 }

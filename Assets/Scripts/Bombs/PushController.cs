@@ -11,14 +11,43 @@ using core.zqc.bombs;
 public class PushController : MonoBehaviourPun
 {
 	public PlayerController playerController;
-	public Transform bombCarryPoint;           // 炸弹放置的位置
+	public Transform bombCarryPoint;           // (推动时)炸弹放置的位置
+	public Transform bombThrowPoint;           // (投掷时)炸弹放置的位置
 	public Transform frozenAllyCarryPoint;     // 被冰冻的队友放置的位置
 
-	public List<PushableObject> pushableInRange = new List<PushableObject>();
+	List<PushableObject> pushableInRange = new List<PushableObject>();
 	PushableObject carriedObject = null;
 	bool waitForCarrying = false;
 
-	private void OnTriggerEnter(Collider other)
+	bool useThrow = false;
+
+    private void Start()
+    {
+		int mapIndex = InOutGameRoomInfo.Instance.currentMap.index;
+		switch (mapIndex)
+		{
+			case 1:
+				{
+					//雪地
+					useThrow = true;
+					break;
+				}
+			case 2:
+				{
+					//万圣节
+					useThrow = true;
+					break;
+				}
+			case 3:
+				{
+					//糖果城堡
+					useThrow = true;
+					break;
+				}
+		}
+	}
+
+    private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Bomb") || other.CompareTag("Player"))
 		{
@@ -43,9 +72,18 @@ public class PushController : MonoBehaviourPun
 		{
 			if (carriedObject.type == PushableObject.CarryType.Bomb)
 			{
-				PhotonView bombView = PhotonView.Get(carriedObject);
-				carriedObject.UpdateTransform(bombCarryPoint.position, bombCarryPoint.rotation);
-				bombView.RPC("UpdateTransform", RpcTarget.Others, bombCarryPoint.position, bombCarryPoint.rotation);
+                if (!useThrow)
+                {
+					PhotonView bombView = PhotonView.Get(carriedObject);
+					carriedObject.UpdateTransform(bombCarryPoint.position, bombCarryPoint.rotation);
+					bombView.RPC("UpdateTransform", RpcTarget.Others, bombCarryPoint.position, bombCarryPoint.rotation);
+				}
+                else
+                {
+					PhotonView bombView = PhotonView.Get(carriedObject);
+					carriedObject.UpdateTransform(bombThrowPoint.position, bombThrowPoint.rotation);
+					bombView.RPC("UpdateTransform", RpcTarget.Others, bombThrowPoint.position, bombThrowPoint.rotation);
+				}
 			}
 			else if (carriedObject.type == PushableObject.CarryType.Player)
 			{
@@ -88,6 +126,7 @@ public class PushController : MonoBehaviourPun
 			//bombView.RPC("UpdateTransform", RpcTarget.Others, bombCarryPoint.position, bombCarryPoint.rotation);
 
 			playerController.transform.forward = Vector3.Slerp(originDir, targetDir, timer / time);
+			//playerController.transform.up = Vector3.up;
 			yield return null;
 		}
     }
