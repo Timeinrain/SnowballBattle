@@ -15,13 +15,13 @@ public class InOutGameRoomInfo : MonoBehaviour
 	public string localPlayerId;
 	public Map currentMap;
 
+	public int prefabIndex = 0;
+
 	[ShowInInspector]
 	public InOutGameRoomSyncData syncData;
 
 	public bool isSettlement = false;
 	public bool isVictory = false;
-
-	public float currTime = 0;
 
 	private void Awake()
 	{
@@ -35,34 +35,10 @@ public class InOutGameRoomInfo : MonoBehaviour
 		Instance = this;
 	}
 
-	public void StartGameTiming()
-	{
-		StartCoroutine(Timer());
-	}
-
 	public void WakeMasterMgr()
 	{
 		if (PhotonMasterMgr._Instance != null)
 			PhotonMasterMgr._Instance.gameObject.SetActive(true);
-	}
-
-	IEnumerator Timer()
-	{
-		while (true)
-		{
-			currTime += Time.deltaTime;
-			if (PhotonNetwork.LocalPlayer.IsMasterClient)
-			{
-				if (currTime >= 180)
-				{
-					isSettlement = true;
-					currTime = 0;
-					ExitGameRound();
-					break;
-				}
-			}
-			yield return new WaitForEndOfFrame();
-		}
 	}
 
 	private void Update()
@@ -76,8 +52,7 @@ public class InOutGameRoomInfo : MonoBehaviour
 		PhotonMasterMgr._Instance.EndGame();
 		if (PhotonNetwork.LocalPlayer.IsMasterClient)
 		{
-			PhotonMasterMgr._Instance.photonView.RPC("ReturnToRoom", RpcTarget.AllBuffered);
-			inRoomPlayerInfos.Clear();
+			PhotonMasterMgr._Instance.photonView.RPC("StartSettlement", RpcTarget.All);
 		}
 		isSettlement = true;
 	}
@@ -114,7 +89,5 @@ public class InOutGameRoomInfo : MonoBehaviour
 	{
 		syncData = UIMgr._Instance.inRoomUI.GetComponent<InRoom>().SaveData();
 	}
-
-
 
 }

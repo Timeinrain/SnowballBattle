@@ -896,6 +896,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3254567024371953651, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 986733885}
+    - target: {fileID: 4649934996273424968, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1524007441}
+    - target: {fileID: 4649934996273424968, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_volume
+      objectReference: {fileID: 0}
+    - target: {fileID: 6267612324867713794, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+      propertyPath: audio
+      value: 
+      objectReference: {fileID: 1524007440}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
 --- !u!114 &76691901 stripped
@@ -920,6 +936,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &76691903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6267612324867713806, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+  m_PrefabInstance: {fileID: 76691900}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &76691904 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 310318322, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+  m_PrefabInstance: {fileID: 76691900}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &99351167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5300,6 +5326,9 @@ MonoBehaviour:
   GreenTeam: {fileID: 1224858228}
   localPlayer: {fileID: 0}
   roomInfo: {fileID: 0}
+  settlementUI: {fileID: 76691903}
+  timerUI: {fileID: 76691904}
+  currTime: 0
   scoreManager: {fileID: 0}
 --- !u!4 &524528721
 Transform:
@@ -8939,7 +8968,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 0}
+  sharedProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
 --- !u!4 &1021547553
 Transform:
   m_ObjectHideFlags: 0
@@ -12724,7 +12753,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 42a460e241734074282778ad4f265933, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -16271,6 +16300,7 @@ MonoBehaviour:
   currentTime: 0
   maxPlayers: 4
   scoreManager: {fileID: 2053709930}
+  startGame: 0
 --- !u!4 &2053709929
 Transform:
   m_ObjectHideFlags: 0

@@ -43,6 +43,8 @@ MonoBehaviour:
   - Kick
   - OnLoadingLevel
   - Respawn
+  - ReturnToRoom
+  - SaveData
   - StopExplosionCountdown
   - SwitchTeam
   - SyncInRoomPlayerInfo
@@ -53,8 +55,8 @@ MonoBehaviour:
   - Unfreeze
   - UpdateRoomMaster
   - UpdateTransform
-  - SaveData
-  - ReturnToRoom
+  - StartSettlement
+  - SyncTimer
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0

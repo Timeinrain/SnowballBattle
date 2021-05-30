@@ -23,10 +23,11 @@ public class SettingsPanel : PanelBase
 			UIMgr._Instance.inRoomUI.GetComponent<InRoom>().MochiInactive(true);
 		}
 	}
+
 	public override void Return()
 	{
 		if (lastPanel == null) {
-			throw new System.Exception("No lastPanel.");
+			gameObject.SetActive(false);
 		}
 		base.Return();
 	}

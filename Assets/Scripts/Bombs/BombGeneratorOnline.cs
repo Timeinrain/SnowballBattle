@@ -11,6 +11,8 @@ public class BombGeneratorOnline : MonoBehaviourPun
 	public bool autoGenerate = true;               // 是否自动生成炸弹，取消选择后只会被动接受大炮传入的炸弹
 	public GameObject bombString;
 
+	public static BombGeneratorOnline Instance;
+
 	[System.Serializable]
 	public class GeneratingArea
 	{
@@ -18,6 +20,12 @@ public class BombGeneratorOnline : MonoBehaviourPun
 		public float zOffset;
 		public float xWidth;
 		public float zWidth;
+	}
+
+	public void Awake()
+	{
+		if (Instance == null)
+			Instance = this;
 	}
 
 	/// <summary>

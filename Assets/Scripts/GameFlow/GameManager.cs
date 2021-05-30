@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviourPun
 
 	}
 
+	public bool startGame = false;
+
 	/// <summary>
 	/// Wait for all players to join the room
 	/// if any quit or dropped, remove it.
@@ -75,6 +77,7 @@ public class GameManager : MonoBehaviourPun
 			//如果全都进来了，就开始倒计时，开始游戏
 			if (PhotonNetwork.CountOfPlayersInRooms == maxPlayers) break;
 			else if (Input.GetKey(KeyCode.B)) break;//用于测试开始游戏，后期删除
+			else if (startGame) break;
 			else
 			{
 				foreach (var player in PhotonNetwork.PlayerList)

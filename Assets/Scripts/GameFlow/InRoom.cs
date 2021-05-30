@@ -8,6 +8,10 @@ using UnityEngine.UI;
 
 /// <summary>
 /// 整理一下
+/// 
+/// 0-mochi
+/// 1-halloween
+/// 2-sailor
 /// </summary>
 public class InRoom : PanelBase
 {
@@ -40,6 +44,12 @@ public class InRoom : PanelBase
 	public List<RectTransform> playerInfoPos;
 	public PlayerInfoInRoom masterPlayer;
 
+	public int indexOfSelectedCharacter = 0;
+	public List<GameObject> playerPrefabs;
+	public List<GameObject> specificMesh;
+	public List<Material> playerRedMats;
+	public List<Material> playerGreenMats;
+
 	public InOutGameRoomSyncData syncData;
 
 	#endregion
@@ -49,8 +59,6 @@ public class InRoom : PanelBase
 	[PreviewField]
 	public Image teamIndicator;
 	public Text playerNameUI;
-	[PreviewField]
-	public GameObject MochiCharacter;
 	public int indexOfCurrentTeam = 0;
 	#endregion
 
@@ -119,7 +127,7 @@ public class InRoom : PanelBase
 
 	public void RejoinRoomSyncData(InOutGameRoomSyncData datas)
 	{
-		MochiCharacter.SetActive(false);
+		playerPrefabs[indexOfSelectedCharacter].SetActive(false);
 		int cnt = 0;
 		while (cnt++ < datas.maxPlayers)
 			playerInfos.Add(null);
@@ -185,21 +193,44 @@ public class InRoom : PanelBase
 		InOutGameRoomInfo.Instance.currentMap = mapInfo;
 	}
 
-	/// <summary>
-	/// Call when Left switch Onclick
-	/// </summary>
-	public void SwitchLeft()
+	public void SwitchAnotherTeam()
 	{
-		if (indexOfCurrentTeam == 0)
-		{
-			indexOfCurrentTeam = maxTeamNum - 1;
-		}
+		if (indexOfCurrentTeam == 1) indexOfCurrentTeam = 0;
 		else
 		{
-			indexOfCurrentTeam--;
+			indexOfCurrentTeam = 1;
 		}
 		teamIndicator.sprite = teamIcon[indexOfCurrentTeam];
 		NetWorkMgr._Instance.UpdateTeamInfo(indexOfCurrentTeam, PhotonNetwork.LocalPlayer.NickName);
+		UpdateModelMats();
+	}
+
+	public void UpdateModelMats()
+	{
+		bool red = (indexOfCurrentTeam == 1);
+		foreach (var mesh in specificMesh)
+		{
+			mesh.GetComponent<SkinnedMeshRenderer>().material = red ? playerRedMats[specificMesh.IndexOf(mesh)] : playerGreenMats[specificMesh.IndexOf(mesh)];
+		}
+	}
+
+	/// <summary>
+	/// Call when Left switch Onclick
+	/// </summary>
+	[Button]
+	public void SwitchLeft()
+	{
+		indexOfSelectedCharacter--;
+		if (indexOfSelectedCharacter < 0)
+		{
+			indexOfSelectedCharacter += 3;
+		}
+		foreach(var model in playerPrefabs)
+		{
+			model.SetActive(false);
+		}
+		playerPrefabs[indexOfSelectedCharacter].SetActive(true);
+		InOutGameRoomInfo.Instance.prefabIndex = indexOfSelectedCharacter;
 	}
 
 	/// <summary>
@@ -207,16 +238,17 @@ public class InRoom : PanelBase
 	/// </summary>
 	public void SwitchRight()
 	{
-		if (indexOfCurrentTeam == maxTeamNum - 1)
+		indexOfSelectedCharacter++;
+		if (indexOfSelectedCharacter > 2)
 		{
-			indexOfCurrentTeam = 0;
+			indexOfSelectedCharacter -= 3;
 		}
-		else
+		foreach (var model in playerPrefabs)
 		{
-			indexOfCurrentTeam++;
+			model.SetActive(false);
 		}
-		teamIndicator.sprite = teamIcon[indexOfCurrentTeam];
-		NetWorkMgr._Instance.UpdateTeamInfo(indexOfCurrentTeam, PhotonNetwork.LocalPlayer.NickName);
+		playerPrefabs[indexOfSelectedCharacter].SetActive(true);
+		InOutGameRoomInfo.Instance.prefabIndex = indexOfSelectedCharacter;
 	}
 
 	/// <summary>
@@ -357,7 +389,7 @@ public class InRoom : PanelBase
 	/// <param name="active"></param>
 	public void MochiInactive(bool active = false)
 	{
-		MochiCharacter.SetActive(active);
+		playerPrefabs[indexOfSelectedCharacter].SetActive(active);
 	}
 
 	/// <summary>

@@ -42,10 +42,6 @@ public class ScoreManager : MonoBehaviourPun
         greenTeamKillCount.text = "0";
     }
 
-    private void Update()
-    {
-    }
-
     /// <summary>
     /// 开始游戏并初始化队伍数据
     /// </summary>
@@ -229,6 +225,18 @@ public class ScoreManager : MonoBehaviourPun
             GetPlayerHurtCount(id) * 3 -
             GetPlayerDeathCount(id) * 5;
     }
+
+    public Team GetTeam(bool isWinner)
+	{
+		if (GetTeamKillCount(Team.Red) > GetTeamKillCount(Team.Green))
+		{
+            return Team.Red;
+		}
+		else
+		{
+            return Team.Green;
+		}
+	}
 
     public void UpdateScoreUI()
     {

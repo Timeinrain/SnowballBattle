@@ -7,10 +7,13 @@ public class SettlementPanel : MonoBehaviour
 {
 	public GameObject victoryPanel;
 	public GameObject defeatPanel;
+	public GameObject audio;
+	public GameObject scoreDetail;
 
 	[Button]
 	public void StartSettle(bool victory)
 	{
+		audio.SetActive(false);
 		if (victory)
 		{
 			victoryPanel.SetActive(true);
@@ -29,8 +32,13 @@ public class SettlementPanel : MonoBehaviour
 		}
 	}
 
-	[Button]
+	public void ShowPlayerScore()
+	{
+		scoreDetail.SetActive(true);
+		scoreDetail.GetComponent<ScoresPanel>().StartSettle();
+	}
 
+	[Button]
 	public void ResetPanels()
 	{
 		victoryPanel.SetActive(false);
@@ -42,6 +50,6 @@ public class SettlementPanel : MonoBehaviour
 		Application.Quit();
 		victoryPanel.SetActive(false);
 		defeatPanel.SetActive(false);
-		UIMgr._Instance.PanelSwitchFromTo(gameObject, UIMgr._Instance.inRoomUI, null, false);
+		//UIMgr._Instance.PanelSwitchFromTo(gameObject, UIMgr._Instance.inRoomUI, null, false);
 	}
 }

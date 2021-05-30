@@ -13,6 +13,8 @@ TagManager:
   - Ground
   - Settings
   - AudioMgr
+  - SettlementUI
+  - TimerUI
   layers:
   - Default
   - TransparentFX

@@ -86,8 +86,11 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 	public void Settle()
 	{
 		isOnSettle = true;
+		UIMgr._Instance.loginUI.SetActive(false);
+		UIMgr._Instance.createRoomUI.SetActive(false);
 		UIMgr._Instance.settlementUI.SetActive(true);
 		UIMgr._Instance.settlementUI.GetComponent<SettlementPanel>().StartSettle(InOutGameRoomInfo.Instance.isVictory);
+		//UIMgr._Instance.settlementUI.GetComponent<SettlementPanel>().ShowPlayerScore();
 		//UIMgr._Instance.OnGameEndedRejoinRoom();
 		//UIMgr._Instance.inRoomUI.GetComponent<InRoom>().RejoinRoomSyncData(InOutGameRoomInfo.Instance.syncData);
 	}
