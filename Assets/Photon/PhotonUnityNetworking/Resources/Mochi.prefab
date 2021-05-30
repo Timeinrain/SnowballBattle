@@ -48,13 +48,13 @@ MonoBehaviour:
     Name: IsFrozen
   - Type: 4
     SynchronizeType: 2
-    Name: IsForcedMove
-  - Type: 4
-    SynchronizeType: 2
     Name: IsDead
   - Type: 4
     SynchronizeType: 2
     Name: IsThrow
+  - Type: 9
+    SynchronizeType: 2
+    Name: Hurt
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
@@ -681,13 +681,13 @@ MonoBehaviour:
     Name: IsFrozen
   - Type: 4
     SynchronizeType: 2
-    Name: IsForcedMove
-  - Type: 4
-    SynchronizeType: 2
     Name: IsDead
   - Type: 4
     SynchronizeType: 2
     Name: IsThrow
+  - Type: 9
+    SynchronizeType: 2
+    Name: Hurt
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
@@ -875,6 +875,8 @@ MonoBehaviour:
   minThrowSpeedY: 0.1
   maxThrowSpeedY: 2.5
   maxChargeTime: 2
+  impulseY: 22
+  impulseXZ: 7.5
   ice: {fileID: 7751402228602244852}
 --- !u!136 &6897329919029907955
 CapsuleCollider:
@@ -1046,13 +1048,13 @@ MonoBehaviour:
     Name: IsFrozen
   - Type: 4
     SynchronizeType: 2
-    Name: IsForcedMove
-  - Type: 4
-    SynchronizeType: 2
     Name: IsDead
   - Type: 4
     SynchronizeType: 2
     Name: IsThrow
+  - Type: 9
+    SynchronizeType: 2
+    Name: Hurt
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0

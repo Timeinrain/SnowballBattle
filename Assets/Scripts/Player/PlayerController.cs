@@ -7,7 +7,6 @@ public class PlayerController : PushableObject
 {
 	public bool useAbsoluteDirection = false;
 	public GameObject playerViewCam;
-	private Camera overlayCam;
 
 	Rigidbody playerRigidbody;
 	Animator playerAnimator;
@@ -44,6 +43,10 @@ public class PlayerController : PushableObject
 	public float maxChargeTime;          // 最大蓄力时间
 
 	[Header("Other Settings")]
+	[Range(0, 30)]
+	public float impulseY;               // 被炸弹炸到之后的冲击力（Y轴力）
+	[Range(0, 30)]
+	public float impulseXZ;              // 被炸弹炸到之后的冲击力（垂直Y轴平面力）
 	public GameObject ice;               // 角色被冰冻时启用
 
 	private Action curState;
@@ -58,6 +61,8 @@ public class PlayerController : PushableObject
 	private float forcedMoveTimer = 0f;
 	private PushableObject forcedMoveObject;
 	#endregion
+
+	private Vector3 explosionImpulse = Vector3.zero;
 
 	protected override void Awake()
 	{
@@ -78,6 +83,7 @@ public class PlayerController : PushableObject
 		gameLogicHandler.unfrozen += Unfreeze;
 		gameLogicHandler.died += Die;
 		gameLogicHandler.respawned += Respawn;
+		gameLogicHandler.affectedByExplosion += OnAffectedByExplosion;
 
 		/*
 		//如果不是本人，就隐藏对应的另一个小地图标识
@@ -91,8 +97,6 @@ public class PlayerController : PushableObject
 
     private void Start()
     {
-		overlayCam = GameObject.Find("OverlayCam").GetComponent<Camera>();
-
 		switch (InOutGameRoomInfo.Instance.currentMap.index)
 		{
 			case 1:
@@ -123,6 +127,7 @@ public class PlayerController : PushableObject
 		gameLogicHandler.unfrozen -= Unfreeze;
 		gameLogicHandler.died -= Die;
 		gameLogicHandler.respawned -= Respawn;
+		gameLogicHandler.affectedByExplosion -= OnAffectedByExplosion;
 	}
 
 	/// <summary>
@@ -183,6 +188,17 @@ public class PlayerController : PushableObject
 	/// <param name="yV"> Vertical </param>
 	public void Move(float xV, float yV)
 	{
+		if (CheckAnimatorState("Hurt"))
+        {
+			// 收到爆炸冲击时不能移动
+			if (explosionImpulse.sqrMagnitude > 0.5f)
+			{
+				playerRigidbody.velocity = explosionImpulse;
+				explosionImpulse = Vector3.zero;
+			}
+			return;  
+		}
+			
 		Vector3 camForward = new Vector3(playerViewCam.transform.forward.x, 0, playerViewCam.transform.forward.z);
 		Vector3 camRight = new Vector3(playerViewCam.transform.right.x, 0, playerViewCam.transform.right.z);
 		if (curState == Action.Idle || curState == Action.Pushing || curState == Action.FreeRun)
@@ -234,7 +250,6 @@ public class PlayerController : PushableObject
 			float throwSpeedY;
 			if (chargeTime > maxChargeTime) chargeTime = maxChargeTime;
 			throwSpeedY = chargeTime / maxChargeTime * (maxThrowSpeedY - minThrowSpeedY) + minThrowSpeedY;
-			Debug.Log(throwSpeedY);
 
 			Vector3 initialVelocity = direction.normalized + new Vector3(0f, throwSpeedY, 0f);
 			pushController.Kick(kickSpeed, rotateTime, kickDelay, initialVelocity.normalized);
@@ -302,6 +317,29 @@ public class PlayerController : PushableObject
 		transform.position = spawnPoint.position;
 		transform.rotation = spawnPoint.rotation;
 	} 
+
+
+	/// <summary>
+	/// 被爆炸波及
+	/// </summary>
+	/// <param name="sourcePos">炸弹来源</param>
+	/// <param name="isFrozenWhenExplosion">当次是否被冰冻</param>
+	private void OnAffectedByExplosion(Vector3 sourcePos, bool isFrozenWhenExplosion)
+    {
+		if (PhotonNetwork.IsConnected && !photonView.IsMine) return;
+
+        if (!isFrozenWhenExplosion)
+        {
+			Vector3 dir = transform.position - sourcePos;
+			dir.y = 0f;
+			dir.Normalize();
+			dir *= impulseXZ;
+			Vector3 impulse = new Vector3(0f, impulseY, 0f) + dir;
+
+			playerAnimator.SetTrigger("Hurt");
+			explosionImpulse = impulse;
+		}
+	}
 
 	/// <summary>
 	/// Action Responce
@@ -456,7 +494,6 @@ public class PlayerController : PushableObject
 				curState = Action.FreeRun;
 				break;
 			case Action.Pushing:
-				Debug.Log("Changed to Pushing");
 				curState = Action.Pushing;
 				break;
 			case Action.Frozen:
@@ -464,7 +501,6 @@ public class PlayerController : PushableObject
 				curState = Action.Frozen;
 				break;
 			case Action.Kick:
-				Debug.Log("Changed to Kick");
 				curState = Action.Kick;
 				break;
 			case Action.FillingCannon:
@@ -475,7 +511,6 @@ public class PlayerController : PushableObject
 				curState = Action.Reborn;
 				break;
 			case Action.ForcedMove:
-				Debug.Log("Changed to ForcedMove");
 				curState = Action.ForcedMove;
 				break;
 		}

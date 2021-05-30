@@ -99,7 +99,7 @@ namespace core.zqc.bombs
 					if (character != null)
 					{
 						if (friendlyList.Contains(character.GetTeam())) continue;
-						character.photonView.RPC("TakeDamage", RpcTarget.All, 1);
+						character.photonView.RPC("TakeDamage", RpcTarget.All, transform.position, 1);
 					}
 				}
 			}

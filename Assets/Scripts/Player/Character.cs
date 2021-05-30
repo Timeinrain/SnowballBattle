@@ -33,6 +33,7 @@ public class Character : MonoBehaviourPun
 	/// </summary>
 	public event System.Action<string> frozen, unfrozen, died, respawned;
 	public event System.Action<string, int> healed, damaged;
+	public event System.Action<Vector3, bool> affectedByExplosion;        // 被爆炸波及：Vector3表示伤害来源炸弹的坐标, bool表示当次是否被冰冻
 
 	private Team team;
 
@@ -68,12 +69,13 @@ public class Character : MonoBehaviourPun
 	}
 
 	[PunRPC]
-	public void TakeDamage(int damage = 1)
+	public void TakeDamage(Vector3 sourcePos, int damage = 1)
 	{
 		if (Health <= 0) return;
 
 		Health -= damage;
 		damaged?.Invoke(id, damage);
+		affectedByExplosion?.Invoke(sourcePos, Health <= 0);
 		if (Health <= 0)
 		{
             switch (mapIndex)
