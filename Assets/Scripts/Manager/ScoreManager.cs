@@ -8,7 +8,8 @@ using UnityEngine.UI;
 /// </summary>
 public class ScoreManager : MonoBehaviourPun
 {
-    public Text textKillCount;
+    public Text redTeamKillCount;
+    public Text greenTeamKillCount;
 
     public static ScoreManager Instance;
 
@@ -37,7 +38,8 @@ public class ScoreManager : MonoBehaviourPun
         currentPlayer = InOutGameRoomInfo.Instance.GetPlayerByName(PhotonNetwork.LocalPlayer.NickName);
 
         // 初始化UI
-        textKillCount.text = "Team Kill Count: 0";
+        redTeamKillCount.text = "0";
+        greenTeamKillCount.text = "0";
     }
 
     private void Update()
@@ -99,21 +101,25 @@ public class ScoreManager : MonoBehaviourPun
 
         // 向客户端发起同步
         photonView.RPC("SyncKillCount", RpcTarget.Others, hostile, teamScores[hostile].killCount);
+        RequesetPlayerInfoSync(id);
     }
 
     private void AddFillCannonCount(string id)
     {
         playerScores[id].fillCannonCount++;
+        RequesetPlayerInfoSync(id);
     }
 
     private void AddGetBombCount(string id)
     {
         playerScores[id].getBombCount++;
+        RequesetPlayerInfoSync(id);
     }
 
     private void AddHurtCount(string id, int damage)
     {
         playerScores[id].hurtCount++;
+        RequesetPlayerInfoSync(id);
     }
 
     [PunRPC]
@@ -125,6 +131,32 @@ public class ScoreManager : MonoBehaviourPun
         }
         teamScores[team].killCount = value;
         UpdateScoreUI();
+    }
+
+    /// <summary>
+    /// 向客户端发起同步
+    /// </summary>
+    private void RequesetPlayerInfoSync(string id)
+    {
+        photonView.RPC("SyncPlayerInfo", RpcTarget.Others,
+            id,
+            playerScores[id].fillCannonCount,
+            playerScores[id].getBombCount,
+            playerScores[id].deathCount,
+            playerScores[id].hurtCount);
+    }
+
+    [PunRPC]
+    private void SyncPlayerInfo(string id, int fillCannonCount, int getBombCount, int deathCount, int hurtCount)
+    {
+        if (!playerScores.ContainsKey(id))
+        {
+            playerScores.Add(id, new PlayerScoreInfo());
+        }
+        playerScores[id].fillCannonCount = fillCannonCount;
+        playerScores[id].getBombCount = getBombCount;
+        playerScores[id].deathCount = deathCount;
+        playerScores[id].hurtCount = hurtCount;
     }
 
     private static Team GetHostileTeam(Team team)
@@ -141,12 +173,53 @@ public class ScoreManager : MonoBehaviourPun
     /// <returns></returns>
     public int GetTeamKillCount(Team team)
     {
+        if (!teamScores.ContainsKey(team))
+        {
+            return 0;
+        }
         return teamScores[team].killCount;
+    }
+
+    public int GetPlayerDeathCount(string id)
+    {
+        if (!playerScores.ContainsKey(id))
+        {
+            return 0;
+        }
+        return playerScores[id].deathCount;
+    }
+
+    public int GetPlayerFillCannonCount(string id)
+    {
+        if (!playerScores.ContainsKey(id))
+        {
+            return 0;
+        }
+        return playerScores[id].fillCannonCount;
+    }
+
+    public int GetPlayerGetBombCount(string id)
+    {
+        if (!playerScores.ContainsKey(id))
+        {
+            return 0;
+        }
+        return playerScores[id].getBombCount;
+    }
+
+    public int GetPlayerHurtCount(string id)
+    {
+        if (!playerScores.ContainsKey(id))
+        {
+            return 0;
+        }
+        return playerScores[id].hurtCount;
     }
 
     public void UpdateScoreUI()
     {
-        textKillCount.text = "Team Kill Count:" + GetTeamKillCount(currentPlayer.team).ToString();
+        redTeamKillCount.text = GetTeamKillCount(Team.Red).ToString();
+        greenTeamKillCount.text = GetTeamKillCount(Team.Green).ToString();
     }
 
 }
