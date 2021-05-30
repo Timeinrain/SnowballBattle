@@ -43,7 +43,9 @@ public class PushableObject : MonoBehaviourPun
 		position.y = transform.position.y;
 		objectRigidbody.MovePosition(position);
 		objectRigidbody.MoveRotation(rotation);
-		objectRigidbody.transform.up = Vector3.up;
+
+		if (type == CarryType.Bomb)
+			objectRigidbody.transform.up = Vector3.up;
 	}
 
 	[PunRPC]

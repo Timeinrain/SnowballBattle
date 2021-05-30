@@ -3191,6 +3191,10 @@ PrefabInstance:
       value: -0.88
       objectReference: {fileID: 0}
     - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
+      propertyPath: owner
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: bombPrefab
       value: 
       objectReference: {fileID: 5889036278040675372, guid: ff052693a6d151f4ca1d5549157079e9, type: 3}
@@ -3256,7 +3260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 377873328873109019, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: m_Name
-      value: BlueTeamCannon
+      value: GreenTeamCannon
       objectReference: {fileID: 0}
     - target: {fileID: 6527303099898194473, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: m_IsActive

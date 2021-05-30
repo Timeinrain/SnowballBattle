@@ -19807,6 +19807,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 408317740}
     m_Modifications:
     - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
+      propertyPath: owner
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: fireDelay
       value: 1.4
       objectReference: {fileID: 0}
@@ -19876,7 +19880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 377873328873109019, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: m_Name
-      value: Blue Team Cannon
+      value: Green Team Cannon
       objectReference: {fileID: 0}
     - target: {fileID: 377873328873109019, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: m_IsActive

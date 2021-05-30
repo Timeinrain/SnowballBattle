@@ -1,7 +1,5 @@
 using Photon.Pun;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -121,14 +119,18 @@ public class ScoreManager : MonoBehaviourPun
     [PunRPC]
     private void SyncKillCount(Team team, int value)
     {
+        if (!teamScores.ContainsKey(team))
+        {
+            teamScores.Add(team, new TeamScoreInfo());
+        }
         teamScores[team].killCount = value;
         UpdateScoreUI();
     }
 
     private static Team GetHostileTeam(Team team)
     {
-        if (team == Team.Red) return Team.Blue;
-        if (team == Team.Blue) return Team.Red;
+        if (team == Team.Red) return Team.Green;
+        if (team == Team.Green) return Team.Red;
         else return Team.Null;
     }
 

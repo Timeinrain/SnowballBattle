@@ -13203,7 +13203,7 @@ GameObject:
   - component: {fileID: 1526474896}
   - component: {fileID: 1526474895}
   m_Layer: 0
-  m_Name: Blue Team Bomb Generator
+  m_Name: Green Team Bomb Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16126,6 +16126,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 181701635}
     m_Modifications:
     - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
+      propertyPath: owner
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: bombPrefab
       value: 
       objectReference: {fileID: 5889036278040675372, guid: 82523a651ab71864382af013d7e78da2, type: 3}
@@ -16191,7 +16195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 377873328873109019, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: m_Name
-      value: BlueTeamCannon
+      value: GreenTeamCannon
       objectReference: {fileID: 0}
     - target: {fileID: 377873328873109019, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: m_IsActive
