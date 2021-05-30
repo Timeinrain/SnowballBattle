@@ -375,6 +375,19 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 	}
 
 	[PunRPC]
+	public void SyncMapInfo(byte index)
+	{
+		foreach(var map in GlobalMapInfoMgr.Instance.readInMaps)
+		{
+			if(map.index == index)
+			{
+				InOutGameRoomInfo.Instance.currentMap = map;
+				break;
+			}
+		}
+	}
+
+	[PunRPC]
 	public void UpdateRoomMaster(string playerId)
 	{
 		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().OnRoomMasterSwitched(playerId);

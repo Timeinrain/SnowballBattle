@@ -8,6 +8,9 @@ public class GlobalMapInfoMgr : MonoBehaviour
 {
 	[ShowInInspector]
 	public List<Map> readInMaps = new List<Map> { };
+
+	public static GlobalMapInfoMgr Instance;
+
 	[System.Serializable]
 	public struct MapInfo
 	{
@@ -31,6 +34,7 @@ public class GlobalMapInfoMgr : MonoBehaviour
 	public List<MapInfo> mapInfos;
 	private void Start()
 	{
+		Instance = this;
 		ReadInMaps();
 	}
 
