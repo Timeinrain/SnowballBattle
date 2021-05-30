@@ -964,9 +964,7 @@ MonoBehaviour:
   lightObject: {fileID: 4921117584647910664}
   playerName: {fileID: 2371057296932620857}
   red: {fileID: 2100000, guid: b44a40cd1796dae4f8ef8886c24b290c, type: 2}
-  yellow: {fileID: 2100000, guid: e6c55a93efa8966459913fbac838853f, type: 2}
   green: {fileID: 2100000, guid: 9058fe359f6a4444997063432b14e7b0, type: 2}
-  blue: {fileID: 2100000, guid: 28246a42e585d254793b1027b2b93093, type: 2}
 --- !u!95 &5226727441156490009
 Animator:
   serializedVersion: 3

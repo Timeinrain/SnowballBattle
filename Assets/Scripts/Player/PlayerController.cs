@@ -191,15 +191,12 @@ public class PlayerController : PushableObject
 	/// <param name="yV"> Vertical </param>
 	public void Move(float xV, float yV)
 	{
-		if (CheckAnimatorState("Hurt"))
-        {
-			// 收到爆炸冲击时不能移动
-			if (explosionImpulse.sqrMagnitude > 0.5f)
-			{
-				playerRigidbody.velocity = explosionImpulse;
-				explosionImpulse = Vector3.zero;
-			}
-			return;  
+		// 收到爆炸冲击时不能移动
+		if (explosionImpulse.sqrMagnitude > 0.5f)
+		{
+			playerRigidbody.velocity = explosionImpulse;
+			explosionImpulse = Vector3.zero;
+			return;
 		}
 			
 		Vector3 camForward = new Vector3(playerViewCam.transform.forward.x, 0, playerViewCam.transform.forward.z);
@@ -257,17 +254,14 @@ public class PlayerController : PushableObject
 	/// 如果已经有正在推动的物体，则会放下它，否则会接近最近的一个可被推动的物体尝试开始推动
 	/// </summary>
 	public void ChangePushState()
-	{
-		// 启用注释部分，允许玩家放下炸弹
-		/*
+	{		
 		if (CheckAnimatorState("Push Idle", "Push Run") &&
-			curState != Action.Kick &&
-			curState != Action.FillingCannon)   // 防止踢炸弹和装炸弹时解除炸弹，发生不期望的动画效果
+			pushController.GetCarriedType() == CarryType.Player)   // 只有推动的是冰冻的队友时才能放下
 		{
 			// 放下正在推动的物体
 			StopPushing();
 		}
-		*/
+		
 
 		if (CheckAnimatorState("Idle", "Run"))
 		{

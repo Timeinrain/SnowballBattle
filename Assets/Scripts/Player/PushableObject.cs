@@ -58,6 +58,8 @@ public class PushableObject : MonoBehaviourPun
         {
 			owner.GetComponent<Character>().ScoreGetBomb();
         }
+		if (carrier != null)
+			carrier.StopPushing();
 		carrier = owner;
 		lastCarrier = owner;
 		objectRigidbody.gameObject.GetPhotonView().RequestOwnership();
