@@ -35,12 +35,12 @@ public class PlayerController : PushableObject
 	public float kickDelay;              // 踢动画开始到实际踢出炸弹的延迟
 
 	[Header("Throw Settings")]
-	[Range(0, 3)]
-	public float minThrowSpeedY;         // 垂直方向的最小投掷速度（和单位速度比较）
-	[Range(0, 3)]
-	public float maxThrowSpeedY;         // 垂直方向的最大投掷速度（和单位速度比较）
-	[Range(0, 10)]
-	public float maxChargeTime;          // 最大蓄力时间
+	[Range(0, 0.5f)]
+	public float minThrowSpeedY;         // 垂直方向的最小投掷速度权重
+	[Range(0, 0.5f)]
+	public float maxThrowSpeedY;         // 垂直方向的最大投掷速度权重
+
+	private float maxThrowDistance;      // 计算得到的最大水平投掷距离
 
 	[Header("Other Settings")]
 	[Range(0, 30)]
@@ -118,6 +118,9 @@ public class PlayerController : PushableObject
 					break;
 				}
 		}
+
+		float t = maxThrowSpeedY * kickSpeed / Physics.gravity.magnitude * 2f;
+		maxThrowDistance = t * (1f - maxThrowSpeedY) * kickSpeed;
 	}
 
     private void OnDestroy()
@@ -206,55 +209,46 @@ public class PlayerController : PushableObject
 
 	}
 
-	private bool waitForThrowing = true;
-
 	/// <summary>
 	/// Kick the bomb into specific direction
 	/// Or start throwing
 	/// </summary>
-	public void Kick()
+	public void KickOrThrow()
 	{
 		if (!CheckAnimatorState("Push Idle", "Push Run")) return;
 		if (pushController.GetCarriedType() != PushableObject.CarryType.Bomb) return;
 
-		if (useThrow)
-        {
-			// 开始投掷动画，但并没有真的开始投掷
-			waitForThrowing = false;
-			ChangeState(Action.Kick);
-			return;
-        }
-
 		Vector3 clickPosition;
 		if (LocateMousePosition(out clickPosition))
         {
-			Vector3 direction = clickPosition - transform.position;
-			direction.y = 0f;
-
 			ChangeState(Action.Kick);
-			pushController.Kick(kickSpeed, rotateTime, kickDelay, direction.normalized);
-		}
-	}
 
-	public void Throw(float chargeTime)
-    {
-		if (!useThrow && waitForThrowing) return;
-		if (pushController.GetCarriedType() != PushableObject.CarryType.Bomb) return;
-
-		Vector3 clickPosition;
-		if (LocateMousePosition(out clickPosition))
-		{
 			Vector3 direction = clickPosition - transform.position;
 			direction.y = 0f;
 
-			float throwSpeedY;
-			if (chargeTime > maxChargeTime) chargeTime = maxChargeTime;
-			throwSpeedY = chargeTime / maxChargeTime * (maxThrowSpeedY - minThrowSpeedY) + minThrowSpeedY;
+			if (!useThrow)
+            {
+				pushController.Kick(kickSpeed, rotateTime, kickDelay, direction.normalized);
+			}
+            else
+            {
+				// 根据点击的远近确定力度
+				float throwSpeedY;
+				if(direction.magnitude > maxThrowDistance)
+                {
+					throwSpeedY = maxThrowSpeedY;
+                }
+                else
+                {
+					throwSpeedY = (1f - Mathf.Sqrt(1f - 2f * direction.magnitude * Physics.gravity.magnitude / kickSpeed / kickSpeed)) / 2f;
+					if (throwSpeedY < minThrowSpeedY)
+						throwSpeedY = minThrowSpeedY;
+                }
 
-			Vector3 initialVelocity = direction.normalized + new Vector3(0f, throwSpeedY, 0f);
-			pushController.Kick(kickSpeed, rotateTime, kickDelay, initialVelocity.normalized);
-
-			waitForThrowing = true;
+				Vector3 velocityXZ = direction.normalized * kickSpeed * (1f - throwSpeedY);
+				Vector3 finalDirection = new Vector3(velocityXZ.x, kickSpeed * throwSpeedY, velocityXZ.z);
+				pushController.Kick(kickSpeed, rotateTime, kickDelay, finalDirection.normalized);
+			}
 		}
 	}
 
