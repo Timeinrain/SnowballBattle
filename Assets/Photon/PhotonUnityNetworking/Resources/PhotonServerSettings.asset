@@ -40,7 +40,6 @@ MonoBehaviour:
   - DestroyRpc
   - Detach
   - Die
-  - GetNewPlayerInfo
   - Kick
   - OnLoadingLevel
   - Respawn
@@ -48,13 +47,12 @@ MonoBehaviour:
   - SwitchTeam
   - SyncInRoomPlayerInfo
   - SyncKillCount
-  - SyncPlayersInfo
+  - SyncMapInfo
+  - SyncPlayerInfo
   - TakeDamage
   - Unfreeze
   - UpdateRoomMaster
   - UpdateTransform
-  - SyncMapInfo
-  - SyncPlayerInfo
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0

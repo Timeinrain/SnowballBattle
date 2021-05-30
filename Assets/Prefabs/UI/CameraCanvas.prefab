@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 1512978971903638953}
   - component: {fileID: 1512978971903638954}
   - component: {fileID: 1512978971903638955}
+  - component: {fileID: 2938771226641956949}
   m_Layer: 0
   m_Name: PlayerIcon
   m_TagString: Untagged
@@ -247,6 +248,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2938771226641956949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512978971903638869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b57dffa064e4df42b99e160cf09c90f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtThreshold: 1
+  scoreEmotionDisplayTime: 2
+  redDie: {fileID: 21300000, guid: 3bcc4158ffda2f9409ec8ec16b70f0fa, type: 3}
+  redHurt: {fileID: 21300000, guid: 8ad8393610d12554aa4072154cb76649, type: 3}
+  redFrozen: {fileID: 21300000, guid: 0a54a67bd2997e34f857b9583b3dee56, type: 3}
+  redNormal: {fileID: 21300000, guid: 8767d4a37b7c5be4c97f9e626eec6644, type: 3}
+  redScore: {fileID: 21300000, guid: f1e7ae7496473714788ed5951e6e72f4, type: 3}
+  greenDie: {fileID: 21300000, guid: 75015461dad314145912e20da9aed321, type: 3}
+  greenHurt: {fileID: 21300000, guid: d8c352a2bc1575b48b0ed401bfad5f71, type: 3}
+  greenFrozen: {fileID: 21300000, guid: 9714b5d73a911c94f9226bc939ffa957, type: 3}
+  greenNormal: {fileID: 21300000, guid: 560f713575ebec24abcbc0832cac9f6c, type: 3}
+  greenScore: {fileID: 21300000, guid: 2b05d80d2942d6346a2decdd032a7d25, type: 3}
 --- !u!1 &3254567024371953648
 GameObject:
   m_ObjectHideFlags: 0

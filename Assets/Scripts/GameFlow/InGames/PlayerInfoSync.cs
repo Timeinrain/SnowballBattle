@@ -23,10 +23,17 @@ public class PlayerInfoSync : MonoBehaviourPun
 
 	public GameObject playerModel;
 
+	[Header("Models")]
+	public GameObject halloweenHat;
+	public GameObject sailorHat;
+
 	[Header("Materials")]
-	public Material halloweenMat;
-	public Material snowMat;
-	public Material sweetMat;
+	public Material defaultMatRed;
+	public Material defaultMatGreen;
+	public Material halloweenMatRed;
+	public Material halloweenMatGreen;
+	public Material sailorMatRed;
+	public Material sailorMatGreen;
 
 	public GameObject lightObject;
 
@@ -55,7 +62,7 @@ public class PlayerInfoSync : MonoBehaviourPun
 				{
 					//ÍòÊ¥½Ú
 					lightObject.SetActive(true);
-					playerModel.GetComponent<SkinnedMeshRenderer>().material = halloweenMat;
+					playerModel.GetComponent<SkinnedMeshRenderer>().material = defaultMatRed;
 					break;
 				}
 			case 3:

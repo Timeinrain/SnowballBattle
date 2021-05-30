@@ -11,8 +11,8 @@ public class DestroyArea : MonoBehaviour
         if (other.GetComponent<PlayerController>() != null && PhotonNetwork.LocalPlayer.IsMasterClient)
         {
             // 使角色强制死亡(只在主机处理)
+            other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             PhotonView photonView = PhotonView.Get(other.gameObject);
-            Debug.Log(photonView);
             photonView.RPC("Die", RpcTarget.All);
         }
         

@@ -198,6 +198,7 @@ public class PlayerController : PushableObject
 			explosionImpulse = Vector3.zero;
 			return;
 		}
+		if (playerRigidbody.velocity.y > 0.5f) return;
 			
 		Vector3 camForward = new Vector3(playerViewCam.transform.forward.x, 0, playerViewCam.transform.forward.z);
 		Vector3 camRight = new Vector3(playerViewCam.transform.right.x, 0, playerViewCam.transform.right.z);
@@ -307,6 +308,7 @@ public class PlayerController : PushableObject
 		Transform spawnPoint = SpawnManager.Instance.GetSpawnPoint(gameLogicHandler.playerInfo);
 		transform.position = spawnPoint.position;
 		transform.rotation = spawnPoint.rotation;
+		playerRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
 	} 
 
 

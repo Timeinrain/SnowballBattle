@@ -69,7 +69,7 @@ namespace PhotonTest.MultiCameraTest
             GetNewPlayerInfo();
         }
 
-        [PunRPC]
+        
         public void GetNewPlayerInfo()
         {
             Character[] temp = FindObjectsOfType<Character>();
@@ -78,12 +78,6 @@ namespace PhotonTest.MultiCameraTest
             {
                 playerInfos.Add(i.gameObject);
             }
-
-        }
-
-        [PunRPC]
-        public void SyncPlayersInfo()
-        {
 
         }
     }

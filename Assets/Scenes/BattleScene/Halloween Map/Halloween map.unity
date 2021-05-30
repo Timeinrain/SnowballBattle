@@ -8939,7 +8939,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
+  sharedProfile: {fileID: 0}
 --- !u!4 &1021547553
 Transform:
   m_ObjectHideFlags: 0
@@ -15689,7 +15689,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: owner
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 377873328873109012, guid: 07de3db8587255a47ba5027692185dff, type: 3}
       propertyPath: bombPrefab

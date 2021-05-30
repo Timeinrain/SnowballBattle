@@ -410,6 +410,7 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 			if (map.index == index)
 			{
 				InOutGameRoomInfo.Instance.currentMap = map;
+				UIMgr._Instance.inRoomUI.GetComponent<InRoom>().mapInfo = map;
 				break;
 			}
 		}
