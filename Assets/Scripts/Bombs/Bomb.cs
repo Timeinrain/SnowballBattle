@@ -161,13 +161,8 @@ namespace core.zqc.bombs
 
 			switch (team)
 			{
-				case Team.Blue:
-					meshRenderer.material = blueTeamMaterial;
-					break;
 				case Team.Red:
 					meshRenderer.material = redTeamMaterial;
-					break;
-				case Team.Yellow:
 					break;
 				case Team.Green:
 					break;

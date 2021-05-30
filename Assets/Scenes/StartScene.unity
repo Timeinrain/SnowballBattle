@@ -4999,7 +4999,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0cbbb9b30d05ceb4e889c7ff3daaf314, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 26dc3d83aef4cea4388f67c0b69a907f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18894,11 +18894,9 @@ MonoBehaviour:
   lastPanel: {fileID: 6498820443605745276}
   currentPanel: {fileID: 8906644074398215524}
   settingsPanel: {fileID: 7315530002085228381}
-  blue: {fileID: 21300000, guid: 0cbbb9b30d05ceb4e889c7ff3daaf314, type: 3}
   green: {fileID: 21300000, guid: bf1bd7308feb5734ea892df9fd41b134, type: 3}
-  yellow: {fileID: 21300000, guid: 3aedc83ca6cbfa545b247148a493e704, type: 3}
   red: {fileID: 21300000, guid: 26dc3d83aef4cea4388f67c0b69a907f, type: 3}
-  maxTeamNum: 4
+  maxTeamNum: 2
   maxPlayers: 10
   mapInfo: {fileID: 11400000, guid: 803af6ab27503584aa615e104d797177, type: 2}
   mapSelectionButton: {fileID: 6322938187090503213}

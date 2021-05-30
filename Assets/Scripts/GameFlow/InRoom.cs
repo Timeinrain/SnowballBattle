@@ -15,11 +15,7 @@ public class InRoom : PanelBase
 	[Header("Sprites")]
 	#region Sprites
 	[FoldoutGroup("Sprites")]
-	[PreviewField] public Sprite blue;
-	[FoldoutGroup("Sprites")]
 	[PreviewField] public Sprite green;
-	[FoldoutGroup("Sprites")]
-	[PreviewField] public Sprite yellow;
 	[FoldoutGroup("Sprites")]
 	[PreviewField] public Sprite red;
 	#endregion
@@ -73,7 +69,7 @@ public class InRoom : PanelBase
 	/// </summary>
 	private void Awake()
 	{
-		teamIcon = new Dictionary<int, Sprite> { { 0, blue }, { 3, green }, { 1, red }, { 2, yellow } };
+		teamIcon = new Dictionary<int, Sprite> { { 0, green }, { 1, red } };
 	}
 
 	/// <summary>
@@ -239,7 +235,7 @@ public class InRoom : PanelBase
 	/// <param name="playerTeam"> Init Team is blue</param>
 	/// <param name="index">Position Index, Automatically specified.</param>
 	[Button("Test Insert")]
-	public void InsertNewPlayer(string playerId = "test", Team playerTeam = Team.Blue, int index = -1)
+	public void InsertNewPlayer(string playerId = "test", Team playerTeam = Team.Red, int index = -1)
 	{
 		int insertIndex = FindFirstEmptyPos();
 		if (index != -1)

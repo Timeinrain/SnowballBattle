@@ -12,17 +12,13 @@ public class PlayerInfoInRoom : MonoBehaviourPun
 	[PreviewField]
 	public GameObject masterIndicator;
 	public Text playerName;
-	public Team team = Team.Blue;
+	public Team team = Team.Green;
 	public Image teamImg;
 	#region sprites
 	[FoldoutGroup("Sprites")]
 	public Sprite red;
 	[FoldoutGroup("Sprites")]
 	public Sprite green;
-	[FoldoutGroup("Sprites")]
-	public Sprite yellow;
-	[FoldoutGroup("Sprites")]
-	public Sprite blue;
 	#endregion
 
 	public int inRoomPosIndex;
@@ -35,7 +31,7 @@ public class PlayerInfoInRoom : MonoBehaviourPun
 	private void Awake()
 	{
 		anim = GetComponent<Animator>();
-		teamIcon = new Dictionary<Team, Sprite> { { Team.Blue, blue }, { Team.Green, green }, { Team.Red, red }, { Team.Yellow, yellow } };
+		teamIcon = new Dictionary<Team, Sprite> { { Team.Green, green }, { Team.Red, red } };
 	}
 
 	private void OnEnable()
@@ -82,7 +78,7 @@ public class PlayerInfoInRoom : MonoBehaviourPun
 	private void UpdateTeamInfo(bool isInit = false)
 	{
 		if (teamIcon == null)
-			teamIcon = new Dictionary<Team, Sprite> { { Team.Blue, blue }, { Team.Green, green }, { Team.Red, red }, { Team.Yellow, yellow } };
+			teamIcon = new Dictionary<Team, Sprite> { { Team.Green, green }, { Team.Red, red } };
 		teamImg.sprite = teamIcon[team];
 		if (!isInit)
 			teamImg.GetComponent<Animator>().SetTrigger("TeamSwitched");

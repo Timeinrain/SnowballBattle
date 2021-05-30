@@ -9,8 +9,6 @@ using Sirenix.OdinInspector;
 /// </summary>
 public class PhotonMasterMgr : MonoBehaviourPun
 {
-	public GameObject BlueTeam;
-	public GameObject YellowTeam;
 	public GameObject RedTeam;
 	public GameObject GreenTeam;
 	public GameObject localPlayer;
@@ -24,13 +22,13 @@ public class PhotonMasterMgr : MonoBehaviourPun
 	{
 		_Instance = this;
 		roomInfo = InOutGameRoomInfo.Instance;
-		teamPosMap = new Dictionary<Team, GameObject> { { Team.Blue, BlueTeam }, { Team.Green, GreenTeam }, { Team.Yellow, YellowTeam }, { Team.Red, RedTeam } };
+		teamPosMap = new Dictionary<Team, GameObject> { { Team.Green, GreenTeam }, { Team.Red, RedTeam } };
 
 		// 生成角色被移入Start()，防止与其他初始化冲突
 	}
 
-    public void Start()
-    {
+	public void Start()
+	{
 		//生成角色
 		Player playerInfo = roomInfo.GetPlayerByName(PhotonNetwork.LocalPlayer.NickName);
 

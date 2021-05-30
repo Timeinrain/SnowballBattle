@@ -127,8 +127,8 @@ public class ScoreManager : MonoBehaviourPun
 
     private static Team GetHostileTeam(Team team)
     {
-        if (team == Team.Red) return Team.Blue;
-        if (team == Team.Blue) return Team.Red;
+        if (team == Team.Red) return Team.Green;
+        if (team == Team.Green) return Team.Red;
         else return Team.Null;
     }
 
