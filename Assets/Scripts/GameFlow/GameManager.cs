@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviourPun
 	/// <summary>
 	/// Singleton
 	/// </summary>
-	public static GameManager Instance;
+	public static GameManager Instance = null;
 
 	//All team information
 	[SerializeField]
@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviourPun
 
 	private void Start()
 	{
-		Instance = this;
+		if (Instance == null)
+			Instance = this;
 		StartCoroutine(WaitForAllPlayersToJoin());
 	}
 
@@ -110,8 +111,8 @@ public class GameManager : MonoBehaviourPun
 	public void StartGame()
 	{
 		BombGeneratorOnline[] generators = FindObjectsOfType<BombGeneratorOnline>();
-		foreach(var gen in generators)
-        {
+		foreach (var gen in generators)
+		{
 			if (gen.autoGenerate) gen.StartGenerateBomb();
 
 		}

@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour
     public Transform[] redTeamSpawnPoints;
     public Transform[] blueTeamSpawnPoints;
 
-    private void Awake()
+    private void OnEnable()
     {
         if (Instance == null)
         {

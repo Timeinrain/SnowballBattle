@@ -55,6 +55,7 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 
 	public List<int> teamPlayersCount = new List<int> { 0, 0, 0, 0 };
 	#endregion
+	bool isOnSettle = false;
 
 	#region SYNC
 	private Hashtable roomCreationPropertiesCache;
@@ -73,9 +74,8 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 
 	private void Update()
 	{
-		if (InOutGameRoomInfo.Instance.isSettlement)
+		if (InOutGameRoomInfo.Instance.isSettlement && !isOnSettle)
 		{
-			InOutGameRoomInfo.Instance.isSettlement = false;
 			Settle();
 		}
 	}
@@ -85,10 +85,13 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 	/// </summary>
 	public void Settle()
 	{
-		print("Settle");
+		isOnSettle = true;
+		UIMgr._Instance.settlementUI.SetActive(true);
+		UIMgr._Instance.settlementUI.GetComponent<SettlementPanel>().StartSettle(InOutGameRoomInfo.Instance.isVictory);
+		//UIMgr._Instance.OnGameEndedRejoinRoom();
+		//UIMgr._Instance.inRoomUI.GetComponent<InRoom>().RejoinRoomSyncData(InOutGameRoomInfo.Instance.syncData);
 	}
 
-	// 1Todos====================
 	#region Subjective Calls
 	/// <summary>
 	/// Controlling the Return Button Logic
@@ -97,6 +100,11 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 	{
 		UIMgr._Instance.ReturnToLogInPanel();
 		PhotonNetwork.Disconnect();
+	}
+
+	public void Quit()
+	{
+		Application.Quit();
 	}
 
 	/// <summary>
@@ -123,7 +131,9 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 		if (PhotonNetwork.LocalPlayer.IsMasterClient)
 		{
 			photonView.RPC("OnLoadingLevel", RpcTarget.All);
+			photonView.RPC("SaveData", RpcTarget.All);
 			PhotonNetwork.LoadLevel(UIMgr._Instance.inRoomUI.GetComponent<InRoom>().mapInfo.index);
+			InOutGameRoomInfo.Instance.WakeMasterMgr();
 		}
 	}
 
@@ -215,6 +225,32 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 		base.OnLeftRoom();
 		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().ClearRoom();
 	}
+	public override void OnJoinedLobby()
+	{
+		base.OnJoinedLobby();
+		if (InOutGameRoomInfo.Instance.isSettlement)
+		{
+			if (InOutGameRoomInfo.Instance.syncData.isThisMaster)
+			{
+				RoomOptions roomOp = new RoomOptions()
+				{
+					MaxPlayers = (byte)InOutGameRoomInfo.Instance.syncData.maxPlayers,
+					CustomRoomProperties = new Hashtable()
+			{
+				{ "GameMode", InOutGameRoomInfo.Instance.syncData.gameMode.ToString() },
+				{ "Map", GlobalMapInfoMgr.Instance.GetMapByIndex(InOutGameRoomInfo.Instance.syncData.mapIndex).mapName }
+			},
+					CustomRoomPropertiesForLobby = new string[] { "GameMode", "Map" },
+					IsOpen = true,
+					IsVisible = true,
+					PublishUserId = true,
+				};
+				PhotonNetwork.CreateRoom(InOutGameRoomInfo.Instance.syncData.roomName, roomOp);
+			}
+			else
+				PhotonNetwork.JoinRoom(InOutGameRoomInfo.Instance.syncData.roomName);
+		}
+	}
 
 	public override void OnMasterClientSwitched(Photon.Realtime.Player newMasterClient)
 	{
@@ -250,20 +286,7 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 	/// <param name="cause"></param>
 	public override void OnDisconnected(DisconnectCause cause)
 	{
-		base.OnDisconnected(cause);
-		switch (cause)
-		{
-			case DisconnectCause.DisconnectByClientLogic:
-				{
-					Debug.Log("User Logged Out!");
-					break;
-				}
-			default:
-				{
-					Debug.Log("Unknown Error!");
-					break;
-				}
-		}
+		PhotonNetwork.ReconnectAndRejoin();
 	}
 
 	/// <summary>
@@ -275,6 +298,7 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 		UIMgr._Instance.AllowNeedLoadingTransitionEnter();
 		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().playerNameUI.text = PhotonNetwork.LocalPlayer.NickName;
 		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().InitPlayerContainer();
+		
 	}
 
 	public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
@@ -307,7 +331,14 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 		PhotonNetwork.CurrentRoom.SetCustomProperties(roomCreationPropertiesCache);
 		PhotonNetwork.CurrentRoom.SetPropertiesListedInLobby(roomCreationPropertiesForLobbyCache);
 		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().InitPlayerContainer();
-		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().InsertNewPlayer(PhotonNetwork.LocalPlayer.NickName);
+		if (isOnSettle)
+		{
+			UIMgr._Instance.inRoomUI.GetComponent<InRoom>().InsertNewPlayer(PhotonNetwork.LocalPlayer.NickName, InOutGameRoomInfo.Instance.syncData.playerTeam, 0);
+		}
+		else
+		{
+			UIMgr._Instance.inRoomUI.GetComponent<InRoom>().InsertNewPlayer(PhotonNetwork.LocalPlayer.NickName);
+		}
 		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().MasterClientCheck();
 	}
 
@@ -433,6 +464,12 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 	public void OnLoadingLevel()
 	{
 		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().SyncInOutGameRoomInfo();
+	}
+
+	[PunRPC]
+	public void SaveData()
+	{
+		InOutGameRoomInfo.Instance.SaveData();
 	}
 
 	#endregion

@@ -7,6 +7,7 @@ public class SettlementPanel : MonoBehaviour
 {
 	public GameObject victoryPanel;
 	public GameObject defeatPanel;
+
 	[Button]
 	public void StartSettle(bool victory)
 	{
@@ -38,6 +39,7 @@ public class SettlementPanel : MonoBehaviour
 
 	public void Return()
 	{
+		Application.Quit();
 		victoryPanel.SetActive(false);
 		defeatPanel.SetActive(false);
 		UIMgr._Instance.PanelSwitchFromTo(gameObject, UIMgr._Instance.inRoomUI, null, false);

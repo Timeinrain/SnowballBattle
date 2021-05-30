@@ -13,6 +13,7 @@ public class UIMgr : MonoBehaviour
 	public GameObject settingsUI;
 	public GameObject mapSelectionUI;
 	public GameObject switchMaskMgr;
+	public GameObject settlementUI;
 
 	private SwitchMaskFX switchMaskFX;
 
@@ -20,6 +21,21 @@ public class UIMgr : MonoBehaviour
 	{
 		_Instance = this;
 		switchMaskFX = switchMaskMgr.GetComponent<SwitchMaskFX>();
+	}
+
+	/// <summary>
+	/// 重新加入房间
+	/// 重新加角色
+	/// 房主重新显示
+	/// 地图同步
+	/// 
+	/// 时装：
+	/// 角色造型同步
+	/// </summary>
+	public void OnGameEndedRejoinRoom()
+	{
+		loginUI.SetActive(false);
+		inRoomUI.SetActive(true);
 	}
 
 	public void ReturnToLogInPanel()
@@ -51,7 +67,7 @@ public class UIMgr : MonoBehaviour
 	/// </summary>
 	public void JoinRoom()
 	{
-		PanelSwitchFromTo(roomListUI, inRoomUI, default, true);
+		PanelSwitchFromTo(roomListUI, inRoomUI, default, false);
 	}
 
 	/// <summary>

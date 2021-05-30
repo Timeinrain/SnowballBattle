@@ -65,6 +65,11 @@ public class GlobalMapInfoMgr : MonoBehaviour
 		return;
 	}
 
+	public Map GetMapByIndex(int index)
+	{
+		return readInMaps[index];
+	}
+
 	public static bool IsMapExisted(string mapName)
 	{
 		return stringMapMapping.ContainsKey(mapName);

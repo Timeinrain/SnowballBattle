@@ -38,7 +38,10 @@ public class InRoom : PanelBase
 	public List<PlayerInfoInRoom> playerInfos = new List<PlayerInfoInRoom> { };
 	public GameObject playerInfoPrefab;
 	public List<RectTransform> playerInfoPos;
-	public InOutGameRoomInfo inOutGameRoomInfo;
+	public PlayerInfoInRoom masterPlayer;
+
+	public InOutGameRoomSyncData syncData;
+
 	#endregion
 	[Space]
 	[Header("Local Client's InRoom Info")]
@@ -70,6 +73,59 @@ public class InRoom : PanelBase
 	private void Awake()
 	{
 		teamIcon = new Dictionary<int, Sprite> { { 0, green }, { 1, red } };
+		int i = 0;
+		while (i++ < maxPlayers)
+			isEmpty.Add(true);
+	}
+
+	public InOutGameRoomSyncData SaveData()
+	{
+		InOutGameRoomSyncData data;
+		data = new InOutGameRoomSyncData { };
+		List<InOutGameRoomSyncData.PlayerInfoForSync> playerList = new List<InOutGameRoomSyncData.PlayerInfoForSync>();
+		foreach (var player in playerInfos)
+		{
+			if (player != null)
+			{
+				InOutGameRoomSyncData.PlayerInfoForSync thisPlayer = new InOutGameRoomSyncData.PlayerInfoForSync
+				{
+					id = player.id,
+					team = player.team,
+					pos = player.inRoomPosIndex,
+					isMaster = player == masterPlayer ? true : false
+				};
+				playerList.Add(thisPlayer);
+			}
+		}
+		data.playerInfoList = (List<InOutGameRoomSyncData.PlayerInfoForSync>)(object)playerList;
+		data.mapIndex = mapInfo.index;
+		data.playerName = playerNameUI.text;
+		data.playerTeam = GetPlayerByName(playerNameUI.text).team;
+		data.roomName = PhotonNetwork.CurrentRoom.Name;
+		if (PhotonNetwork.LocalPlayer.IsMasterClient)
+		{
+			data.isThisMaster = true;
+		}
+		else
+		{
+			data.isThisMaster = false;
+		}
+		data.gameMode = GameMode.PVP;
+		data.maxPlayers = PhotonNetwork.CurrentRoom.MaxPlayers;
+
+		//todo : 获取角色服装信息 ---------------------------------------------------------------- 
+		return data;
+	}
+
+	public void RejoinRoomSyncData(InOutGameRoomSyncData datas)
+	{
+		MochiCharacter.SetActive(false);
+		int cnt = 0;
+		while (cnt++ < datas.maxPlayers)
+			playerInfos.Add(null);
+		teamIndicator.sprite = teamIcon[datas.playerTeam.GetHashCode()];
+		playerNameUI.text = datas.playerName;
+		mapInfo = GlobalMapInfoMgr.Instance.GetMapByIndex(datas.mapIndex);
 	}
 
 	/// <summary>
@@ -89,6 +145,7 @@ public class InRoom : PanelBase
 				if (playerId == playerInfo.id)
 				{
 					playerInfo.AnimateMasterClient();
+					masterPlayer = playerInfo;
 					break;
 				}
 			}
@@ -124,8 +181,8 @@ public class InRoom : PanelBase
 	/// </summary>
 	public void SyncInOutGameRoomInfo()
 	{
-		inOutGameRoomInfo.SetInRoomPlayerInfos(playerInfos);
-		inOutGameRoomInfo.currentMap = mapInfo;
+		InOutGameRoomInfo.Instance.SetInRoomPlayerInfos(playerInfos);
+		InOutGameRoomInfo.Instance.currentMap = mapInfo;
 	}
 
 	/// <summary>
@@ -197,7 +254,7 @@ public class InRoom : PanelBase
 	public void SetMapInfo(Map _mapInfo)
 	{
 		mapInfo = _mapInfo;
-		inOutGameRoomInfo.currentMap = _mapInfo;
+		InOutGameRoomInfo.Instance.currentMap = _mapInfo;
 		NetWorkMgr._Instance.photonView.RPC("SyncMapInfo", RpcTarget.AllBufferedViaServer, (int)mapInfo.index);
 		NetWorkMgr._Instance.SetLobbyRoomMap(_mapInfo);
 	}
@@ -326,3 +383,24 @@ public class InRoom : PanelBase
 
 }
 
+
+public struct InOutGameRoomSyncData
+{
+	public struct PlayerInfoForSync
+	{
+		public string id;
+		public Team team;
+		public int pos;
+		public bool isMaster;
+	}
+
+	public List<PlayerInfoForSync> playerInfoList;
+	public string playerName;
+	public Team playerTeam;
+	public int playerClothIndex;
+	public int mapIndex;
+	public string roomName;
+	public bool isThisMaster;
+	public int maxPlayers;
+	public GameMode gameMode;
+}
