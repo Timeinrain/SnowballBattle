@@ -37,6 +37,9 @@ using ExitGames.Client.Photon;
 /// 1.地图的更新同步所有客户端
 /// 2.地图的更新同步到大厅信息
 /// 
+/// 
+/// 倒计时UI、局外
+/// 
 /// </summary>
 public class NetWorkMgr : MonoBehaviourPunCallbacks
 {
@@ -104,6 +107,17 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 		//todo: Jump To Offline Panels
 	}
 
+	public void SetLobbyRoomMap(Map map)
+	{
+		var customRoomProperties = new Hashtable()
+			{
+				{ "Map", map.mapName }
+			};
+		PhotonNetwork.CurrentRoom.SetCustomProperties(customRoomProperties);
+		string[] roomProperties = new string[] { "Map" };
+		PhotonNetwork.CurrentRoom.SetPropertiesListedInLobby(roomProperties);
+	}
+
 	public void StartGame()
 	{
 		if (PhotonNetwork.LocalPlayer.IsMasterClient)
@@ -111,12 +125,6 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 			photonView.RPC("OnLoadingLevel", RpcTarget.All);
 			PhotonNetwork.LoadLevel(UIMgr._Instance.inRoomUI.GetComponent<InRoom>().mapInfo.index);
 		}
-	}
-
-	[PunRPC]
-	public void OnLoadingLevel()
-	{
-		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().SyncInOutGameRoomInfo();
 	}
 
 	public bool IsLocal(string playerID)
@@ -279,7 +287,10 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 		foreach (var playerInfo in playerInfos)
 		{
 			if (playerInfo != null)
+			{
 				photonView.RPC("SyncInRoomPlayerInfo", newPlayer, playerInfo.id, playerInfo.team.GetHashCode(), playerInfo.inRoomPosIndex);
+				photonView.RPC("SyncMapInfo", newPlayer, (int)InOutGameRoomInfo.Instance.currentMap.index);
+			}
 		}
 	}
 
@@ -394,9 +405,9 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 	[PunRPC]
 	public void SyncMapInfo(int index)
 	{
-		foreach(var map in GlobalMapInfoMgr.Instance.readInMaps)
+		foreach (var map in GlobalMapInfoMgr.Instance.readInMaps)
 		{
-			if(map.index == index)
+			if (map.index == index)
 			{
 				InOutGameRoomInfo.Instance.currentMap = map;
 				break;
@@ -413,8 +424,14 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 	[PunRPC]
 	public void SwitchTeam(int targetTeamIndex, string whichPlayer)
 	{
-		Dictionary<int, Team> teamMap = new Dictionary<int, Team> { { 0, Team.Green }, { 1, Team.Red }};
+		Dictionary<int, Team> teamMap = new Dictionary<int, Team> { { 0, Team.Green }, { 1, Team.Red } };
 		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().SwitchTeam(teamMap[targetTeamIndex], whichPlayer);
+	}
+
+	[PunRPC]
+	public void OnLoadingLevel()
+	{
+		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().SyncInOutGameRoomInfo();
 	}
 
 	#endregion
