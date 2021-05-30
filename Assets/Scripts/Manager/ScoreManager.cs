@@ -216,6 +216,20 @@ public class ScoreManager : MonoBehaviourPun
         return playerScores[id].hurtCount;
     }
 
+    /// <summary>
+    /// 获取个人分总分（除去团队分）
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public int GetPlayerTotalScore(string id)
+    {
+        return
+            GetPlayerGetBombCount(id) * 3 +
+            GetPlayerFillCannonCount(id) * 10 -
+            GetPlayerHurtCount(id) * 3 -
+            GetPlayerDeathCount(id) * 5;
+    }
+
     public void UpdateScoreUI()
     {
         redTeamKillCount.text = GetTeamKillCount(Team.Red).ToString();
