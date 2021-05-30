@@ -125,4 +125,13 @@ public class PushableObject : MonoBehaviourPun
     {
 		return lastCarrier;
     }
+
+	/// <summary>
+	/// 检查是否正在被推动
+	/// </summary>
+	/// <returns></returns>
+	public bool CheckBeingPushed()
+    {
+		return carrier != null;
+    }
 }

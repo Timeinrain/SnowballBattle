@@ -258,6 +258,8 @@ public class PlayerController : PushableObject
 	/// </summary>
 	public void ChangePushState()
 	{
+		// 启用注释部分，允许玩家放下炸弹
+		/*
 		if (CheckAnimatorState("Push Idle", "Push Run") &&
 			curState != Action.Kick &&
 			curState != Action.FillingCannon)   // 防止踢炸弹和装炸弹时解除炸弹，发生不期望的动画效果
@@ -265,6 +267,7 @@ public class PlayerController : PushableObject
 			// 放下正在推动的物体
 			StopPushing();
 		}
+		*/
 
 		if (CheckAnimatorState("Idle", "Run"))
 		{
