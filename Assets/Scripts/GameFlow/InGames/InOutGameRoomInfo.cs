@@ -43,7 +43,7 @@ public class InOutGameRoomInfo : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.K)) ExitGameRound();
+		//if (Input.GetKeyDown(KeyCode.K)) ExitGameRound();
 	}
 
 	[Button]

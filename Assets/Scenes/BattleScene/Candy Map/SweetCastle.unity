@@ -2425,22 +2425,10 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 342463149}
-    - target: {fileID: 4649934996273424968, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: set_volume
-      objectReference: {fileID: 0}
     - target: {fileID: 6267612324867713794, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
       propertyPath: audio
       value: 
       objectReference: {fileID: 342463148}
-    - target: {fileID: 6267612324867713806, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7885159540936638270, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
-      propertyPath: sceneViewId
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
 --- !u!114 &961762638 stripped
