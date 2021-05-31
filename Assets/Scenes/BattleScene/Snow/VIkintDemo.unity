@@ -5242,33 +5242,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 452946, guid: 838440234b5e6ac40912b70ff1d38863, type: 3}
   m_PrefabInstance: {fileID: 308478257}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &310318322 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 310318322, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
-  m_PrefabInstance: {fileID: 3254567025566021084}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &310318323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 310318322}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 3
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1001 &314489320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40292,6 +40265,10 @@ PrefabInstance:
       propertyPath: audio
       value: 
       objectReference: {fileID: 170501510}
+    - target: {fileID: 7885159540936638270, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
 --- !u!114 &3254567025566021085 stripped
