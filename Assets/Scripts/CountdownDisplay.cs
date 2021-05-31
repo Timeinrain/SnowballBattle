@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CountdownDisplay : MonoBehaviour
 {
+    public int alarmTime = 10;   // 小于这个时间警示
     public Text num0;
     public Text num1;
     public Text num2;
@@ -19,5 +20,13 @@ public class CountdownDisplay : MonoBehaviour
         num2.text = (time / 10).ToString();
         time -= time / 10 * 10;
         num3.text = time.ToString();
+
+        if (time <= alarmTime)
+        {
+            num0.color = Color.red;
+            num1.color = Color.red;
+            num2.color = Color.red;
+            num3.color = Color.red;
+        }
     }
 }
