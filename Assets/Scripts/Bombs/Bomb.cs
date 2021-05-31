@@ -25,7 +25,7 @@ namespace core.zqc.bombs
 
 		public MeshRenderer meshRenderer;
 		public Material redTeamMaterial;
-		public Material blueTeamMaterial;
+		public Material greenTeamMaterial;
 
 		public Text textCountdown;
 
@@ -165,6 +165,7 @@ namespace core.zqc.bombs
 					meshRenderer.material = redTeamMaterial;
 					break;
 				case Team.Green:
+					meshRenderer.material = greenTeamMaterial;
 					break;
 				case Team.Null:
 					break;
