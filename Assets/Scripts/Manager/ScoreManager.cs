@@ -91,7 +91,15 @@ public class ScoreManager : MonoBehaviourPun
     {
         Team team = idTeamTable[id];
         Team hostile = GetHostileTeam(team);
+        if (!playerScores.ContainsKey(id))
+        {
+            playerScores.Add(id, new PlayerScoreInfo());
+        }
         playerScores[id].deathCount++;
+        if (!teamScores.ContainsKey(hostile))
+        {
+            teamScores.Add(hostile, new TeamScoreInfo());
+        }
         teamScores[hostile].killCount++;  // 死亡会给敌对的队伍增加击杀数
         UpdateScoreUI();
 

@@ -15,13 +15,15 @@ public class PhotonMasterMgr : MonoBehaviourPun
 	public GameObject localPlayer;
 	public InOutGameRoomInfo roomInfo;
 	public GameObject settlementUI;
-	public GameObject timerUI;
+	public CountdownDisplay timerUI;
 	public float currTime = 0;
 	[ShowInInspector]
 	public static PhotonMasterMgr _Instance;
 	public Dictionary<Team, GameObject> teamPosMap;
 
 	public ScoreManager scoreManager;
+
+	private BombGeneratorOnline infiniteBombGenerator = null;
 
 	public void OnEnable()
 	{
@@ -53,21 +55,27 @@ public class PhotonMasterMgr : MonoBehaviourPun
 					InOutGameRoomInfo.Instance.ExitGameRound();
 					break;
 				}
-				BombGeneratorOnline.Instance.bombsFallingNumber = (int)(currTime / 90 * 10 + 10);
+				GameObject generatorGO = GameObject.Find("Infinitive Bomb Generator");
+				if (infiniteBombGenerator == null && generatorGO != null)
+                {
+					infiniteBombGenerator = generatorGO.GetComponent<BombGeneratorOnline>();
+                }
+				if (infiniteBombGenerator != null)
+					infiniteBombGenerator.bombsFallingNumber = (int)(currTime / 90 * 10 + 10);
 			}
 			if (PhotonNetwork.LocalPlayer.IsMasterClient)
 			{
-				timerUI.GetComponent<UnityEngine.UI.Text>().text = ((int)(180 - currTime)).ToString();
-				photonView.RPC("SyncTimer", RpcTarget.Others, ((int)(180 - currTime)).ToString());
+				timerUI.SetTime((int)(180 - currTime));
+				photonView.RPC("SyncTimer", RpcTarget.Others, (int)(180 - currTime));
 			}
 			yield return new WaitForEndOfFrame();
 		}
 	}
 
 	[PunRPC]
-	public void SyncTimer(string time)
+	public void SyncTimer(int time)
 	{
-		timerUI.GetComponent<UnityEngine.UI.Text>().text = time;
+		timerUI.SetTime(time);
 	}
 
 	public void Start()

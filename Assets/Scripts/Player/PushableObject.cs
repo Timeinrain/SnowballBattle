@@ -40,12 +40,15 @@ public class PushableObject : MonoBehaviourPun
 	[PunRPC]
 	public void UpdateTransform(Vector3 position, Quaternion rotation)
 	{
-		position.y = transform.position.y;
 		objectRigidbody.MovePosition(position);
 		objectRigidbody.MoveRotation(rotation);
 
 		if (type == CarryType.Bomb)
-			objectRigidbody.transform.up = Vector3.up;
+        {
+			Quaternion q = objectRigidbody.transform.rotation;
+			q.eulerAngles = new Vector3(0f, q.eulerAngles.y, 0f);
+			objectRigidbody.transform.rotation = q;
+		}		
 	}
 
 	[PunRPC]
