@@ -383,7 +383,7 @@ MonoBehaviour:
   ExplosionFx: {fileID: 5699073387066702103}
   meshRenderer: {fileID: 4044073055988234347}
   redTeamMaterial: {fileID: 2100000, guid: 2eb202f4671d8c0419bd55354535b5f9, type: 2}
-  blueTeamMaterial: {fileID: 2100000, guid: 94a18068836dcfe42a3e55085633398a, type: 2}
+  greenTeamMaterial: {fileID: 2100000, guid: 94a18068836dcfe42a3e55085633398a, type: 2}
   textCountdown: {fileID: 2764603347797085368}
 --- !u!114 &601856844
 MonoBehaviour:
