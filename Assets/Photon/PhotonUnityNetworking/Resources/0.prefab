@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 6579003777152274608}
   - component: {fileID: 6579003777152274622}
   - component: {fileID: 6579003777152274609}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Push Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,6 +835,7 @@ MonoBehaviour:
   playerRotationSpeed: 10
   playerOnPushingMovingSpeed: 6
   playerForcedMovingSpeed: 6
+  slopeLimit: 45
   viewFieldRadiance: 13.7
   pushController: {fileID: 6579003777152274622}
   kickSpeed: 40

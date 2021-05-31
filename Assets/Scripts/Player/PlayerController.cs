@@ -3,11 +3,13 @@ using UnityEngine;
 /// <summary>
 /// 玩家控制脚本，联机仍在测试中
 /// </summary>
+[RequireComponent(typeof(CapsuleCollider))]
 public class PlayerController : PushableObject
 {
 	public bool useAbsoluteDirection = false;
 	public GameObject playerViewCam;
 
+	CapsuleCollider playerCollider;
 	Rigidbody playerRigidbody;
 	Animator playerAnimator;
 	Character gameLogicHandler;
@@ -21,6 +23,8 @@ public class PlayerController : PushableObject
 	public float playerOnPushingMovingSpeed;
 	[Range(1, 50)]
 	public float playerForcedMovingSpeed;
+	[Range(0, 90)]
+	public float slopeLimit;    // 最大爬坡角
 
 	[Range(1, 50)]
 	public float viewFieldRadiance;
@@ -71,6 +75,7 @@ public class PlayerController : PushableObject
 		playerViewCam = GameObject.FindWithTag("MainCamera");
 		playerRigidbody = GetComponent<Rigidbody>();
 		playerAnimator = GetComponentInChildren<Animator>();
+		playerCollider = GetComponent<CapsuleCollider>();
 
 		type = CarryType.Player;
 		SetPushable(false);
@@ -203,9 +208,29 @@ public class PlayerController : PushableObject
 		Vector3 camForward = new Vector3(playerViewCam.transform.forward.x, 0, playerViewCam.transform.forward.z);
 		Vector3 camRight = new Vector3(playerViewCam.transform.right.x, 0, playerViewCam.transform.right.z);
 		if (curState == Action.Idle || curState == Action.Pushing || curState == Action.FreeRun)
-			playerRigidbody.velocity = useAbsoluteDirection ? new Vector3(xV, 0, yV) : (xV * camRight + yV * camForward).normalized * playerMovingSpeed + new Vector3(0, playerRigidbody.velocity.y, 0);
+        {
+			Vector3 desiredMove;
+			desiredMove = useAbsoluteDirection ? new Vector3(xV, 0, yV) : (xV * camRight + yV * camForward).normalized * playerMovingSpeed;
 
+			// 获取接触表面法线向量
+			RaycastHit hitInfo;
+			if (Physics.SphereCast(transform.position + new Vector3(0, playerCollider.center.y, 0), playerCollider.radius, Vector3.down, out hitInfo,
+							   playerCollider.height / 2f, ~LayerMask.GetMask("Player"), QueryTriggerInteraction.Ignore))
+			{
+				if (Vector3.Angle(Vector3.up, hitInfo.normal) < slopeLimit)
+				{
+					Vector3 dir = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
+					desiredMove = dir * playerMovingSpeed;
+				}
+				playerRigidbody.velocity = desiredMove + new Vector3(0, playerRigidbody.velocity.y, 0);
+				s = hitInfo.ToString();
+				a = Vector3.Angle(Vector3.up, hitInfo.normal);
+			}
+		}
 	}
+
+	public string s;
+	public float a;
 
 	/// <summary>
 	/// Kick the bomb into specific direction
