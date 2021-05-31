@@ -40337,6 +40337,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1100580513025513637, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125510145116714265, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 474.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2938771226641956949, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 3254567025566021089}
+    - target: {fileID: 2938771226641956949, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 3254567025566021088}
     - target: {fileID: 3254567024371953644, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -40425,6 +40441,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3254567024371953650, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3254567024371953651, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
       propertyPath: m_Camera
       value: 
@@ -40476,6 +40496,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3254567025566021088 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5944934657705762764, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+  m_PrefabInstance: {fileID: 3254567025566021084}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &3254567025566021089 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2125510145116714265, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+  m_PrefabInstance: {fileID: 3254567025566021084}
+  m_PrefabAsset: {fileID: 0}
 --- !u!33 &3469287836922268925
 MeshFilter:
   m_ObjectHideFlags: 0

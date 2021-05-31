@@ -808,6 +808,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2938771226641956949, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 76691905}
     - target: {fileID: 3254567024371953644, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -944,6 +948,17 @@ GameObject:
 --- !u!114 &76691904 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1615407377168185415, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+  m_PrefabInstance: {fileID: 76691900}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &76691905 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5944934657705762764, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
   m_PrefabInstance: {fileID: 76691900}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

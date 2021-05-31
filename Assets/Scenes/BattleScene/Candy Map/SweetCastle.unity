@@ -635,6 +635,36 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 52b127ac37e19d34d9b2df10dd8ef6d7, type: 3}
+--- !u!1 &237674899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 237674900}
+  m_Layer: 0
+  m_Name: qizi-2 (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &237674900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237674899}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1028556656}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &239886973
 GameObject:
   m_ObjectHideFlags: 0
@@ -2329,6 +2359,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2938771226641956949, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 961762642}
     - target: {fileID: 3254567024371953644, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2417,6 +2451,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3254567024371953650, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3254567024371953651, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
       propertyPath: m_Camera
       value: 
@@ -2479,6 +2517,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9d56968507f0b004a86274f4e2bded29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &961762642 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5944934657705762764, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+  m_PrefabInstance: {fileID: 961762637}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &971186491
@@ -3375,6 +3424,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294797334}
   m_Mesh: {fileID: 4300000, guid: 16e496480c4664acea6e6c16e8a5d9b7, type: 3}
+--- !u!1 &1299937909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1299937910}
+  m_Layer: 0
+  m_Name: qizi-2 (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1299937910
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299937909}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1294524545}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1305219367 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1487127839776272, guid: eed5b990fef32f74884edcc6df6d9b0d, type: 3}
@@ -4516,63 +4595,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000014281035360, guid: 847480715863e18499e62c63dc24d320, type: 3}
   m_PrefabInstance: {fileID: 1751813402}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1779100029
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1294524545}
-    m_Modifications:
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438587, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_Name
-      value: qizi-2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
 --- !u!1 &1808651318
 GameObject:
   m_ObjectHideFlags: 0
@@ -5026,67 +5048,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1929727271
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1028556656}
-    m_Modifications:
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438586, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438587, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_Name
-      value: qizi-2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1803484006857438589, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ec5f366e3b290424a8e276357fa99eb9, type: 3}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1b664c82bba122e46a9a8e49525d62fa, type: 3}
 --- !u!1 &1957082877 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d3ee057e059ffde4e9477a5f5e6a4146, type: 3}

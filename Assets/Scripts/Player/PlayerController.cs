@@ -223,14 +223,9 @@ public class PlayerController : PushableObject
 					desiredMove = dir * playerMovingSpeed;
 				}
 				playerRigidbody.velocity = desiredMove + new Vector3(0, playerRigidbody.velocity.y, 0);
-				s = hitInfo.collider.gameObject;
-				a = Vector3.Angle(Vector3.up, hitInfo.normal);
 			}
 		}
 	}
-
-	public GameObject s;
-	public float a;
 
 	/// <summary>
 	/// Kick the bomb into specific direction
