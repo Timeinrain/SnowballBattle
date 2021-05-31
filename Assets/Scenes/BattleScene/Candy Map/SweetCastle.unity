@@ -2433,6 +2433,14 @@ PrefabInstance:
       propertyPath: audio
       value: 
       objectReference: {fileID: 342463148}
+    - target: {fileID: 6267612324867713806, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7885159540936638270, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 491457ccc0297cd47b1f2503744eee34, type: 3}
 --- !u!114 &961762638 stripped
@@ -4817,7 +4825,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
+  sharedProfile: {fileID: 11400000, guid: f997c295039f9024ea2e47c87b396d6a, type: 2}
 --- !u!4 &1847545235
 Transform:
   m_ObjectHideFlags: 0
