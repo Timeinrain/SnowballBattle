@@ -40,6 +40,13 @@ public class PushableObject : MonoBehaviourPun
 	[PunRPC]
 	public void UpdateTransform(Vector3 position, Quaternion rotation)
 	{
+		if (Mathf.Abs(transform.position.y - position.y) > 2f)
+        {
+			carrier.StopPushing();
+			return;
+		}
+			
+		position.y = transform.position.y;
 		objectRigidbody.MovePosition(position);
 		objectRigidbody.MoveRotation(rotation);
 

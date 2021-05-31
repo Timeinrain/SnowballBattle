@@ -702,8 +702,6 @@ MonoBehaviour:
   impulseY: 22
   impulseXZ: 7.5
   ice: {fileID: 7751402228602244852}
-  s: {fileID: 0}
-  a: 0
 --- !u!136 &6897329919029907955
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -796,7 +794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15b9d657d0d3ae4dae4d27000279670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 3
   id: 
   unfreezeTime: 5
   surviveTimeAfterFrozen: 10

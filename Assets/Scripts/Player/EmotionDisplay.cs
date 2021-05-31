@@ -27,6 +27,9 @@ public class EmotionDisplay : MonoBehaviour
     public Sprite greenNormal;
     public Sprite greenScore;
 
+    [Header("Health Bar")]
+    public Text healthText;
+
     private Character monitorCharacter;
     private Team team;
 
@@ -128,6 +131,9 @@ public class EmotionDisplay : MonoBehaviour
                         break;
                 }
             }
+
+        // ÑªÌõ
+        healthText.text = monitorCharacter.Health.ToString();
     }
 
     private void OnDie(string id)
