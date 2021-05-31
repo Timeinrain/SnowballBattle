@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb22c593489b5741bfb157d3865ca61, type: 3}
   m_Name: Map_SweetyCastle
   m_EditorClassIdentifier: 
-  mapName: "\u7CD6\u679C\u57CE\u5821"
+  mapName: "\u75AF\u72C2\u751C\u54C1\u7AD9"
   mapDescription: 
   tinyModel: {fileID: 0}
   index: 3

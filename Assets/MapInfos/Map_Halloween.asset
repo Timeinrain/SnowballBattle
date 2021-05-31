@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebb22c593489b5741bfb157d3865ca61, type: 3}
   m_Name: Map_Halloween
   m_EditorClassIdentifier: 
-  mapName: "\u4E07\u5723\u8282"
+  mapName: "\u5947\u5999\u4E07\u5723\u591C"
   mapDescription: 
   tinyModel: {fileID: 4392405680292201648, guid: c3330c0f12a9e1347b3942bac05f4bb5, type: 3}
   index: 2
