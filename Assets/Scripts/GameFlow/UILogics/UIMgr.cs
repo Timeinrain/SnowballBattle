@@ -13,6 +13,7 @@ public class UIMgr : MonoBehaviour
 	public GameObject settingsUI;
 	public GameObject mapSelectionUI;
 	public GameObject switchMaskMgr;
+	public GameObject loadingPanel;
 	public GameObject settlementUI;
 
 	private SwitchMaskFX switchMaskFX;

@@ -16,7 +16,7 @@ public class PhotonMasterMgr : MonoBehaviourPun
 	public InOutGameRoomInfo roomInfo;
 	public GameObject settlementUI;
 	public CountdownDisplay timerUI;
-	public float currTime = 0;
+	public float currTime = -10;
 	[ShowInInspector]
 	public static PhotonMasterMgr _Instance;
 	public Dictionary<Team, GameObject> teamPosMap;
@@ -45,7 +45,7 @@ public class PhotonMasterMgr : MonoBehaviourPun
 		while (true)
 		{
 			currTime += Time.deltaTime;
-			if (currTime >= 5.0) GameManager.Instance.startGame = true;
+			if (currTime >= 10.0) GameManager.Instance.startGame = true;
 			if (PhotonNetwork.LocalPlayer.IsMasterClient)
 			{
 				if (currTime >= 180)
@@ -57,9 +57,9 @@ public class PhotonMasterMgr : MonoBehaviourPun
 				}
 				GameObject generatorGO = GameObject.Find("Infinitive Bomb Generator");
 				if (infiniteBombGenerator == null && generatorGO != null)
-                {
+				{
 					infiniteBombGenerator = generatorGO.GetComponent<BombGeneratorOnline>();
-                }
+				}
 				if (infiniteBombGenerator != null)
 					infiniteBombGenerator.bombsFallingNumber = (int)(currTime / 90 * 10 + 10);
 			}

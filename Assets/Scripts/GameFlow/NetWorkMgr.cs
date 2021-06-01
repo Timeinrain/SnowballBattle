@@ -467,6 +467,7 @@ public class NetWorkMgr : MonoBehaviourPunCallbacks
 	public void OnLoadingLevel()
 	{
 		UIMgr._Instance.inRoomUI.GetComponent<InRoom>().SyncInOutGameRoomInfo();
+		UIMgr._Instance.loadingPanel.GetComponent<LoadingPanel>().StartLoading();
 	}
 
 	[PunRPC]
