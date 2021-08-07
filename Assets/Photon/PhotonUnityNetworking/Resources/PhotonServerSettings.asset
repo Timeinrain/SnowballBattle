@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 173ad590-47f0-4573-b1cb-3be35654688b
+    AppIdRealtime: 
     AppIdChat: 
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
-    FixedRegion: cn
-    Server: ns.photonengine.cn
+    FixedRegion: 
+    Server: 
     Port: 0
     ProxyServer: 
     Protocol: 0
@@ -45,18 +45,18 @@ MonoBehaviour:
   - Respawn
   - ReturnToRoom
   - SaveData
+  - StartSettlement
   - StopExplosionCountdown
   - SwitchTeam
   - SyncInRoomPlayerInfo
   - SyncKillCount
   - SyncMapInfo
   - SyncPlayerInfo
+  - SyncTimer
   - TakeDamage
   - Unfreeze
   - UpdateRoomMaster
   - UpdateTransform
-  - StartSettlement
-  - SyncTimer
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0
